@@ -1,0 +1,15 @@
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+# defaults
+map global normal <c-q> ': quit<ret>'
+map global normal <c-s> ': write<ret>'
+set-option global tabstop 4
+add-highlighter global/ number-lines
+
+# fzf
+plug "andreyorst/fzf.kak"
+map global normal <c-p> ': fzf-mode<ret>'
+
+# plugins
+plug "occivink/kakoune-sudo-write"
+
