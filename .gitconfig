@@ -1,0 +1,53 @@
+[user]
+	email = arturbosch@gmx.de
+	name = Artur Bosch
+[pull]
+	rebase = true
+[core]
+	autocrlf = input
+	editor = kak
+	excludesfile = ~/.gitignore
+	quotepath = false
+[alias]
+	a = add
+	aa = add --all
+	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
+	b = branch
+	cem = commit --amend -m
+	cm = commit -m
+	co = checkout
+	cob = checkout -b
+	d = diff
+	ds = diff --staged
+	dw = diff -w
+	f = fetch
+	noc = rev-list HEAD --count
+	l = log
+	lc = log --graph --pretty=format:\"%an: %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset\" --date=relative
+	lch = rev-parse HEAD
+	lm = "!me=$(git config --get user.name); git log --oneline --author \"$me\""
+	lo = log --oneline
+	ls = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+	pou = push origin -u
+	s = status
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbi = rebase -i
+	rbm = rebase master
+	rbiom = rebase -i origin/master
+	rbs = rebase --skip
+	rh = reset --hard
+	rha = reset HEAD .
+	rhom = reset --hard origin/master
+	tl = log --tags --simplify-by-decoration --pretty='format:%ci %d'
+	trm = ls-tree -r master --name-only
+	up = pull --rebase --autostash
+[fetch]
+	prune = true
+[rebase]
+	autoStash = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
