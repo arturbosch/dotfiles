@@ -13,22 +13,23 @@ set SSH_KEY_PTH $HOME/.ssh/rsa_id
 
 # vars
 set LANG en_US.UTF-8
-set EDITOR nvim
-set VISUAL nvim
+set EDITOR kak
+set VISUAL kak
 
 # aliases && abbreveations
 abbr e $EDITOR
 abbr vim nvim
 abbr vi nvim
 abbr pw "sudo $HOME/bin/power.sh"
+abbr todo "$EDITOR $HOME/todo.md"
 
 ## config shortcuts
-abbr ef "$EDITOR $HOME/.dotfiles/fish/abosch.fish"
-abbr ei "$EDITOR $HOME/.dotfiles/i3/config"
-abbr ev "$EDITOR $HOME/.dotfiles/nvim/init.vim"
-abbr eg "$EDITOR $HOME/.dotfiles/.gitconfig"
-abbr ecoc "$EDITOR $HOME/.dotfiles/nvim/coc-settings.json"
-abbr ek "$EDITOR $HOME/.dotfiles/kak/kakrc"
+abbr ef "$EDITOR $HOME/dotfiles/fish/conf.fish"
+abbr ei "$EDITOR $HOME/dotfiles/i3/config"
+abbr ev "nvim $HOME/dotfiles/nvim/init.vim"
+abbr eg "$EDITOR $HOME/dotfiles/.gitconfig"
+abbr ecoc "$EDITOR $HOME/dotfiles/nvim/coc-settings.json"
+abbr ek "$EDITOR $HOME/dotfiles/kak/kakrc"
 
 ## other shortcuts
 abbr gl tig
@@ -80,7 +81,7 @@ alias ll "exa --long --git -@"
 alias lt "exa --tree"
 
 # misc aliases
-alias dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
+abbr l "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
 alias jshell "$JAVA_HOME/bin/jshell"
 alias mm "java -jar -Xmx50m ~/tools/mm.jar"
 alias mmx "java -XX:TieredStopAtLevel=1 -XX:CICompilerCount=1 -XX:+UseSerialGC -Xshare:on -XX:-UsePerfData -Xmx20m -Xms20m -jar ~/tools/mm.jar"
