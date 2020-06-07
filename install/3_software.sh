@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 sudo apt install htop powertop tlp snapd printer-driver-gutenprint \
-    curl fish git fzf ripgrep tig meld tk tcl tldr tldr-py autojump \
-    fd-find suckless-tools asciinema scrot \
+    curl fish git fzf tig meld tk tcl tldr tldr-py autojump \
+    asciinema scrot \
     thunar geary \
     neovim neovim-qt kakoune \
     nodejs yarn hugo jekyll ruby cargo
@@ -20,3 +20,7 @@ sudo snap install vlc
 
 # go get
 go get github.com/gokcehan/lf
+
+# cargo tools
+sudo apt install cargo
+cargo install dutree ytop hyperfine sk sd ripgrep fd-find
