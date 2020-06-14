@@ -21,6 +21,11 @@ map global normal <c-p> ': fzf-mode<ret>'
 plug "occivink/kakoune-sudo-write"
 
 # editing
+
+hook global WinCreate [^*]* %{
+    editorconfig-load
+}
+
 hook global BufCreate .*\.(kt|kts) %{
     set-option buffer filetype kotlin
 }
