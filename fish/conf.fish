@@ -15,6 +15,7 @@ set SSH_KEY_PTH $HOME/.ssh/rsa_id
 set LANG en_US.UTF-8
 set EDITOR kak
 set VISUAL kak
+set BROWSER brave
 
 # aliases && abbreveations
 abbr e $EDITOR

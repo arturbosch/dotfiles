@@ -1,26 +1,45 @@
 #!/usr/bin/env sh
-sudo apt install htop powertop tlp snapd printer-driver-gutenprint \
-    curl fish git fzf tig meld tk tcl tldr tldr-py autojump \
-    asciinema scrot \
-    thunar geary \
-    neovim neovim-qt kakoune \
-    nodejs yarn hugo jekyll ruby cargo
 
-# fish
+## install command and additional software
+if (uname -a | grep -q ubuntu)
+then
+    system="ubuntu"
+    install="sudo apt install"
+    additional_software="snapd printer-driver-gutenprint scrot thunar tldr-py neovim-qt"
+else
+    system="manjaro"
+    install="sudo pamac install"
+    additional_software="alacritty tlpui go vlc brave-beta firefox ttf-jetbrains-mono pcmanfm-qt"
+    sudo pamac remove palemoon-bin
+fi
+
+## install common software
+### archived: jekyll autojump
+system_tools="htop powertop tlp curl wget zip unzip git fish fzf tig meld tk tcl tldr asciinema"
+office_tools="thunderbird gimp virtualbox"
+dev_tools="neovim kakoune hugo rust cargo nodejs yarn ruby"
+
+$install $system_tools
+$install $office_tools
+$install $dev_tools
+
+## install additional software
+$install $additional_software
+
+# fish plugin manager
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-sudo chsh artur -s /usr/bin/fish
+sudo chsh $USER -s /usr/bin/fish
 
-# terminal emulator
-sudo add-apt-repository ppa:mmstick76/alacritty
-sudo apt install alacritty
+if [ "$system" = "ubuntu" ]
+then
+    sudo add-apt-repository ppa:mmstick76/alacritty
+    sudo apt install alacritty
 
-# snaps
-sudo snap install go --classic
-sudo snap install vlc
+    # snaps
+    sudo snap install go --classic
+    sudo snap install vlc
+fi
 
-# go get
+# go and rust tools
 go get github.com/gokcehan/lf
-
-# cargo tools
-sudo apt install cargo
-cargo install dutree ytop hyperfine sk sd ripgrep fd-find
+cargo install dutree ytop hyperfine sd ripgrep fd-find exa skim
