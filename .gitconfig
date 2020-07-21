@@ -47,6 +47,7 @@
 	prune = true
 [rebase]
 	autoStash = true
+    autosquash = true
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
