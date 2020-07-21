@@ -1,5 +1,6 @@
 #!/bin/env sh
 mkdir -p ~/.config/nvim
+mkdir -p ~/.config/rofi
 mkdir -p ~/.config/kak/plugins
 mkdir -p ~/.config/alacritty
 mkdir -p ~/.config/fish/conf.d

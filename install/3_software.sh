@@ -15,7 +15,7 @@ fi
 
 ## install common software
 ### archived: jekyll autojump
-system_tools="htop powertop tlp curl wget zip unzip git fish fzf tig meld tk tcl tldr asciinema"
+system_tools="htop powertop tlp curl wget zip unzip git fish fzf tig meld tk tcl tldr asciinema rofi"
 office_tools="thunderbird gimp virtualbox"
 dev_tools="neovim kakoune hugo rust cargo nodejs yarn ruby"
 
