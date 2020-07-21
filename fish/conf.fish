@@ -22,7 +22,12 @@ abbr e $EDITOR
 abbr vim nvim
 abbr vi nvim
 abbr pw "sudo $HOME/bin/power.sh"
-abbr todo "$EDITOR $HOME/todo.md"
+
+abbr tw timew
+abbr tws "timew sum"
+abbr tww "timew week"
+abbr twd "timew day"
+abbr twm "timew month"
 
 ## config shortcuts
 abbr ef "$EDITOR $HOME/dotfiles/fish/conf.fish"
