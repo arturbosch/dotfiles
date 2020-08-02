@@ -142,4 +142,5 @@ function git-add-fzf
     git add (git ls-files --modified --exclude-standard | fzf --ansi --no-sort --preview 'git diff --color=always -- {}')
 end
 
+starship init fish | source
 

@@ -42,4 +42,5 @@ fi
 
 # go and rust tools
 go get github.com/gokcehan/lf
-cargo install dutree ytop hyperfine sd ripgrep fd-find exa skim
+cargo install dutree ytop hyperfine sd ripgrep fd-find exa skim starship
+
