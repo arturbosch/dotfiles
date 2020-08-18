@@ -19,6 +19,7 @@ map global normal <c-p> ': fzf-mode<ret>'
 
 # plugins
 plug "occivink/kakoune-sudo-write"
+plug "arturbosch/v-kak"
 
 # editing
 
