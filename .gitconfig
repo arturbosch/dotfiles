@@ -13,6 +13,7 @@
 	aa = add --all
 	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
 	b = branch
+	cam = commit --amend
 	cem = commit --amend -m
 	cm = commit -m
 	co = checkout

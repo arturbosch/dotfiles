@@ -16,3 +16,7 @@ then
     sudo apt install brave-browser-beta
 fi
 
+# theming
+curl https://gist.githubusercontent.com/hatoba29/52fd11a140deb8beeea5936e12bf566a/raw/e88db3ea5cf6a39374fafc6f87d0f87fa5c7fdf0/onedark.rofi --output ~/.config/rofi/onedark.rofi
+yay arc-darker
+
