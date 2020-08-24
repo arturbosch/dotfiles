@@ -9,7 +9,7 @@ then
 else
     system="manjaro"
     install="sudo pamac install"
-    additional_software="alacritty tlpui go vlc brave-beta firefox ttf-jetbrains-mono pcmanfm-gtk3"
+    additional_software="alacritty tlpui go vlc brave-beta firefox ttf-jetbrains-mono"
     sudo pamac remove palemoon-bin
 fi
 
