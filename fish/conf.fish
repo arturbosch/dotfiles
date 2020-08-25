@@ -21,7 +21,6 @@ set BROWSER brave
 abbr e $EDITOR
 abbr vim nvim
 abbr vi nvim
-abbr pw "sudo $HOME/bin/power.sh"
 
 abbr tw timew
 abbr tws "timew sum"
@@ -34,7 +33,6 @@ abbr ef "$EDITOR $HOME/dotfiles/fish/conf.fish"
 abbr ei "$EDITOR $HOME/dotfiles/i3/config"
 abbr ev "nvim $HOME/dotfiles/nvim/init.vim"
 abbr eg "$EDITOR $HOME/dotfiles/.gitconfig"
-abbr ecoc "$EDITOR $HOME/dotfiles/nvim/coc-settings.json"
 abbr ek "$EDITOR $HOME/dotfiles/kak/kakrc"
 
 ## other shortcuts
@@ -57,12 +55,10 @@ abbr gd "gradle detekt"
 abbr f "cd ~/files && ls ~/files/ | dmenu -l 30"
 abbr eff "$EDITOR (cd ~/.config/fish/functions && ls | dmenu -l 30)"
 abbr ff "cat (cd ~/files && ls ~/files/ | dmenu -l 30)"
-abbr fm "mplayer -geometry 25%:25% -loop 0 -fixed-vo -nofs -xineramascreen 1 -playlist (cd ~/Music/playlists && ls ~/Music/playlists | dmenu -l 30)"
 abbr fe "$EDITOR (cd ~/files && ls ~/files/ | dmenu -l 30)"
 abbr j "java"
 abbr jj "java -jar"
 abbr jv "java -version"
-alias groovy groovyclient
 abbr fixpacman "rm /var/lib/pacman/db.lck"
 
 # installer
@@ -87,13 +83,13 @@ alias ll "exa --long --git -@"
 alias lt "exa --tree"
 
 # misc aliases
-abbr l "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
+abbr dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
 alias jshell "$JAVA_HOME/bin/jshell"
 alias mm "java -jar -Xmx50m ~/tools/mm.jar"
 alias mmx "java -XX:TieredStopAtLevel=1 -XX:CICompilerCount=1 -XX:+UseSerialGC -Xshare:on -XX:-UsePerfData -Xmx20m -Xms20m -jar ~/tools/mm.jar"
 alias gbt "java -jar -Xmx128m -Xms128m $HOME/tools/gbt-1.0.jar"
 alias dgbt "sh $HOME/git/repos/gbt/build/distributions/gbt/bin/gbt"
-
+alias groovy groovyclient
 alias zip_git "zip -r git-with-excludes.zip git/ -x '**/node_modules/**' '**/build/**' '**/.idea/**' 'git/test/**' '**/target/**' '**/.gradle/**' '**/out/production/**' '**/out/test/**' '**/gbt_build/**'"
 
 # ruby
@@ -102,7 +98,6 @@ set GEM_HOME $HOME/.gem
 
 # js npm stuff
 export NODE_PATH=$HOME/node_modules/
-alias create-react-app=$NODE_PATH/create-react-app/index.js
 
 # go
 set GOPATH $HOME/go
