@@ -1,6 +1,8 @@
 function fish_greeting
 end
 
+setxkbmap -option caps:escape
+
 # paths
 set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
@@ -89,7 +91,7 @@ alias mm "java -jar -Xmx50m ~/tools/mm.jar"
 alias mmx "java -XX:TieredStopAtLevel=1 -XX:CICompilerCount=1 -XX:+UseSerialGC -Xshare:on -XX:-UsePerfData -Xmx20m -Xms20m -jar ~/tools/mm.jar"
 alias gbt "java -jar -Xmx128m -Xms128m $HOME/tools/gbt-1.0.jar"
 alias dgbt "sh $HOME/git/repos/gbt/build/distributions/gbt/bin/gbt"
-alias groovy groovyclient
+# alias groovy groovyclient
 alias zip_git "zip -r git-with-excludes.zip git/ -x '**/node_modules/**' '**/build/**' '**/.idea/**' 'git/test/**' '**/target/**' '**/.gradle/**' '**/out/production/**' '**/out/test/**' '**/gbt_build/**'"
 
 # ruby
