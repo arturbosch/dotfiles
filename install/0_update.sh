@@ -1,15 +1,17 @@
 #!/bin/env sh
 # copy home backup and update os
 
-if (uname -a | grep -q ubuntu)
+if (uname -a | grep -q pop-os)
 
-then # regolith specific
+then # pop-os specific
 
     sudo apt update && sudo apt upgrade -y
 
     # enable middle and right click for touchpad
     gsettings set org.gnome.desktop.peripherals.touchpad click-method areas
-
+    wget https://download.jetbrains.com/fonts/JetBrainsMono-2.001.zip
+    unzip JetBrainsMono-2.001.zip
+    sudo mv ttf/JetBrainsMono-*.ttf /usr/share/fonts/
 else # manjaro specific
 
     sudo pamac update && sudo pamac upgrade

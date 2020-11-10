@@ -1,23 +1,28 @@
 #!/usr/bin/env sh
 
 ## install command and additional software
-if (uname -a | grep -q ubuntu)
+if (uname -a | grep -q pop-os)
 then
-    system="ubuntu"
+    system="pop-os"
     install="sudo apt install"
-    additional_software="snapd printer-driver-gutenprint scrot thunar tldr-py neovim-qt"
+    additional_software="printer-driver-gutenprint scrot pcmanfm tldr-py neovim-qt"
+
+    sudo apt remove cmdtest
+    sudo apt remove yarn && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt update
 else
     system="manjaro"
     install="sudo pamac install"
-    additional_software="alacritty tlpui go vlc brave-beta firefox ttf-jetbrains-mono"
+    additional_software="rust tlpui go vlc brave-beta firefox ttf-jetbrains-mono pulseaudio-bluetooth"
     sudo pamac remove palemoon-bin
 fi
 
 ## install common software
 ### archived: jekyll autojump
-system_tools="htop powertop tlp curl wget zip unzip git fish fzf tig meld tk tcl tldr asciinema rofi"
-office_tools="thunderbird gimp virtualbox"
-dev_tools="neovim kakoune hugo rust cargo nodejs yarn ruby"
+system_tools="htop powertop tlp curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi timewarrior"
+office_tools="thunderbird gimp virtualbox steam"
+dev_tools="neovim kakoune hugo cargo nodejs yarn ruby"
 
 $install $system_tools
 $install $office_tools
@@ -30,17 +35,8 @@ $install $additional_software
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 sudo chsh $USER -s /usr/bin/fish
 
-if [ "$system" = "ubuntu" ]
-then
-    sudo add-apt-repository ppa:mmstick76/alacritty
-    sudo apt install alacritty
-
-    # snaps
-    sudo snap install go --classic
-    sudo snap install vlc
-fi
-
 # go and rust tools
-go get github.com/gokcehan/lf
+## go get github.com/gokcehan/lf
+## sudo snap install go --classic
 cargo install dutree ytop hyperfine sd ripgrep fd-find exa skim starship broot
 
