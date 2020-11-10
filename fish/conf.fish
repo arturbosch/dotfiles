@@ -39,7 +39,7 @@ abbr ek "$EDITOR $HOME/dotfiles/kak/kakrc"
 
 ## other shortcuts
 abbr gl tig
-if test (uname -a | grep 'Ubuntu')
+if test (uname -a | grep 'pop-os')
     alias fd fdfind
 end
 abbr loc "tokei --sort=lines"
@@ -61,23 +61,27 @@ abbr fe "$EDITOR (cd ~/files && ls ~/files/ | dmenu -l 30)"
 abbr j "java"
 abbr jj "java -jar"
 abbr jv "java -version"
-abbr fixpacman "rm /var/lib/pacman/db.lck"
 
 # installer
 ## apt
-if test (uname -a | grep 'Ubuntu')
+if test (uname -a | grep 'pop-os')
     abbr inst "sudo apt install"
     abbr fp "sudo apt search"
-end
+    abbr up "sudo apt update && sudo apt upgrade"
 ## pacman
-abbr p "sudo pacman"
-abbr pmi "sudo pacman -S"
-abbr pms "pacman -Ss"
-abbr pmr "sudo pacman -Rns"
-abbr pmu "sudo pacman -Syu"
-abbr pmq "pacman -Qe"
-abbr pmold "pacman -Qdt"
-abbr pmrold "sudo pacman -Sc"
+else
+    abbr inst "sudo pacman -S"
+    abbr up "sudo yay"
+    abbr p "sudo pacman"
+    abbr pmi "sudo pacman -S"
+    abbr pms "pacman -Ss"
+    abbr pmr "sudo pacman -Rns"
+    abbr pmu "sudo pacman -Syu"
+    abbr pmq "pacman -Qe"
+    abbr pmold "pacman -Qdt"
+    abbr pmrold "sudo pacman -Sc"
+    abbr fixpacman "rm /var/lib/pacman/db.lck"
+end
 
 # ls replacement
 alias ls exa
