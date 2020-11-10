@@ -20,7 +20,7 @@ fi
 
 ## install common software
 ### archived: jekyll autojump
-system_tools="htop powertop tlp curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi timewarrior"
+system_tools="htop powertop tlp curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi timewarrior neofetch"
 office_tools="thunderbird gimp virtualbox steam"
 dev_tools="neovim kakoune hugo cargo nodejs yarn ruby"
 
