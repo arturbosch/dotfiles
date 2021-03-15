@@ -5,7 +5,7 @@ if (uname -a | grep -q pop-os)
 then
     system="pop-os"
     install="sudo apt install"
-    additional_software="printer-driver-gutenprint scrot pcmanfm tldr-py neovim-qt pavucontrol compton xautolock pasystray libnotify-bin brightnessctl"
+    additional_software="printer-driver-gutenprint scrot pcmanfm tldr-py neovim-qt pavucontrol compton xautolock pasystray libnotify-bin brightnessctl python3-pip"
 
     sudo apt remove cmdtest
     sudo apt remove yarn && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -

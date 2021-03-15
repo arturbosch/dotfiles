@@ -8,9 +8,10 @@ kakrc="$HOME/.config/kak/kakrc"
 nvim="$HOME/.config/nvim/init.vim"
 gitconfig="$HOME/.gitconfig"
 roficonfig="$HOME/.config/rofi/config"
+qtileconfig="$HOME/.config/qtile/config.py"
 
 # remove old links
-for var in $alacritty $fish $kakrc $nvim $gitconfig $roficonfig $fish_plugins
+for var in $alacritty $fish $kakrc $nvim $gitconfig $roficonfig $fish_plugins $qtileconfig
 do
     rm $var
 done
@@ -23,4 +24,5 @@ ln -s $HOME/dotfiles/kak/kakrc $kakrc
 ln -s $HOME/dotfiles/nvim/init.vim $nvim
 ln -s $HOME/dotfiles/.gitconfig $gitconfig
 ln -s $HOME/dotfiles/rofi/config $roficonfig
+ln -s $HOME/dotfiles/qtile/config.py $qtileconfig
 
