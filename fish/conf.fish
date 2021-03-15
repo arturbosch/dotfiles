@@ -42,6 +42,7 @@ abbr gl tig
 if test (uname -a | grep 'pop-os')
     alias fd fdfind
 end
+abbr bb "bluetoothctl"
 abbr loc "tokei --sort=lines"
 abbr md "mkdir -pv"
 abbr rd "rm -R"
