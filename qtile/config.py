@@ -41,9 +41,13 @@ terminal = guess_terminal()
 
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser("~")
-    subprocess.call([home + "/dotfiles/qtile/autostart.sh"])
+    home = os.path.expanduser("~/dotfiles/qtile/autostart.sh")
+    subprocess.call([home])
 
+class Audio:
+    volume_up = "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+    volume_down = "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+    toggle_mute = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
 keys = [
     Key([mod], "d", lazy.spawn("rofi -modi window,drun,run -show drun"), desc="Launches command launcher"),
@@ -90,14 +94,16 @@ keys = [
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl s 10%-")),
 
     # Audio
-    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
+    Key([], "XF86AudioMute", lazy.spawn(Audio.toggle_mute)),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn(Audio.volume_up)),
+    Key([], "XF86AudioLowerVolume", lazy.spawn(Audio.volume_down)),
 
     # Applications
     Key([mod], "Return", lazy.spawn(terminal), desc="Launches terminal"),
     Key([mod], "F2", lazy.spawn("brave-browser"), desc="Launches browser"),
     Key([mod], "F3", lazy.spawn("pcmanfm"), desc="Launches file manager"),
+    Key([mod], "F4", lazy.spawn("thunderbird"), desc="Launches email client"),
+    Key([mod], "F5", lazy.spawn(terminal + " -e mocp"), desc="Launcher music player"),
     Key([mod], "t", lazy.spawn("pkill picom")),
     Key([mod, "control"], "t", lazy.spawn("picom -b")),
     Key([mod], "Print", lazy.spawn("scrot")),
@@ -172,19 +178,21 @@ screens = [
                 widget.Sep(padding=default_sep_padding),
                 widget.Memory(
                     mouse_callbacks={
-                        "Button1": lambda: lazy.spawncmd(terminal + " -e htop")
+                        "Button1": lambda: lazy.spawn(terminal + " -e htop")
                     },
                 ),
                 widget.Sep(padding=default_sep_padding),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 widget.Sep(padding=default_sep_padding),
-                widget.Volume(),
+                widget.Volume(
+                	mute_command=Audio.toggle_mute
+                ),
                 widget.Sep(padding=default_sep_padding),
                 widget.CheckUpdates(
                     update_interval=1800,
                     distro="Ubuntu",
                     mouse_callbacks={
-                        "Button1": lambda: lazy.spawncmd(terminal + " -e up")
+                        "Button1": lambda: lazy.spawn(terminal + " -e up")
                     },
                 ),
                 widget.Systray(),

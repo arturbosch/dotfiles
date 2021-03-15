@@ -32,6 +32,7 @@ abbr twm "timew month"
 
 ## config shortcuts
 abbr ef "$EDITOR $HOME/dotfiles/fish/conf.fish"
+abbr eq "$EDITOR $HOME/dotfiles/qtile/config.py"
 abbr ei "$EDITOR $HOME/dotfiles/i3/config"
 abbr ev "nvim $HOME/dotfiles/nvim/init.vim"
 abbr eg "$EDITOR $HOME/dotfiles/.gitconfig"
