@@ -96,8 +96,12 @@ keys = [
 
     # Applications
     Key([mod], "Return", lazy.spawn(terminal), desc="Launches terminal"),
-    Key([mod], "F2", lazy.spawn('brave-browser'), desc="Launches browser"),
-    Key([mod], "F3", lazy.spawn('pcmanfm'), desc="Launches file manager"),
+    Key([mod], "F2", lazy.spawn("brave-browser"), desc="Launches browser"),
+    Key([mod], "F3", lazy.spawn("pcmanfm"), desc="Launches file manager"),
+    Key([mod], "t", lazy.spawn("pkill picom")),
+    Key([mod, "control"], "t", lazy.spawn("picom -b")),
+    Key([mod], "Print", lazy.spawn("scrot")),
+    Key([mod, "shift"], "Print", lazy.spawn("scrot -s")),
 ]
 
 groups = [Group(i) for i in "1234567890"]
