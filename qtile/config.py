@@ -188,7 +188,6 @@ screens = [
                     },
                 ),
                 widget.Systray(),
-                widget.QuickExit(),
             ],
             24,
         ),
