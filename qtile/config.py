@@ -155,7 +155,6 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
-                widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Prompt(),
                 widget.Spacer(),
