@@ -47,16 +47,16 @@ bindsym $mod+d exec --no-startup-id "rofi -modi window,drun,run -show drun"
 #exec --no-startup-id volumeicon
 #bindsym $mod+Ctrl+m exec $term -e 'alsamixer'
 exec --no-startup-id start-pulseaudio-x11
-#exec --no-startup-id pa-applet
-exec --no-startup-id pasystray
+exec --no-startup-id pa-applet
+#exec --no-startup-id pasystray
 bindsym $mod+Ctrl+m exec pavucontrol
-bindsym $mod+c exec gnome-control-center
+#bindsym $mod+c exec gnome-control-center
 
 # --- Pulse Audio controls --- #
 #increase sound volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +5%; notify-send 'sound up'"
 #decrease sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -5%; notify-send 'sound down'"
 # mute sound
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
 
@@ -298,8 +298,8 @@ exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
-# exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
+exec --no-startup-id clipit
+exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
