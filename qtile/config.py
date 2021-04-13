@@ -26,6 +26,7 @@
 # SOFTWARE.
 
 from typing import List  # noqa: F401
+from Xlib import display as xdisplay
 
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -44,10 +45,12 @@ def start_once():
     home = os.path.expanduser("~/dotfiles/qtile/autostart.sh")
     subprocess.call([home])
 
+
 class Audio:
     volume_up = "pactl set-sink-volume @DEFAULT_SINK@ +5%"
     volume_down = "pactl set-sink-volume @DEFAULT_SINK@ -5%"
     toggle_mute = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+
 
 keys = [
     Key([mod], "d", lazy.spawn("rofi -modi window,drun,run -show drun"), desc="Launches command launcher"),
@@ -161,46 +164,75 @@ extension_defaults = widget_defaults.copy()
 
 default_sep_padding = 6
 
-screens = [
-    Screen(
-        bottom=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.Spacer(),
-                widget.Net(
-                    interface="wlp2s0",
-                    format="{down} ↓↑ {up}",
-                    padding=5,
-                ),
-                widget.Sep(padding=default_sep_padding),
-                widget.Battery(),
-                widget.Sep(padding=default_sep_padding),
-                widget.Memory(
-                    mouse_callbacks={
-                        "Button1": lambda: lazy.spawn(terminal + " -e htop")
-                    },
-                ),
-                widget.Sep(padding=default_sep_padding),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.Sep(padding=default_sep_padding),
-                widget.Volume(
-                	mute_command=Audio.toggle_mute
-                ),
-                widget.Sep(padding=default_sep_padding),
-                widget.CheckUpdates(
-                    update_interval=1800,
-                    distro="Ubuntu",
-                    mouse_callbacks={
-                        "Button1": lambda: lazy.spawn(terminal + " -e up")
-                    },
-                ),
-                widget.Systray(),
-            ],
-            24,
-        ),
+
+def get_num_monitors():
+    num_monitors = 0
+    try:
+        display = xdisplay.Display()
+        screen = display.screen()
+        resources = screen.root.xrandr_get_screen_resources()
+
+        for output in resources.outputs:
+            monitor = display.xrandr_get_output_info(output, resources.config_timestamp)
+            preferred = False
+            if hasattr(monitor, "preferred"):
+                preferred = monitor.preferred
+            elif hasattr(monitor, "num_preferred"):
+                preferred = monitor.num_preferred
+            if preferred:
+                num_monitors += 1
+    except:  
+        return 1
+    else:
+        return num_monitors
+
+
+num_monitors = get_num_monitors()
+
+default_screen = Screen(
+    bottom=bar.Bar(
+        [
+            widget.GroupBox(),
+            widget.Prompt(),
+            widget.Spacer(),
+            widget.Net(
+                interface="wlp2s0",
+                format="{down} ↓↑ {up}",
+                padding=5,
+            ),
+            widget.Sep(padding=default_sep_padding),
+            widget.Battery(),
+            widget.Sep(padding=default_sep_padding),
+            widget.Memory(
+                mouse_callbacks={
+                    "Button1": lambda: lazy.spawn(terminal + " -e htop")
+                },
+            ),
+            widget.Sep(padding=default_sep_padding),
+            widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+            widget.Sep(padding=default_sep_padding),
+            widget.Volume(
+                mute_command=Audio.toggle_mute
+            ),
+            widget.Sep(padding=default_sep_padding),
+            widget.CheckUpdates(
+                update_interval=1800,
+                distro="Ubuntu",
+                mouse_callbacks={
+                    "Button1": lambda: lazy.spawn(terminal + " -e up")
+                },
+            ),
+            widget.Systray(),
+        ],
+        24,
     ),
-]
+)
+
+screens = [default_screen]
+
+if num_monitors > 1:
+    for m in range(num_monitors - 1):
+        screens.append(default_screen)
 
 # Drag floating layouts.
 mouse = [
