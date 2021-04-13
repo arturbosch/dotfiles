@@ -14,13 +14,13 @@ then
 else
     system="manjaro"
     install="sudo pamac install"
-    additional_software="rust tlpui go vlc brave-beta firefox ttf-jetbrains-mono pulseaudio-bluetooth"
+    additional_software="rust tlpui go vlc brave-beta firefox ttf-jetbrains-mono pulseaudio-bluetooth moc"
     sudo pamac remove palemoon-bin
 fi
 
 ## install common software
-system_tools="htop powertop tlp curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi timewarrior neofetch moc brightnessctl"
-office_tools="thunderbird gimp virtualbox steam"
+system_tools="htop powertop tlp curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi timew neofetch brightnessctl"
+office_tools="thunderbird gimp steam"
 dev_tools="neovim kakoune hugo cargo nodejs yarn ruby"
 
 $install $system_tools
@@ -34,8 +34,6 @@ $install $additional_software
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 sudo chsh $USER -s /usr/bin/fish
 
-# go and rust tools
-## go get github.com/gokcehan/lf
-## sudo snap install go --classic
-cargo install dutree ytop hyperfine sd ripgrep fd-find exa skim starship broot
+# rust tools
+cargo install ripgrep fd-find exa starship
 
