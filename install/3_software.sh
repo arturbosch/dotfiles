@@ -35,5 +35,4 @@ curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fi
 sudo chsh $USER -s /usr/bin/fish
 
 # rust tools
-cargo install ripgrep fd-find exa starship
-
+cargo install ripgrep fd-find exa

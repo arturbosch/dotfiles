@@ -9,7 +9,7 @@ set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
 set -Ux JENKINS_HOME /var/lib/jenkins
 
 ## add application paths
-set PATH $JAVA_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/.gem/ruby/2.7.0/bin $HOME/go/bin $HOME/.cargo/bin $PATH
+set PATH $JAVA_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/.gem/ruby/2.7.0/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.nimble/bin $PATH
 
 set SSH_KEY_PTH $HOME/.ssh/rsa_id
 
@@ -87,7 +87,7 @@ end
 
 # ls replacement
 alias ls exa
-alias ll "exa --long --git -@"
+alias ll "exa --long --git"
 alias lt "exa --tree"
 
 # misc aliases
@@ -145,5 +145,5 @@ function git-add-fzf
     git add (git ls-files --modified --exclude-standard | fzf --ansi --no-sort --preview 'git diff --color=always -- {}')
 end
 
-starship init fish | source
+# starship init fish | source
 
