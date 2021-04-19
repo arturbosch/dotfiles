@@ -56,3 +56,5 @@
 	smudge = git-lfs smudge -- %f
 [merge]
 	tool = meld
+[init]
+	defaultBranch = main
