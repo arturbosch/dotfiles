@@ -59,6 +59,14 @@ configure_fish() {
     sudo chsh $USER -s /usr/bin/fish
 }
 
+install_pop_shell() {
+    $install_command gnome-shell-extension-pop-shell
+    $install_command nodejs-typescript
+    git clone https://github.com/pop-os/shell.git ~/git/system/pop-shell
+    cd ~/git/system/pop-shell/
+    make local-install
+}
+
 update_repos || error 'Error while updating repos.'
 $test_command brave-browser && echo 'Brave already installed.' || install_brave_browser || error 'Error while installing brave browser.'
 install_software || error 'Error while installing software packages.'
@@ -67,4 +75,5 @@ install_rust_tools || error 'Error while installing rust packages.'
 install_flatpak || error 'Error while installing flatpak packages.'
 install_power_management || error 'Error while configuring powertop and tlp.'
 install_sdkman || error 'Error while configuring sdkman'
+install_pop_shell || error 'Error while installing pop-shell.'
 
