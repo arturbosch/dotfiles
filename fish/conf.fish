@@ -66,12 +66,12 @@ abbr jv "java -version"
 
 # installer
 ## apt
-if test (uname -a | grep 'pop-os')
+if test (uname -a | grep -i 'pop-os')
     abbr inst "sudo apt install"
     abbr fp "sudo apt search"
     abbr up "sudo apt update && sudo apt upgrade"
 ## pacman
-else
+else if test (uname -a | grep -i 'manjaro')
     abbr inst "sudo pacman -S"
     abbr up "sudo yay"
     abbr p "sudo pacman"
@@ -83,6 +83,9 @@ else
     abbr pmold "pacman -Qdt"
     abbr pmrold "sudo pacman -Sc"
     abbr fixpacman "rm /var/lib/pacman/db.lck"
+else if test (uname -a | grep -i '.fc')
+    abbr inst "sudo dnf install"
+    abbr up "sudo dnf update"
 end
 
 # ls replacement
