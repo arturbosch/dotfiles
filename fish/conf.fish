@@ -19,6 +19,9 @@ set EDITOR kak
 set VISUAL kak
 set BROWSER brave
 
+## fix java gui apps on wayland
+set _JAVA_AWT_WM_NONREPARENTING 1
+
 # aliases && abbreveations
 abbr e $EDITOR
 abbr vim nvim
