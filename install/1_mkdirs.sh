@@ -5,6 +5,7 @@ mkdir -p ~/.config/rofi
 mkdir -p ~/.config/kak/plugins
 mkdir -p ~/.config/alacritty
 mkdir -p ~/.config/fish/conf.d
+mkdir -p ~/.config/sway
 mkdir -p ~/bin
 mkdir -p ~/dotfiles
 mkdir -p ~/files

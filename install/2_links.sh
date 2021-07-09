@@ -12,9 +12,10 @@ gitconfig="$HOME/.gitconfig"
 roficonfig="$HOME/.config/rofi/config"
 qtileconfig="$HOME/.config/qtile/config.py"
 bashrcd="$HOME/.bashrc.d"
+swayconfig="$HOME/.config/sway/config"
 
 # remove old links
-for var in $alacritty $fish $kakrc $nvim $gitconfig $roficonfig $fish_plugins $qtileconfig
+for var in $alacritty $fish $kakrc $nvim $gitconfig $roficonfig $fish_plugins $qtileconfig $swayconfig
 do
     rm $var
 done
@@ -28,6 +29,7 @@ ln -s $dotfiles/nvim/init.vim $nvim
 ln -s $dotfiles/.gitconfig $gitconfig
 ln -s $dotfiles/rofi/config $roficonfig
 ln -s $dotfiles/qtile/config.py $qtileconfig
+ln -s $dotfiles/sway/config $swayconfig
 if [ ! -d $bashrcd ]
 then
     ln -s $dotfiles/.bashrc.d $bashrcd
