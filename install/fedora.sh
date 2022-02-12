@@ -19,7 +19,7 @@ install_flatpak() {
 }
 
 install_software() {
-    for pkg in htop curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard jq pulseaudio-utils; do
+    for pkg in htop curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard jq pulseaudio-utils file-roller; do
         $install_command $pkg  
     done
 }
