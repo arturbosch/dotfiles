@@ -21,6 +21,7 @@ set BROWSER brave
 
 ## fix java gui apps on wayland
 set _JAVA_AWT_WM_NONREPARENTING 1
+abbr idea _JAVA_AWT_WM_NONREPARENTING=1 idea
 
 # aliases && abbreveations
 abbr e $EDITOR
@@ -95,6 +96,9 @@ end
 alias ls exa
 alias ll "exa --long --git"
 alias lt "exa --tree"
+
+# flatpak
+alias popsicle "flatpak run com.system76.Popsicle"
 
 # misc aliases
 abbr dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
