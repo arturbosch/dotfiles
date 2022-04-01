@@ -1,0 +1,3 @@
+set previewer ~/dotfiles/lf/previewer.sh
+map i $LESSOPEN='| ~/dotfiles/lf/previewer.sh %s' less -R $f
+
