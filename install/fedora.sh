@@ -16,6 +16,7 @@ install_flatpak() {
     flatpak install flathub com.vscodium.codium
     flatpak install flathub com.valvesoftware.Steam
     flatpak install flathub io.lbry.lbry-app
+    flatpak install flathub io.freetubeapp.FreeTube
 }
 
 install_software() {
