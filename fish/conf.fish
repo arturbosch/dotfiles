@@ -90,6 +90,8 @@ else if test (uname -a | grep -i 'manjaro')
 else if test (uname -a | grep -i '.fc')
     abbr inst "sudo dnf install"
     abbr up "sudo dnf update"
+    abbr uninst "sudo dnf remove"
+    abbr unin "sudo dnf remove"
 end
 
 # ls replacement
@@ -99,6 +101,7 @@ alias lt "exa --tree"
 
 # flatpak
 alias popsicle "flatpak run com.system76.Popsicle"
+alias curtail "flatpak run com.github.huluti.Curtail"
 
 # misc aliases
 abbr dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
