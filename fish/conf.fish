@@ -1,33 +1,40 @@
 function fish_greeting
 end
 
+# gnome: map caps to escape key
 setxkbmap -option caps:escape
 
 # paths
 set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
 set -Ux JENKINS_HOME /var/lib/jenkins
+set -Ux SSH_KEY_PTH $HOME/.ssh/rsa_id
+set -Ux NODE_PATH $HOME/node_modules/
+set -Ux GOPATH $HOME/go
 
-## add application paths
-set PATH $JAVA_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/.gem/ruby/2.7.0/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.nimble/bin $PATH
+## echo "gem: --user-install" >> ~/.gemrc
+set -Ux GEM_HOME $HOME/.gem
 
-set SSH_KEY_PTH $HOME/.ssh/rsa_id
+## application paths
+set PATH $JAVA_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.nimble/bin $PATH
 
 # vars
-set LANG en_US.UTF-8
-set EDITOR kak
-set VISUAL kak
-set BROWSER brave
+set -Ux LANG en_US.UTF-8
+set -Ux EDITOR kak
+set -Ux ALT_EDITOR kak
+set -Ux VISUAL kak
+set -Ux BROWSER brave
 
 ## fix java gui apps on wayland
-export _JAVA_AWT_WM_NONREPARENTING=1
+set -Ux _JAVA_AWT_WM_NONREPARENTING 1
 abbr idea _JAVA_AWT_WM_NONREPARENTING=1 idea
 
 # aliases && abbreveations
 abbr e $EDITOR
-abbr vim nvim
-abbr vi nvim
+abbr vim $ALT_EDITOR
+abbr vi $ALT_EDITOR
 
+## timewarrior shortcuts
 abbr tw timew
 abbr tws "timew sum"
 abbr tww "timew week"
@@ -38,15 +45,12 @@ abbr twm "timew month"
 abbr ef "$EDITOR $HOME/dotfiles/fish/conf.fish"
 abbr eq "$EDITOR $HOME/dotfiles/qtile/config.py"
 abbr ei "$EDITOR $HOME/dotfiles/i3/config"
-abbr ev "nvim $HOME/dotfiles/nvim/init.vim"
+abbr ev "$ALT_EDITOR $HOME/dotfiles/nvim/init.vim"
 abbr eg "$EDITOR $HOME/dotfiles/.gitconfig"
 abbr ek "$EDITOR $HOME/dotfiles/kak/kakrc"
 
 ## other shortcuts
 abbr gl tig
-if test (uname -a | grep 'pop-os')
-    alias fd fdfind
-end
 abbr bb "bluetoothctl"
 abbr loc "tokei --sort=lines"
 abbr md "mkdir -pv"
@@ -70,7 +74,7 @@ abbr jv "java -version"
 
 # installer
 ## apt
-if test (uname -a | grep -i 'pop-os')
+if test (uname -a | grep -i 'ubuntu')
     abbr inst "sudo apt install"
     abbr fp "sudo apt search"
     abbr up "sudo apt update && sudo apt upgrade"
@@ -94,29 +98,21 @@ else if test (uname -a | grep -i '.fc')
     abbr unin "sudo dnf remove"
 end
 
-# ls replacement
+# aliases
+
+## ls replacement
 alias ls exa
 alias ll "exa --long --git"
 alias lt "exa --tree"
 
-# flatpak
+## flatpak
 alias popsicle "flatpak run com.system76.Popsicle"
 alias curtail "flatpak run com.github.huluti.Curtail"
 
-# misc aliases
-abbr dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
+## misc aliases
+alias dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
 alias jshell "$JAVA_HOME/bin/jshell"
 alias zip_git "zip -r git-with-excludes.zip git/ -x '**/node_modules/**' '**/build/**' '**/.idea/**' 'git/test/**' '**/target/**' '**/.gradle/**' '**/out/production/**' '**/out/test/**' '**/gbt_build/**'"
-
-# ruby
-# echo "gem: --user-install" >> ~/.gemrc
-export GEM_HOME=$HOME/.gem
-
-# js npm stuff
-export NODE_PATH=$HOME/node_modules/
-
-# go
-set GOPATH $HOME/go
 
 # additional functions
 
@@ -131,7 +127,9 @@ end
 
 alias wetter weather
 
-## fzf git add support
+# git
+
+## git add support via fzf
 bind \cga git-add-fzf
 bind -M insert \cga git-add-fzf
 function git-add-fzf
