@@ -20,7 +20,7 @@ set VISUAL kak
 set BROWSER brave
 
 ## fix java gui apps on wayland
-set _JAVA_AWT_WM_NONREPARENTING 1
+export _JAVA_AWT_WM_NONREPARENTING=1
 abbr idea _JAVA_AWT_WM_NONREPARENTING=1 idea
 
 # aliases && abbreveations
@@ -106,16 +106,11 @@ alias curtail "flatpak run com.github.huluti.Curtail"
 # misc aliases
 abbr dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
 alias jshell "$JAVA_HOME/bin/jshell"
-alias mm "java -jar -Xmx50m ~/tools/mm.jar"
-alias mmx "java -XX:TieredStopAtLevel=1 -XX:CICompilerCount=1 -XX:+UseSerialGC -Xshare:on -XX:-UsePerfData -Xmx20m -Xms20m -jar ~/tools/mm.jar"
-alias gbt "java -jar -Xmx128m -Xms128m $HOME/tools/gbt-1.0.jar"
-alias dgbt "sh $HOME/git/repos/gbt/build/distributions/gbt/bin/gbt"
-# alias groovy groovyclient
 alias zip_git "zip -r git-with-excludes.zip git/ -x '**/node_modules/**' '**/build/**' '**/.idea/**' 'git/test/**' '**/target/**' '**/.gradle/**' '**/out/production/**' '**/out/test/**' '**/gbt_build/**'"
 
 # ruby
 # echo "gem: --user-install" >> ~/.gemrc
-set GEM_HOME $HOME/.gem
+export GEM_HOME=$HOME/.gem
 
 # js npm stuff
 export NODE_PATH=$HOME/node_modules/
@@ -127,7 +122,7 @@ set GOPATH $HOME/go
 
 ## shows weather
 function weather
-    set city Bremen
+    set city Duisburg
     if test (count $argv) -eq 1
         set city $argv[1]
     end
@@ -136,27 +131,10 @@ end
 
 alias wetter weather
 
-## creates a playlist from files in current directory
-function create_playlist
-    set homeDir $HOME/Music/playlists
-    set count (count $argv)
-    echo $count
-    if test $count = 0
-        echo "Usage: [directory name] [playlist name] (playlist is stored in ($HOME/Music/playlists)"
-    else if test $count = 1
-        set plistName $argv[1]
-        find (pwd -P) -maxdepth 1 -type f -iregex ".*\.\(aac\|flac\|mp3\|ogg\|wav\)\$" | sort > $homeDir/$plistName
-    else
-        echo "Usage: [directory name] [playlist name] (playlist is stored in ($HOME/Music/playlists)"
-    end
-end
-
 ## fzf git add support
 bind \cga git-add-fzf
 bind -M insert \cga git-add-fzf
 function git-add-fzf
     git add (git ls-files --modified --exclude-standard | fzf --ansi --no-sort --preview 'git diff --color=always -- {}')
 end
-
-# starship init fish | source
 
