@@ -1,3 +1,8 @@
+set drawbox true
+set icons true
+set ignorecase true
+set color256 true
 set previewer ~/dotfiles/lf/previewer.sh
+
 map i $LESSOPEN='| ~/dotfiles/lf/previewer.sh %s' less -R $f
 
