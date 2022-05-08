@@ -23,11 +23,14 @@ set -Ux LANG en_US.UTF-8
 set -Ux EDITOR kak
 set -Ux ALT_EDITOR kak
 set -Ux VISUAL kak
-set -Ux BROWSER brave
+set -Ux BROWSER brave-browser
 
 ## fix java gui apps on wayland
 set -Ux _JAVA_AWT_WM_NONREPARENTING 1
 abbr idea _JAVA_AWT_WM_NONREPARENTING=1 idea
+
+## show app indicators in waybar
+set -Ux XDG_CURRENT_DESKTOP Unity
 
 # aliases && abbreveations
 abbr e $EDITOR
@@ -102,7 +105,7 @@ end
 
 ## ls replacement
 alias ls exa
-alias ll "exa --long --git"
+alias ll "exa --long --git -h"
 alias lt "exa --tree"
 
 ## flatpak
@@ -111,7 +114,6 @@ alias curtail "flatpak run com.github.huluti.Curtail"
 
 ## misc aliases
 alias dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
-alias jshell "$JAVA_HOME/bin/jshell"
 alias zip_git "zip -r git-with-excludes.zip git/ -x '**/node_modules/**' '**/build/**' '**/.idea/**' 'git/test/**' '**/target/**' '**/.gradle/**' '**/out/production/**' '**/out/test/**' '**/gbt_build/**'"
 
 # additional functions

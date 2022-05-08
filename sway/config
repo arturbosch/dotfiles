@@ -16,14 +16,13 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term alacritty
-#set $term foot
+set $term footclient
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 ## set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu rofi -show drun
+set $menu fuzzel -b 111111ee -t ffffffff -T footclient -f "Jetbrains Mono" -s ffa500ff -m ffc65cff -S ffffffff
 
 ### General configuration
 
@@ -34,7 +33,7 @@ gaps outer 4
 ### Output configuration
 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/dandelion.jpg fill
+output * bg /usr/share/backgrounds/fedora-workstation/calm_dark.jpg fill
 
 #
 # Example configuration:
@@ -111,8 +110,8 @@ input "type:keyboard" {
     bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
     # Screenshots via grim and slurp
-    bindsym $mod+Print exec grim
-    bindsym $mod+Shift+Print exec "grim -g "$(slurp)"
+    bindsym $mod+Print exec grimshot save screen
+    bindsym $mod+Shift+Print exec grimshot save area
 
 #
 # Moving around:
@@ -250,5 +249,7 @@ bar {
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec foot --server
+exec_always wlsunset -l 51.2 -L 6.7
 
 include /etc/sway/config.d/*

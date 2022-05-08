@@ -20,8 +20,8 @@ install_flatpak() {
 }
 
 install_software() {
-    for pkg in htop curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard jq pulseaudio-utils file-roller; do
-        $install_command $pkg  
+    for pkg in htop curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard bemenujq wlsunset pulseaudio-utils file-roller grimshot; do
+        $install_command $pkg
     done
 }
 
@@ -77,4 +77,3 @@ install_flatpak || error 'Error while installing flatpak packages.'
 install_power_management || error 'Error while configuring powertop and tlp.'
 install_sdkman || error 'Error while configuring sdkman'
 install_pop_shell || error 'Error while installing pop-shell.'
-
