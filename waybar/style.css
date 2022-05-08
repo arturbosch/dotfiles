@@ -1,0 +1,123 @@
+#window {
+    padding: 0 1rem;
+}
+
+#waybar {
+    font-family: "Fira Sans SemiBold";
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+    transition-duration: 0s;
+    color: rgba(217, 216, 216, 1);
+    background: rgba(0, 0, 0, 0.87);
+    opacity: 0.6;
+}
+
+#workspaces {
+    margin: 0 5px;
+}
+
+#workspaces button {
+    padding: 0 0.6rem;
+    background: transparent;
+    color: white;
+    border-top: 2px solid transparent;
+}
+
+#workspaces button.focused {
+    color: orange;
+    border-top: 2px solid orange;
+}
+
+#workspaces button.focused.current_output {
+    color: orange;
+}
+
+#workspaces button.urgent {
+    background-color: #943432;
+    color: white;
+}
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    border-color: #d1be8b;
+    color: #888888;
+}
+
+/* Repeat style here to ensure properties are overwritten as there's no !important and button:hover above resets the colour */
+
+#workspaces button.focused {
+    color: white;
+}
+
+#pulseaudio {
+    color: khaki;
+}
+
+#temperature {
+    color: lightpink;
+}
+
+#idle_inhibitor {
+    color: powderblue;
+}
+
+#language {
+    color: orchid;
+}
+
+#tray,
+#mode,
+#battery,
+#temperature,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#idle_inhibitor,
+#sway-language,
+#backlight,
+#custom-weather {
+    margin: 0px 0px 0px 5px;
+    padding: 0 5px;
+    /* border-top: 3px solid rgba(217, 216, 216, 0.5); */
+}
+
+/* #clock {
+    margin:     0px 16px 0px 10px;
+    min-width:  140px;
+} */
+
+#battery {
+    color: lightgreen;
+}
+
+#battery.warning {
+    color: rgba(255, 210, 4, 1);
+}
+
+#battery.critical {
+    color: rgba(238, 46, 36, 1);
+}
+
+#battery.charging {
+    color: rgba(217, 216, 216, 1);
+}
+
+#custom-storage.warning {
+    color: rgba(255, 210, 4, 1);
+}
+
+#custom-storage.critical {
+    color: rgba(238, 46, 36, 1);
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
