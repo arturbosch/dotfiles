@@ -16,7 +16,7 @@
         "memory",
         "backlight",
         "battery",
-        "tray",
+        "tray"
     ],
     "sway/mode": {
         "format": " {}"
@@ -31,14 +31,13 @@
             "3": "3 <span font='Font Awesome 5 Free 11'> </span>",
             "4": "4 <span font='Font Awesome 5 Free 11'> </span>",
             "8": "8 <span font='Font Awesome 5 Free 11'> </span>",
-            "9": "9 <span font='Font Awesome 5 Free 11'> </span>",
-            "10": "10 <span font='Font Awesome 5 Free 11'> </span>",
+            "9": "9 <span font='Font Awesome 5 Free 10'> </span>",
+            "10": "10 <span font='Font Awesome 5 Free 11'> </span>"
         }
     },
     "sway/window": {
         "max-length": 60,
         "tooltip": false
-        // "format": "( {} )"
     },
     "clock": {
         "format": "<span font='Font Awesome 5 Free 11'> </span>  {:%a %d %b - %H:%M}",
@@ -143,5 +142,5 @@
     "tray": {
         "icon-size": 18,
         "spacing": 18
-    },
+    }
 }

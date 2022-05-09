@@ -59,13 +59,13 @@ case $(echo ${weather[1]##*,} | tr '[:upper:]' '[:lower:]') in
     icon=""
     ;;
 "mist" | "fog" | "freezing fog")
-    icon=""
+    icon=""
     ;;
 "patchy rain possible" | "patchy light drizzle" | "light drizzle" | "patchy light rain" | "light rain" | "light rain shower" | "rain")
-    icon=""
+    icon=""
     ;;
 "moderate rain at times" | "moderate rain" | "heavy rain at times" | "heavy rain" | "moderate or heavy rain shower" | "torrential rain shower" | "rain shower")
-    icon=""
+    icon=""
     ;;
 "patchy snow possible" | "patchy sleet possible" | "patchy freezing drizzle possible" | "freezing drizzle" | "heavy freezing drizzle" | "light freezing rain" | "moderate or heavy freezing rain" | "light sleet" | "ice pellets" | "light sleet showers" | "moderate or heavy sleet showers")
     icon=""
@@ -85,4 +85,4 @@ case $(echo ${weather[1]##*,} | tr '[:upper:]' '[:lower:]') in
     ;;
 esac
 
-echo -e "{\"text\":\""\<span font=\'Font Awesome 5 Free 10\'\>$icon\<\/span\>"  $temperature \", \"class\": \"weather\", \"alt\":\""${weather[0]}"\", \"tooltip\":\""${weather[0]}: $temperature ${weather[1]}"\"}"
+echo -e "{\"text\":\""\<span font=\'Font Awesome 5 Free 11\'\>$icon\<\/span\>"  $temperature \", \"class\": \"weather\", \"alt\":\""${weather[0]}"\", \"tooltip\":\""${weather[0]}: $temperature ${weather[1]}"\"}"
