@@ -97,6 +97,7 @@ else if test (uname -a | grep -i 'manjaro')
 else if test (uname -a | grep -i '.fc')
     abbr inst "sudo dnf install"
     abbr up "sudo dnf update"
+    abbr upa "sudo dnf update && flatpak update && sdk upgrade"
     abbr uninst "sudo dnf remove"
     abbr unin "sudo dnf remove"
 end
