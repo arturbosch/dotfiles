@@ -1,4 +1,6 @@
-install_command="sudo dnf install"
+#/bin/env bash
+
+install_command="sudo dnf install -y"
 update_command="sudo dnf update"
 test_command="sudo dnf list"
 
@@ -13,14 +15,13 @@ update_repos() {
 
 install_flatpak() {
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    flatpak install flathub com.vscodium.codium
-    flatpak install flathub com.valvesoftware.Steam
-    flatpak install flathub io.lbry.lbry-app
-    flatpak install flathub io.freetubeapp.FreeTube
+    local install_dir=$(dirname $(readlink -f $0))
+    sh $install_dir/3_flatpak.sh
 }
 
 install_software() {
-    for pkg in htop curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard bemenujq wlsunset pulseaudio-utils file-roller grimshot; do
+    # install one by one so we know if any package is broken/not present anymore
+    for pkg in htop curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard jq wlsunset pulseaudio-utils file-roller grimshot; do
         $install_command $pkg
     done
 }
@@ -77,3 +78,4 @@ install_flatpak || error 'Error while installing flatpak packages.'
 install_power_management || error 'Error while configuring powertop and tlp.'
 install_sdkman || error 'Error while configuring sdkman'
 install_pop_shell || error 'Error while installing pop-shell.'
+

@@ -14,7 +14,6 @@ flatpak install flathub com.system76.Popsicle # USB Flasher
 flatpak install flathub com.valvesoftware.Steam # Steam Games
 flatpak install flathub io.freetubeapp.FreeTube # Youtube Frontend
 flatpak install flathub org.gnome.Boxes # Virtualization
-flatpak install flathub org.onlyoffice.desktopeditors # Office Suite
 flatpak install flathub com.github.huluti.Curtail # Image Minimizer
 flatpak install flathub io.github.seadve.Kooha # Screen Recorder
 flatpak install flathub org.gnome.gitlab.somas.Apostrophe # Markdown Editor
@@ -27,6 +26,9 @@ flatpak install flathub com.github.jeromerobert.pdfarranger # Merge an edit PDFs
 flatpak install flathub org.gnome.World.Secrets # Password Store
 flatpak install flathub com.lakoliu.Furtherance # Time Tracking
 flatpak install flathub com.github.philip_scott.notes-up # Notes app
+
+# install vscodium via appimage to it will find all local programs and config
+# flatpak install flathub com.vscodium.codium # Editor
 
 ## uses old gnome platform and needs all latex package: 5gb+
 # flatpak install flathub org.cvfosammmm.Setzer # latex editor
