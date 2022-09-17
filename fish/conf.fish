@@ -2,7 +2,9 @@ function fish_greeting
 end
 
 # gnome: map caps to escape key
-setxkbmap -option caps:escape
+if test "$XDG_SESSION_TYPE" = "x11"
+	setxkbmap -option caps:escape
+end
 
 # paths
 set -Ux XDG_CONFIG_HOME $HOME/.config
