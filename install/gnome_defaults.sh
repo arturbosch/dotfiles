@@ -1,7 +1,19 @@
 #!/bin/env sh
-
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 gsettings set org.gnome.desktop.peripherals.touchpad click-method areas
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+
+# disable favorite applications hotkeys
+gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys false
+gsettings set org.gnome.shell.keybindings switch-to-application-1 []
+gsettings set org.gnome.shell.keybindings switch-to-application-2 []
+gsettings set org.gnome.shell.keybindings switch-to-application-3 []
+gsettings set org.gnome.shell.keybindings switch-to-application-4 []
+gsettings set org.gnome.shell.keybindings switch-to-application-5 []
+gsettings set org.gnome.shell.keybindings switch-to-application-6 []
+gsettings set org.gnome.shell.keybindings switch-to-application-7 []
+gsettings set org.gnome.shell.keybindings switch-to-application-8 []
+gsettings set org.gnome.shell.keybindings switch-to-application-9 []
 
 # workspaces
 gsettings set org.gnome.mutter dynamic-workspaces false
@@ -29,3 +41,18 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-10 '["<Super><S
 
 # key bindings backup: gsettings list-recursively org.gnome.desktop.wm.keybindings
 gsettings set org.gnome.desktop.wm.keybindings close '["<Shift><Super>q"]'
+
+KEYS_POP=/org/gnome/shell/extensions/pop-shell
+KEYS_GNOME_WM=/org/gnome/desktop/wm/keybindings
+
+# Toggle maximization state
+dconf write ${KEYS_GNOME_WM}/toggle-maximized "['<Super>f']"
+# Toggle stacking windows
+dconf write ${KEYS_POP}/toggle-stacking "['<Super>s']"
+# Toggle floating window
+dconf write ${KEYS_POP}/toggle-floating "['<Shift><Super>f']"
+
+# Enter/Exit tile adjustment mode
+dconf write ${KEYS_POP}/tile-enter "['<Super>r']"
+dconf write ${KEYS_POP}/tile-accept "['Return']"
+dconf write ${KEYS_POP}/tile-reject "['Escape']"

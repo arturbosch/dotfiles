@@ -21,7 +21,7 @@ install_flatpak() {
 
 install_software() {
     # install one by one so we know if any package is broken/not present anymore
-    for pkg in htop curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema rofi thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard jq wlsunset pulseaudio-utils file-roller grimshot; do
+    for pkg in htop curl wget zip unzip git fish alacritty fzf tig meld tk tcl tldr asciinema thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard jq wlsunset pulseaudio-utils file-roller grimshot typescript gnome-extensions-app gimp; do
         $install_command $pkg
     done
 }
@@ -58,7 +58,7 @@ install_sdkman() {
 
 configure_fish() {
     curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-    sudo chsh $USER -s /usr/bin/fish
+    sudo lchsh $USER
 }
 
 install_pop_shell() {
@@ -70,12 +70,11 @@ install_pop_shell() {
 }
 
 update_repos || error 'Error while updating repos.'
-$test_command brave-browser && echo 'Brave already installed.' || install_brave_browser || error 'Error while installing brave browser.'
+#$test_command brave-browser && echo 'Brave already installed.' || install_brave_browser || error 'Error while installing brave browser.'
 install_software || error 'Error while installing software packages.'
-configure_fish || error 'Error while configuring fish.'
 install_rust_tools || error 'Error while installing rust packages.'
 install_flatpak || error 'Error while installing flatpak packages.'
 install_power_management || error 'Error while configuring powertop and tlp.'
 install_sdkman || error 'Error while configuring sdkman'
 install_pop_shell || error 'Error while installing pop-shell.'
-
+configure_fish || error 'Error while configuring fish.'

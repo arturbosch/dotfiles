@@ -1,6 +1,10 @@
 function fish_greeting
 end
 
+function mark_prompt_start --on-event fish_prompt
+    echo -en "\e]133;A\e\\"
+end
+
 # gnome: map caps to escape key
 if test "$XDG_SESSION_TYPE" = "x11"
 	setxkbmap -option caps:escape
@@ -21,10 +25,11 @@ set -Ux GEM_HOME $HOME/.gem
 set PATH $JAVA_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.nimble/bin $PATH
 
 # vars
+set -Ux TERM foot
 set -Ux LANG en_US.UTF-8
-set -Ux EDITOR kak
-set -Ux ALT_EDITOR kak
-set -Ux VISUAL kak
+set -Ux EDITOR hx
+set -Ux ALT_EDITOR nvim
+set -Ux VISUAL hx
 set -Ux BROWSER brave-browser
 
 ## fix java gui apps on wayland
