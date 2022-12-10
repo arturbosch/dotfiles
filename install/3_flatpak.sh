@@ -11,6 +11,7 @@ flatpak install flathub io.bassi.Amberol # Music Player
 flatpak install fedora com.github.johnfactotum.Foliate # E-Book Reader
 flatpak install flathub com.gitlab.newsflash # RSS Reader
 flatpak install flathub com.valvesoftware.Steam # Steam Games
+flatpak install flathub com.github.Matoking.protontricks # Download missing dll's
 flatpak install flathub io.freetubeapp.FreeTube # Youtube Frontend
 flatpak install flathub org.gnome.Boxes # Virtualization
 flatpak install flathub com.github.huluti.Curtail # Image Minimizer
