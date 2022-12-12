@@ -3,7 +3,7 @@ sudo apt update
 sudo apt upgrade
 
 ## software
-sudo apt install zip unzip fish curl wget htop tig snapd
+sudo apt install zip unzip fish curl wget htop tig snapd squashfuse
 
 ## snaps
 sudo snap install core
