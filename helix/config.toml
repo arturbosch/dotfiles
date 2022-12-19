@@ -1,0 +1,5 @@
+theme = "darcula"
+
+[keys.normal]
+C-s = ":w"
+C-q = ":q"
