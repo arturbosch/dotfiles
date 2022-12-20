@@ -59,6 +59,7 @@ install_sdkman() {
 configure_fish() {
     curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
     sudo lchsh $USER
+    fisher update # reinstall plugins from fish/fish_plugins
 }
 
 install_pop_shell() {
