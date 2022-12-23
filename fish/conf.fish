@@ -88,6 +88,7 @@ if test (uname -a | grep -i 'ubuntu')
     abbr inst "sudo apt install"
     abbr fp "sudo apt search"
     abbr up "sudo apt update && sudo apt upgrade"
+    abbr upa "sudo apt update && sudo apt upgrade && sudo flatpak update && sdk upgrade"
 ## pacman
 else if test (uname -a | grep -i 'manjaro')
     abbr inst "sudo pacman -S"
