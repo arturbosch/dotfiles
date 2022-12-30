@@ -13,6 +13,7 @@ end
 # paths
 set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
+set -Ux GRADLE_HOME $HOME/.sdkman/candidates/gradle/current
 set -Ux JENKINS_HOME /var/lib/jenkins
 set -Ux SSH_KEY_PTH $HOME/.ssh/rsa_id
 set -Ux NODE_PATH $HOME/node_modules/
@@ -22,7 +23,7 @@ set -Ux GOPATH $HOME/go
 set -Ux GEM_HOME $HOME/.gem
 
 ## application paths
-set PATH $JAVA_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.nimble/bin $PATH
+set PATH $JAVA_HOME/bin $GRADLE_HOME/bin $HOME/bin $HOME/.local/bin $HOME/.yarn/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.nimble/bin $PATH
 
 # vars
 set -Ux TERM foot
