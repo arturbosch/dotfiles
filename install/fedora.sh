@@ -28,7 +28,7 @@ install_software() {
 
 install_rust_tools() {
     $install_command "cargo"
-    cargo install ripgrep fd-find exa
+    cargo install ripgrep fd-find exa html-query
 }
 
 install_brave_browser() {
