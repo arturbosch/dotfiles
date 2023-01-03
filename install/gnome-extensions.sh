@@ -5,7 +5,8 @@ https://extensions.gnome.org/extension/5489/search-light/
 https://extensions.gnome.org/extension/1401/bluetooth-quick-connect/
 https://extensions.gnome.org/extension/3968/improved-workspace-indicator/
 https://extensions.gnome.org/extension/1319/gsconnect/
-https://extensions.gnome.org/extension/517/caffeine/ )
+https://extensions.gnome.org/extension/517/caffeine/ 
+https://extensions.gnome.org/extension/4994/dash2dock-lite/ )
 
 for i in "${array[@]}"
 do
