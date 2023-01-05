@@ -1,5 +1,7 @@
 {
     "window.zoomLevel": 1,
     "editor.fontSize": 15,
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "window.menuBarVisibility": "toggle",
+    "zenMode.fullScreen": false
 }

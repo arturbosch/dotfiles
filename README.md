@@ -14,4 +14,5 @@ cd ~/dotfiles/install
 ./gnome_defaults.sh
 ./gnome_extensions.sh
 ./install_helix.sh
+./../vscode/apply.sh
 ```
