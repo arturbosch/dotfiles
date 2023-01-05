@@ -5,30 +5,32 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 ## Apps
 
-flatpak install flathub com.belmoussaoui.Authenticator # Two Factory Auth
-flatpak install flathub com.github.neithern.g4music # Music Player
-flatpak install flathub io.bassi.Amberol # Music Player
-flatpak install fedora com.github.johnfactotum.Foliate # E-Book Reader
-flatpak install flathub com.gitlab.newsflash # RSS Reader
-flatpak install flathub com.valvesoftware.Steam # Steam Games
-flatpak install flathub com.github.Matoking.protontricks # Download missing dll's
-flatpak install flathub io.freetubeapp.FreeTube # Youtube Frontend
-flatpak install flathub org.gnome.Boxes # Virtualization
-flatpak install flathub com.github.huluti.Curtail # Image Minimizer
-flatpak install flathub io.github.seadve.Kooha # Screen Recorder
-flatpak install flathub org.gnome.gitlab.somas.Apostrophe # Markdown Editor
-flatpak install flathub org.gnome.World.PikaBackup # Backup Solution
-flatpak install fedora org.gnome.Connections # Remote Desktop
-flatpak install flathub org.gnome.Solanum # Pomodoro Timer
-flatpak install flathub com.github.tchx84.Flatseal # Manage Permissions
-flatpak install flathub com.github.liferooter.textpieces # Text Manipulation
-flatpak install flathub com.github.jeromerobert.pdfarranger # Merge an edit PDFs
-flatpak install flathub org.gnome.World.Secrets # Password Store
-flatpak install flathub com.lakoliu.Furtherance # Time Tracking
-flatpak install md.obsidian.Obsidian # Notes / Wiki
+inst="flatpak install -y"
+
+$inst flathub com.belmoussaoui.Authenticator # Two Factory Auth
+$inst flathub com.github.neithern.g4music # Music Player
+$inst flathub io.bassi.Amberol # Music Player
+$inst fedora com.github.johnfactotum.Foliate # E-Book Reader
+$inst flathub com.gitlab.newsflash # RSS Reader
+$inst flathub com.valvesoftware.Steam # Steam Games
+$inst flathub com.github.Matoking.protontricks # Download missing dll's
+$inst flathub io.freetubeapp.FreeTube # Youtube Frontend
+$inst flathub org.gnome.Boxes # Virtualization
+$inst flathub com.github.huluti.Curtail # Image Minimizer
+$inst flathub io.github.seadve.Kooha # Screen Recorder
+$inst flathub org.gnome.gitlab.somas.Apostrophe # Markdown Editor
+$inst flathub org.gnome.World.PikaBackup # Backup Solution
+$inst fedora org.gnome.Connections # Remote Desktop
+$inst flathub org.gnome.Solanum # Pomodoro Timer
+$inst flathub com.github.tchx84.Flatseal # Manage Permissions
+$inst flathub com.github.liferooter.textpieces # Text Manipulation
+$inst flathub com.github.jeromerobert.pdfarranger # Merge an edit PDFs
+$inst flathub org.gnome.World.Secrets # Password Store
+$inst flathub com.lakoliu.Furtherance # Time Tracking
+$inst flathub md.obsidian.Obsidian # Notes / Wiki
 
 # install vscodium via appimage so it will find all local programs and config
-flatpak install flathub com.vscodium.codium # Editor
+$inst flathub com.vscodium.codium # Editor
 
 ## uses old gnome platform and needs all latex package: 5gb+
-flatpak install flathub org.cvfosammmm.Setzer # latex editor
+$inst flathub org.cvfosammmm.Setzer # latex editor

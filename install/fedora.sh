@@ -32,8 +32,8 @@ install_rust_tools() {
 }
 
 install_brave_browser() {
-    $install_command install dnf-plugins-core
-    $install_command config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+    $install_command dnf-plugins-core
+    sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
     sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
     $install_command brave-browser
 }
@@ -70,12 +70,76 @@ install_pop_shell() {
     make local-install
 }
 
-update_repos || error 'Error while updating repos.'
-#$test_command brave-browser && echo 'Brave already installed.' || install_brave_browser || error 'Error while installing brave browser.'
-install_software || error 'Error while installing software packages.'
-install_rust_tools || error 'Error while installing rust packages.'
-install_flatpak || error 'Error while installing flatpak packages.'
-install_power_management || error 'Error while configuring powertop and tlp.'
-install_sdkman || error 'Error while configuring sdkman'
-install_pop_shell || error 'Error while installing pop-shell.'
-configure_fish || error 'Error while configuring fish.'
+echo "Update system?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) update_repos || error 'Error while updating repos.'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Install additional software?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) install_software || error 'Error while installing software packages.'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Install brave browser?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) $test_command brave-browser && echo 'Brave already installed.' || install_brave_browser || error 'Error while installing brave browser.'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Install rust tools?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) install_rust_tools || error 'Error while installing rust packages.'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Install flatpak packages?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) install_flatpak || error 'Error while installing flatpak packages.'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Install powertop and tlp services?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) install_power_management || error 'Error while configuring powertop and tlp.'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Configure fish shell?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) configure_fish || error 'Error while configuring fish.'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Install sdkman?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) install_sdkman || error 'Error while configuring sdkman'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Install pop shell tiling?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) install_pop_shell || error 'Error while installing pop-shell.'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Done."
