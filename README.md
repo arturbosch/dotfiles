@@ -8,7 +8,7 @@ git clone https://github.com/arturbosch/dotfiles
 ### Install Software on Fedora
 
 ```bash
-cd ~/install
+cd ~/dotfiles/install
 ./links.sh
 ./fedora.sh
 ./gnome_defaults.sh
