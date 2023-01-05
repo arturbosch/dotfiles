@@ -16,7 +16,7 @@ update_repos() {
 install_flatpak() {
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     local install_dir=$(dirname $(readlink -f $0))
-    sh $install_dir/3_flatpak.sh
+    sh $install_dir/flatpak.sh
 }
 
 install_software() {
