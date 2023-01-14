@@ -28,6 +28,7 @@ $inst flathub com.github.jeromerobert.pdfarranger # Merge an edit PDFs
 $inst flathub org.gnome.World.Secrets # Password Store
 $inst flathub com.lakoliu.Furtherance # Time Tracking
 $inst flathub md.obsidian.Obsidian # Notes / Wiki
+$inst flathub uk.co.ibboard.cawbird # Twitter Client
 
 # install vscodium via appimage so it will find all local programs and config
 $inst flathub com.vscodium.codium # Editor
