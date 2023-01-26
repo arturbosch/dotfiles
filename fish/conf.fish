@@ -83,6 +83,9 @@ abbr j "java"
 abbr jj "java -jar"
 abbr jv "java -version"
 
+### pi shortcuts
+abbr piauth ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o PasswordAuthentication=yes pi
+
 # installer
 ## apt
 if test (uname -a | grep -i 'ubuntu')
