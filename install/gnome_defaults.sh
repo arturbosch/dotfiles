@@ -2,6 +2,7 @@
 gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 gsettings set org.gnome.desktop.peripherals.touchpad click-method areas
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+gsettings set org.gnome.desktop.notifications show-banners false
 
 # disable favorite applications hotkeys
 gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys false

@@ -8,6 +8,7 @@ https://extensions.gnome.org/extension/3968/improved-workspace-indicator/
 https://extensions.gnome.org/extension/1319/gsconnect/
 https://extensions.gnome.org/extension/517/caffeine/ 
 https://extensions.gnome.org/extension/5470/weather-oclock/
+https://extensions.gnome.org/extension/5446/quick-settings-tweaker/
 )
 
 for i in "${array[@]}"
