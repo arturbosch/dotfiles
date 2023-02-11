@@ -1,5 +1,14 @@
 theme = "base16_default"
 
+[editor]
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.lsp]
+display-messages = true
+
 [keys.normal]
 C-s = ":w"
 C-q = ":q"
