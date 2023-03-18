@@ -122,8 +122,8 @@ alias ll "exa --long --git -h"
 alias lt "exa --tree"
 
 ## flatpak
-alias popsicle "flatpak run com.system76.Popsicle"
 alias curtail "flatpak run com.github.huluti.Curtail"
+alias nextc "flatpak run com.nextcloud.desktopclient.nextcloud"
 
 ## misc aliases
 alias dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
