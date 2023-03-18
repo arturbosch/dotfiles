@@ -9,25 +9,16 @@
 	excludesfile = ~/.gitignore
 	quotepath = false
 [alias]
-	a = add
 	aa = add --all
 	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
-	b = branch
 	amend = commit --amend
 	cm = commit -m
 	co = checkout
 	cob = checkout -b
-	d = diff
-	ds = diff --staged
-	dw = diff -w
-	f = fetch
 	fixup = commit --fixup
 	noc = rev-list HEAD --count
-	l = log
 	lc = log --graph --pretty=format:\"%an: %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset\" --date=relative
-	lch = rev-parse HEAD
-	lm = "!me=$(git config --get user.name); git log --oneline --author \"$me\""
-	p = push
+	rev = rev-parse HEAD
 	pf = push -f
 	pou = push origin -u
 	s = status
@@ -35,8 +26,6 @@
 	rbc = rebase --continue
 	rbi = rebase -i
 	rbs = rebase --skip
-	rh = reset --hard
-	rha = reset HEAD .
 	tl = log --tags --simplify-by-decoration --pretty='format:%ci %d'
 	tree = ls-tree -r main --name-only
 	up = pull --rebase --autostash
