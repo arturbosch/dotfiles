@@ -13,7 +13,7 @@
 	aa = add --all
 	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
 	b = branch
-	cam = commit --amend
+	amend = commit --amend
 	cm = commit -m
 	co = checkout
 	cob = checkout -b
@@ -21,6 +21,7 @@
 	ds = diff --staged
 	dw = diff -w
 	f = fetch
+	fixup = commit --fixup
 	noc = rev-list HEAD --count
 	l = log
 	lc = log --graph --pretty=format:\"%an: %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset\" --date=relative
