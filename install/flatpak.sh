@@ -21,15 +21,14 @@ $inst flathub io.github.seadve.Kooha # Screen Recorder
 $inst flathub org.gnome.gitlab.somas.Apostrophe # Markdown Editor
 $inst flathub org.gnome.World.PikaBackup # Backup Solution
 $inst fedora org.gnome.Connections # Remote Desktop
-$inst flathub org.gnome.Solanum # Pomodoro Timer
 $inst flathub com.github.tchx84.Flatseal # Manage Permissions
 $inst flathub com.github.liferooter.textpieces # Text Manipulation
 $inst flathub com.github.jeromerobert.pdfarranger # Merge an edit PDFs
 $inst flathub org.gnome.World.Secrets # Password Store
 $inst flathub com.lakoliu.Furtherance # Time Tracking
 $inst flathub md.obsidian.Obsidian # Notes / Wiki
-$inst flathub uk.co.ibboard.cawbird # Twitter Client
 $inst flathub com.nextcloud.desktopclient.nextcloud # Nextcloud Client
+$inst flathub org.x.Warpinator # Local Network File Sharing
 
 # install vscodium via appimage so it will find all local programs and config
 $inst flathub com.vscodium.codium # Editor
