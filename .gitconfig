@@ -5,7 +5,7 @@
 	rebase = true
 [core]
 	autocrlf = input
-	editor = kak
+	editor = hx
 	excludesfile = ~/.gitignore
 	quotepath = false
 [alias]
