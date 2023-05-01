@@ -1,4 +1,4 @@
-theme = "base16_default"
+theme = "dark_plus"
 
 [editor]
 true-color = true
