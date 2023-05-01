@@ -116,6 +116,9 @@ end
 
 # aliases
 
+## cat replacement
+alias cat bat
+
 ## ls replacement
 alias ls exa
 alias ll "exa --long --git -h"
