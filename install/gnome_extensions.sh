@@ -8,6 +8,7 @@ https://extensions.gnome.org/extension/615/appindicator-support/
 https://extensions.gnome.org/extension/16/auto-move-windows/
 https://extensions.gnome.org/extension/5347/dotspaces/
 https://extensions.gnome.org/extension/1287/unite/
+https://extensions.gnome.org/extension/600/launch-new-instance/
 )
 
 for i in "${array[@]}"
