@@ -4,3 +4,7 @@ roots = ["pyproject.toml"]
 language-server = { command = "pyright-langserver", args = ["--stdio"] }
 config = {} # <- this is the important line
 
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
