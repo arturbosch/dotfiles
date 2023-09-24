@@ -1,7 +1,9 @@
-theme = "nord"
+theme = "fleet_dark"
 
 [editor]
 true-color = true
+line-number = "relative"
+idle-timeout = 100
 
 [editor.cursor-shape]
 insert = "bar"
