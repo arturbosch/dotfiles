@@ -26,6 +26,7 @@ done
 
 ln -sf $dotfiles/alacritty/alacritty.yml $confdir/alacritty/alacritty.yml
 ln -sf $dotfiles/fish/conf.fish $confdir/fish/conf.d/conf.fish
+ln -sf $dotfiles/fish/hhu.fish $confdir/fish/conf.d/hhu.fish
 ln -sf $dotfiles/fish/fish_plugins $confdir/fish/fish_plugins
 ln -sf $dotfiles/foot/foot.ini $confdir/foot/foot.ini
 ln -sf $dotfiles/helix/config.toml $confdir/helix/config.toml
