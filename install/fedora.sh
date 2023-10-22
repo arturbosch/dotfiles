@@ -21,7 +21,7 @@ install_flatpak() {
 
 install_software() {
     # install one by one so we know if any package is broken/not present anymore
-    for pkg in htop powertop curl wget zip unzip openssl git fish alacritty fzf tig meld tk tcl tldr asciinema thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard jq wlsunset pulseaudio-utils file-roller typescript gnome-extensions-app gimp rpi-imager pip jetbrains-mono-fonts-all git-lfs tokei xprop gnome-tweaks gettext bat lm_sensors just; do
+    for pkg in htop powertop curl wget zip unzip openssl git ranger fish alacritty fzf tig meld tk tcl tldr asciinema thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard jq wlsunset pulseaudio-utils file-roller typescript gnome-extensions-app gimp rpi-imager pip jetbrains-mono-fonts-all git-lfs tokei xprop gnome-tweaks gettext bat lm_sensors; do
         $install_command $pkg
     done
 }
