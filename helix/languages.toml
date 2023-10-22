@@ -8,3 +8,8 @@ config = {} # <- this is the important line
 name = "go"
 auto-format = true
 formatter = { command = "goimports" }
+
+[[language]]
+name = "kotlin"
+roots = ["build.gradle.kts"]
+language-server = { command = "kls" }
