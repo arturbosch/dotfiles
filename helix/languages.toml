@@ -13,3 +13,20 @@ formatter = { command = "goimports" }
 name = "kotlin"
 roots = ["build.gradle.kts"]
 language-server = { command = "kls" }
+
+[[language]]
+name = "java"
+language-server = { command = "jdtls" }
+formatter = { command = "gjf" }
+auto-format = true
+
+[[language]]
+name = "prolog"
+scope = "source.prolog"
+roots = []
+file-types = ["pl", "prolog"]
+comment-token = "%"
+language-server = { command = "swipl", args = [
+    "-g", "use_module(library(lsp_server))",
+    "-g", "lsp_server:main",
+    "-t", "halt", "--", "stdio"] }
