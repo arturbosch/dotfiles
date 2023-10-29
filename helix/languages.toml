@@ -1,8 +1,16 @@
 [[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[[language]]
 name = "python"
 roots = ["pyproject.toml"]
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
-config = {} # <- this is the important line
+language-servers = ["pyright-langserver"]
+
+[language-server.pyright-langserver]
+command = "pyright-langserver"
+args = ["--stdio"]
+config = {}
 
 [[language]]
 name = "go"
@@ -12,13 +20,19 @@ formatter = { command = "goimports" }
 [[language]]
 name = "kotlin"
 roots = ["build.gradle.kts"]
-language-server = { command = "kls" }
+language-servers = ["kls"]
+
+[language-server.kls]
+command = "kls"
 
 [[language]]
 name = "java"
-language-server = { command = "jdtls" }
 formatter = { command = "gjf" }
 auto-format = true
+language-servers = ["jdtls"]
+
+[language-server.jdtls]
+command = "jdtls"
 
 [[language]]
 name = "prolog"
@@ -26,7 +40,10 @@ scope = "source.prolog"
 roots = []
 file-types = ["pl", "prolog"]
 comment-token = "%"
-language-server = { command = "swipl", args = [
-    "-g", "use_module(library(lsp_server))",
+language-servers = ["swipl"]
+
+[language-server.swipl]
+command = "swipl"
+args = ["-g", "use_module(library(lsp_server))",
     "-g", "lsp_server:main",
-    "-t", "halt", "--", "stdio"] }
+    "-t", "halt", "--", "stdio"]
