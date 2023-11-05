@@ -43,6 +43,13 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-10 '["<Super><S
 # key bindings backup: gsettings list-recursively org.gnome.desktop.wm.keybindings
 gsettings set org.gnome.desktop.wm.keybindings close '["<Shift><Super>q"]'
 
+# paperwm
+dconf write /org/gnome/shell/extensions/paperwm/show-workspace-indicator false
+dconf write /org/gnome/shell/extensions/paperwm/show-focus-mode-icon true
+dconf write /org/gnome/shell/extensions/paperwm/disable-topbar-styling true
+
+# pop-shell
+
 KEYS_POP=/org/gnome/shell/extensions/pop-shell
 KEYS_GNOME_WM=/org/gnome/desktop/wm/keybindings
 
