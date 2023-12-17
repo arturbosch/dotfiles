@@ -1,5 +1,3 @@
 #!/bin/sh
-cd ~/git/system
-git clone https://github.com/helix-editor/helix
-cd helix
-cargo install --path helix-term
+sudo dnf copr enable varlad/helix
+sudo dnf install helix
