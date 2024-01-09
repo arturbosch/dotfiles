@@ -21,14 +21,14 @@ install_flatpak() {
 
 install_software() {
     # install one by one so we know if any package is broken/not present anymore
-    for pkg in htop powertop curl wget zip unzip openssl git ranger fish alacritty fzf tig meld tk tcl tldr asciinema thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard jq wlsunset pulseaudio-utils file-roller typescript gnome-extensions-app gimp rpi-imager pip jetbrains-mono-fonts-all git-lfs tokei xprop gnome-tweaks gettext bat lm_sensors pl; do
+    for pkg in htop powertop curl wget zip unzip openssl git ranger fish alacritty fzf tig ripgrep fd-find meld tk tcl tldr asciinema thunderbird kakoune nodejs sway waybar swayidle swaylock wl-clipboard jq wlsunset pulseaudio-utils file-roller typescript gnome-extensions-app gimp rpi-imager pip jetbrains-mono-fonts-all git-lfs tokei xprop gnome-tweaks gettext bat lm_sensors pl; do
         $install_command $pkg
     done
 }
 
 install_rust_tools() {
     $install_command "cargo"
-    cargo install ripgrep fd-find exa html-query
+    cargo install exa html-query
 }
 
 install_brave_browser() {
