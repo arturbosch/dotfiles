@@ -127,11 +127,9 @@ alias ll "exa --long --git -h"
 alias lt "exa --tree"
 
 ## flatpak
-alias curtail "flatpak run com.github.huluti.Curtail"
 alias nextc "flatpak run com.nextcloud.desktopclient.nextcloud"
 
 ## misc aliases
-alias dl "youtube-dl -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0"
 alias zip_git "zip -r git-with-excludes.zip git/ -x '**/node_modules/**' '**/build/**' '**/.idea/**' 'git/test/**' '**/target/**' '**/.gradle/**' '**/out/production/**' '**/out/test/**' '**/gbt_build/**'"
 
 # additional functions
