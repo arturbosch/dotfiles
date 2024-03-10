@@ -26,6 +26,12 @@ install_software() {
     done
 }
 
+install_software_for_hypr() {
+    for pkg in wlogout waybar dunst brightnessctl wofi; do
+        $install_command $pkg
+    done
+}
+
 install_rust_tools() {
     $install_command "cargo"
     cargo install exa html-query
@@ -82,6 +88,14 @@ echo "Install additional software?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) install_software || error 'Error while installing software packages.'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Install hypr software?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) install_software_for_hypr || error 'Error while installing hypr software packages.'; break;;
         No ) break;;
     esac
 done
