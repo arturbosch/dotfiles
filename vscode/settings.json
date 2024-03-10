@@ -1,8 +1,12 @@
 {
-    "window.zoomLevel": 1,
+    "editor.foldingImportsByDefault": true,
     "editor.fontSize": 15,
     "python.formatting.provider": "black",
     "window.menuBarVisibility": "toggle",
-    "zenMode.fullScreen": false,
-    "workbench.colorTheme": "JetBrains New Dark"
+    "window.zoomLevel": 1,
+    "workbench.activityBar.location": "hidden",
+    "workbench.colorTheme": "JetBrains New Dark",
+    "workbench.editor.showTabs": "none",
+    "workbench.statusBar.visible": false,
+    "zenMode.fullScreen": false
 }
