@@ -10,7 +10,7 @@
     "python.formatting.provider": "black",
     "redhat.telemetry.enabled": false,
     "telemetry.telemetryLevel": "off",
-    "window.menuBarVisibility": "toggle",
+    "window.menuBarVisibility": "hidden",
     "window.zoomLevel": 1,
     "workbench.activityBar.location": "hidden",
     "workbench.colorTheme": "JetBrains New Dark",
