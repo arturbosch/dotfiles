@@ -1,0 +1,8 @@
+[Service]
+WorkingDirectory=/
+ExecStart=bash -c "/home/artur/bin/evremap remap /home/artur/dotfiles/evremap/cherry.toml -d 0"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

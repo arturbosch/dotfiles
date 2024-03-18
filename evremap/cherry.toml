@@ -1,0 +1,21 @@
+device_name = "CHERRY CHERRY Wireless Device"
+
+[[remap]]
+input = ["KEY_CAPSLOCK"]
+output = ["KEY_ESC"]
+
+[[remap]]
+input = ["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_LEFT"]
+output = ["KEY_HOME"]
+
+[[remap]]
+input = ["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_RIGHT"]
+output = ["KEY_END"]
+
+[[remap]]
+input = ["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_UP"]
+output = ["KEY_PAGEUP"]
+
+[[remap]]
+input = ["KEY_LEFTCTRL", "KEY_LEFTALT", "KEY_DOWN"]
+output = ["KEY_PAGEDOWN"]
