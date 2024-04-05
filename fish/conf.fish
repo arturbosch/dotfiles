@@ -68,15 +68,15 @@ abbr loc "tokei --sort=lines"
 abbr md "mkdir -pv"
 abbr rd "rm -R"
 abbr nf "clear && neofetch"
-abbr g "gradle -w"
-abbr gw "./gradlew -w"
+abbr g "gradle -q"
+abbr gw "./gradlew -q"
 abbr gv "gradle -v"
 abbr gdeps "gradle -q dependencies --configuration implementation"
-abbr gb "gradle build -w"
-abbr gbw "gradle build --continuous -w"
-abbr gcb "gradle clean build -w"
-abbr gbp "gradle build publishToMavenLocal -w"
-abbr gd "gradle detekt -w"
+abbr gb "gradle build -q"
+abbr gbw "gradle build --continuous -q"
+abbr gcb "gradle clean build -q"
+abbr gbp "gradle build publishToMavenLocal -q"
+abbr gd "gradle detekt -q"
 abbr f "cd ~/files && ls ~/files/ | dmenu -l 30"
 abbr eff "$EDITOR (cd ~/.config/fish/functions && ls | dmenu -l 30)"
 abbr ff "cat (cd ~/files && ls ~/files/ | dmenu -l 30)"
@@ -120,6 +120,7 @@ end
 
 ## cat replacement
 alias cat bat
+abbr catp cat --decorations never
 
 ## ls replacement
 alias ls exa
