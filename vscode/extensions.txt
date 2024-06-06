@@ -1,3 +1,4 @@
+eamodio.gitlens
 k--kato.intellij-idea-keybindings
 mobalic.jetbrains-new-dark
 MoBalic.jetbrains-new-dark
