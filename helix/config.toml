@@ -14,3 +14,5 @@ display-messages = true
 [keys.normal]
 C-s = ":w"
 C-q = ":q"
+
+esc = ["collapse_selection", "keep_primary_selection"]
