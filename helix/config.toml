@@ -15,4 +15,7 @@ display-messages = true
 C-s = ":w"
 C-q = ":q"
 
+A-n = "search_next"
+A-N = "search_prev"
+
 esc = ["collapse_selection", "keep_primary_selection"]

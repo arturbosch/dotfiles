@@ -156,3 +156,7 @@ function git-add-fzf
     git add (git ls-files --modified --exclude-standard | fzf --ansi --no-sort --preview 'git diff --color=always -- {}')
 end
 
+function vmrss
+    set pid $argv[1]
+    cat /proc/$pid/status | grep -i vmrss | awk '{print $2/1000 " MB"}'
+end

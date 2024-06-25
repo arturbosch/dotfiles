@@ -10,6 +10,7 @@
 	quotepath = false
 [alias]
 	aa = add --all
+	ap = add -p
 	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
 	amend = commit --amend
 	cm = commit -m
@@ -26,6 +27,7 @@
 	rbc = rebase --continue
 	rbi = rebase -i
 	rbs = rebase --skip
+	tags = fetch --tags
 	tl = log --tags --simplify-by-decoration --pretty='format:%ci %d'
 	tree = ls-tree -r main --name-only
 	up = pull --rebase --autostash
