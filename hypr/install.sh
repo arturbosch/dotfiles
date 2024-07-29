@@ -1,2 +1,2 @@
 #!/bin/env bash
-sudo dnf install Hyprland hyprpaper hyprlock waybar fuzzel fish foot wlogout polkit-gnome
+sudo dnf install hyprland hyprpaper hyprlock waybar fuzzel fish foot wlogout polkit-gnome
