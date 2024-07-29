@@ -6,8 +6,8 @@ function mark_prompt_start --on-event fish_prompt
 end
 
 # gnome: map caps to escape key
-if test "$XDG_SESSION_TYPE" = "x11"
-	setxkbmap -option caps:escape
+if test "$XDG_SESSION_TYPE" = x11
+    setxkbmap -option caps:escape
 end
 
 # paths
@@ -55,15 +55,14 @@ abbr twm "timew month"
 
 ## config shortcuts
 abbr ef "$EDITOR $HOME/dotfiles/fish/conf.fish"
-abbr eq "$EDITOR $HOME/dotfiles/qtile/config.py"
-abbr ei "$EDITOR $HOME/dotfiles/i3/config"
-abbr ev "$ALT_EDITOR $HOME/dotfiles/nvim/init.vim"
 abbr eg "$EDITOR $HOME/dotfiles/.gitconfig"
-abbr ek "$EDITOR $HOME/dotfiles/kak/kakrc"
+abbr eh "$EDITOR $HOME/dotfiles/hypr/hyprland.conf"
+abbr ehl "$EDITOR $HOME/dotfiles/hypr/hyprlock.conf"
+abbr ehp "$EDITOR $HOME/dotfiles/hypr/hyprlpaper.conf"
 
 ## other shortcuts
 abbr gl tig
-abbr bb "bluetoothctl"
+abbr bb bluetoothctl
 abbr loc "tokei --sort=lines"
 abbr md "mkdir -pv"
 abbr rd "rm -R"
@@ -82,7 +81,7 @@ abbr f "cd ~/files && ls ~/files/ | dmenu -l 30"
 abbr eff "$EDITOR (cd ~/.config/fish/functions && ls | dmenu -l 30)"
 abbr ff "cat (cd ~/files && ls ~/files/ | dmenu -l 30)"
 abbr fe "$EDITOR (cd ~/files && ls ~/files/ | dmenu -l 30)"
-abbr j "just"
+abbr j just
 abbr jj "java -jar"
 abbr jv "java -version"
 
@@ -96,7 +95,7 @@ if test (uname -a | grep -i 'ubuntu')
     abbr fp "sudo apt search"
     abbr up "sudo apt update && sudo apt upgrade"
     abbr upa "sudo apt update && sudo apt upgrade && sudo flatpak update && sdk upgrade"
-## pacman
+    ## pacman
 else if test (uname -a | grep -i 'manjaro')
     abbr inst "sudo pacman -S"
     abbr up "sudo yay"
