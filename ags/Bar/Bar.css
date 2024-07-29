@@ -1,0 +1,96 @@
+window {
+  /*background-color: @theme_bg_color;*/
+  color: @theme_fg_color;
+  background-color: rgba(49, 49, 58, 0.5);
+}
+
+window.bar {
+  /* border-bottom: 2px solid @theme_selected_bg_color; */
+  border-bottom: 2px solid @theme_selected_bg_color;
+}
+
+.bar icon {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 13px;
+}
+
+.bar button {
+  min-width: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: transparent;
+  border-bottom: 3px solid transparent;
+  background: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  /* color: @theme_fg_color; */
+  color: white;
+}
+
+.bar button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.bar button.nohover:hover,
+.bar button.disabled:hover {
+  background: transparent;
+}
+
+.bar button.disabled {
+  color: @insensitive_fg_color;
+}
+
+.bar button:active {
+  background-color: @theme_selected_bg_color;
+}
+
+.bar .workspaces button {
+  padding: 2px 10px;
+  font-family: Hurmit Nerd Font;
+  font-size: 13px;
+  border-radius: 0;
+}
+
+.bar .workspaces button.persistent {
+  color: @insensitive_fg_color;
+}
+
+.bar .workspaces button:hover {
+  border-bottom: 3px solid @theme_fg_color;
+}
+
+.bar .workspaces button.focused {
+  background-color: @theme_selected_bg_color;
+  border-radius: 3px;
+}
+
+.bar .workspaces button.urgent {
+  /*background-color: #eb4d4b;*/
+  background-color: #eb4d4b;
+  border-radius: 3px;
+}
+
+.bar button.inhibiting {
+  background-color: @theme_selected_bg_color;
+}
+
+.bar label {
+  /*font-weight: bold;*/
+}
+
+.bar .client-title {
+  /*color: @theme_selected_bg_color;*/
+}
+
+.bar .notification {
+  color: yellow;
+}
+
+.bar progress,
+.bar highlight {
+  min-height: 8px;
+  background-color: @theme_selected_bg_color;
+}
+
+progress {
+  margin-bottom: 20px;
+}

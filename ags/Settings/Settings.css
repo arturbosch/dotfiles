@@ -1,0 +1,42 @@
+.settings {
+  border: 1px solid @theme_selected_bg_color;
+  border-radius: 0.5rem;
+}
+
+.settings .box {
+  margin: 1rem;
+}
+
+.settings .devices {
+  margin-top: 0.5rem;
+}
+
+.settings progress,
+.settings highlight {
+  min-height: 0.3rem;
+  background-color: @theme_selected_bg_color;
+}
+
+.settings icon {
+  font-size: 1rem;
+}
+
+.settings button {
+  font-size: 1rem;
+  border-radius: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: transparent;
+  background: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  color: @theme_fg_color;
+}
+
+.settings button.focused {
+  background-color: @theme_selected_bg_color;
+  border-radius: 3px;
+}
+
+.settings .label {
+  margin-left: 1.5rem;
+}

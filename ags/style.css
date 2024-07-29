@@ -1,0 +1,33 @@
+/* @define-color theme_selected_bg_color #8FBCBB; */
+@define-color theme_selected_bg_color #899F93;
+
+@import "./Bar/Bar.css";
+@import "./Settings/Settings.css";
+/* @import "./osd/style.css"; */
+/* @import "./notification-popups/style.css"; */
+
+window {
+  color: @theme_fg_color;
+  background-color: @theme_bg_color;
+  /* background-color: rgba(49, 49, 58, 0.8); */
+  /* background-color: rgba(29, 32, 48, 0.8); */
+}
+
+.launcher {
+  border: 2px solid @theme_selected_bg_color;
+}
+
+.launcher__item:focus {
+  border: 1px solid @theme_selected_bg_color;
+}
+
+.launcher__entry {
+  margin-bottom: 1rem;
+  border: 2px solid @theme_selected_bg_color;
+}
+
+.launcher .title {
+  margin-left: 0.5rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
