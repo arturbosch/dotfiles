@@ -1,4 +1,4 @@
-import { exec } from "resource:///com/github/Aylur/ags/utils.js";
+import { execAsync } from "resource:///com/github/Aylur/ags/utils.js";
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 
 import icons from "../../icons.js";
@@ -15,13 +15,13 @@ const Session = () => {
         Widget.Button({
           child: Widget.Icon(icons.apps.screenshot),
           onPrimaryClickRelease: () => {
-            exec("hyprshot -m window");
+            execAsync("hyprshot -m window");
           },
         }),
         Widget.Button({
           child: Widget.Icon(icons.apps.settings),
           onPrimaryClickRelease: () => {
-            exec("gnome-control-center");
+            execAsync("gnome-control-center");
           },
         }),
       ],
@@ -33,25 +33,25 @@ const Session = () => {
         Widget.Button({
           child: Widget.Icon(lock),
           onPrimaryClickRelease: () => {
-            exec("loginctl lock-session");
+            execAsync("loginctl lock-session");
           },
         }),
         Widget.Button({
           child: Widget.Icon(logout),
           onPrimaryClickRelease: () => {
-            exec("hyprctl dispatch exit");
+            execAsync("hyprctl dispatch exit");
           },
         }),
         Widget.Button({
           child: Widget.Icon(restart),
           onPrimaryClickRelease: () => {
-            exec("systemctl reboot");
+            execAsync("systemctl reboot");
           },
         }),
         Widget.Button({
           child: Widget.Icon(shutdown),
           onPrimaryClickRelease: () => {
-            exec("systemctl poweroff");
+            execAsync("systemctl poweroff");
           },
         }),
       ],
