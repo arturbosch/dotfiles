@@ -23,6 +23,7 @@ md.obsidian.Obsidian # Notes / Wiki
 com.nextcloud.desktopclient.nextcloud # Nextcloud Client
 org.x.Warpinator # Local Network File Sharing
 org.cvfosammmm.Setzer # latex editor
+io.missioncenter.MissionCenter # task manager
 )
 
 for app in "${apps[@]}"
