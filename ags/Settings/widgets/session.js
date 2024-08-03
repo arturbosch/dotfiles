@@ -33,7 +33,7 @@ const Session = () => {
         Widget.Button({
           child: Widget.Icon(lock),
           onPrimaryClickRelease: () => {
-            execAsync("loginctl lock-session");
+            execAsync("hyprlock");
           },
         }),
         Widget.Button({
