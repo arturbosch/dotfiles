@@ -10,7 +10,7 @@ import Workspaces from "./widgets/Workspaces.js";
 function Left() {
   return Widget.Box({
     spacing: 8,
-    children: [Workspaces()],
+    children: [SysTray()],
   });
 }
 
@@ -25,10 +25,8 @@ function Right(monitor = 0) {
   return Widget.Box({
     hpack: "end",
     spacing: 8,
-    margin_end: 8,
     children: [
-      SysTray(),
-      Spacer(),
+      Workspaces(),
       BatteryWidget(),
       ToggleIconButton(() => {
         const id = `new-settings-${monitor}`;
