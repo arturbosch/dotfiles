@@ -1,4 +1,5 @@
 import App from "resource:///com/github/Aylur/ags/app.js";
+import { Commands } from "../../options.js";
 
 const weather = Variable(
   {},
@@ -12,12 +13,17 @@ const weather = Variable(
 );
 
 function WeatherWidget() {
-  return Widget.Label({
-    class_name: "weather",
-    binds: [
-      ["label", weather, "value", (value) => value.text || "󰇘"],
-      ["tooltip-text", weather, "value", (value) => value.tooltip || "󰇘"],
-    ],
+  return Widget.Button({
+    on_clicked: () => {
+      Utils.execAsync(Commands.weatherApp);
+    },
+    child: Widget.Label({
+      class_name: "weather",
+      binds: [
+        ["label", weather, "value", (value) => value.text || "󰇘"],
+        ["tooltip-text", weather, "value", (value) => value.tooltip || "󰇘"],
+      ],
+    }),
   });
 }
 
