@@ -23,6 +23,7 @@ export const Commands = Object.freeze({
   shutdown: "systemctl poweroff",
   screenshotShortcut: "hyprshot -m window",
   settingsApp: "gnome-control-center",
+  weatherApp: "gnome-weather",
 });
 
 export const monitors = [0];
