@@ -27,3 +27,19 @@ export const Commands = Object.freeze({
 });
 
 export const monitors = [0];
+
+/**
+ * @param {string | undefined} kbLayout
+ */
+export function formatKeyboardLayout(kbLayout) {
+  if (kbLayout?.includes("German")) {
+    return "de";
+  } else if (kbLayout?.includes("English")) {
+    return "en";
+  }
+  return kbLayout ?? "??";
+}
+
+export function getScriptPath(name) {
+  return `${App.configDir}/scripts/${name}`;
+}
