@@ -1,12 +1,11 @@
-import App from "resource:///com/github/Aylur/ags/app.js";
-import { Commands } from "../../options.js";
+import { Commands, getScriptPath } from "../../options.js";
 
 const weather = Variable(
   {},
   {
     poll: [
       30000,
-      `python ${App.configDir}/scripts/weather.py`,
+      `python ${getScriptPath("weather.py")}`,
       (out) => JSON.parse(out),
     ],
   }

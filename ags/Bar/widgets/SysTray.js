@@ -3,7 +3,6 @@ const systemtray = await Service.import("systemtray");
 /** @param {import('types/service/systemtray').TrayItem} item */
 function TrayItem(item) {
   return Widget.Button({
-    css: "border: none",
     child: Widget.Icon({ icon: item.bind("icon") }),
     tooltip_markup: item.bind("tooltip_markup"),
     on_primary_click: (_, event) => item.activate(event),

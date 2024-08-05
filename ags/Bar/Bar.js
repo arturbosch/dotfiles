@@ -1,8 +1,8 @@
 import icons from "../icons.js";
-import Spacer from "../widgets/Separator.js";
 import ToggleIconButton from "../widgets/ToggleIconButton.js";
 import BatteryWidget from "./widgets/BatteryWidget.js";
 import ClockWidget from "./widgets/ClockWidget.js";
+import KeyboardLayout from "./widgets/KeyboardLayout.js";
 import SysTray from "./widgets/SysTray.js";
 import WeatherWidget from "./widgets/WeatherWidget.js";
 import Workspaces from "./widgets/Workspaces.js";
@@ -17,7 +17,7 @@ function Left() {
 function Center() {
   return Widget.Box({
     spacing: 8,
-    children: [WeatherWidget(), ClockWidget()],
+    children: [WeatherWidget(), ClockWidget(), KeyboardLayout()],
   });
 }
 
