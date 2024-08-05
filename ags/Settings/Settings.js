@@ -31,10 +31,10 @@ function OptionsRow() {
     spacing: 8,
     children: [
       SettingsButton(icons.apps.screenshot, () =>
-        Utils.execAsync("hyprshot -m window")
+        Utils.execAsync(Commands.screenshotShortcut)
       ),
       SettingsButton(icons.apps.settings, () =>
-        Utils.execAsync("gnome-control-center")
+        Utils.execAsync(Commands.settingsApp)
       ),
     ],
   });
@@ -48,7 +48,7 @@ function OptionsRow() {
       ),
       // TODO make poweroff a menu for logout, restart, poweroff
       SettingsButton(icons.session.shutdown, () =>
-        Utils.execAsync("systemctl poweroff")
+        Utils.execAsync(Commands.shutdown)
       ),
     ],
   });
@@ -60,11 +60,7 @@ const Settings = (monitor = 0) => {
   return Widget.Window({
     name: name,
     className: "settings",
-    setup: (self) =>
-      self.keybind("Escape", () => {
-        console.log("Hello World");
-        App.closeWindow(name);
-      }),
+    setup: (self) => self.keybind("Escape", () => App.closeWindow(name)),
     visible: false,
     keymode: "exclusive",
     monitor,

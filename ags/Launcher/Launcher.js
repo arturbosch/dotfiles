@@ -4,6 +4,7 @@ const WINDOW_NAME = "applauncher";
 /** @param {import('resource:///com/github/Aylur/ags/service/applications.js').Application} app */
 const AppItem = (app) =>
   Widget.Button({
+    class_name: "launcher__item",
     on_clicked: () => {
       App.closeWindow(WINDOW_NAME);
       app.launch();
