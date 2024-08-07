@@ -1,4 +1,5 @@
 export default {
+  todoTxt: "checkbox-checked-symbolic",
   apps: {
     settings: "applications-system-symbolic",
     screenshot: "applets-screenshooter-symbolic",
