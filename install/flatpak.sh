@@ -20,7 +20,6 @@ com.github.liferooter.textpieces # Text Manipulation
 com.github.jeromerobert.pdfarranger # Merge an edit PDFs
 org.gnome.World.Secrets # Password Store
 md.obsidian.Obsidian # Notes / Wiki
-com.nextcloud.desktopclient.nextcloud # Nextcloud Client
 org.x.Warpinator # Local Network File Sharing
 org.cvfosammmm.Setzer # latex editor
 io.missioncenter.MissionCenter # task manager
