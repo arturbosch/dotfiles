@@ -4,13 +4,14 @@ import BatteryWidget from "./widgets/BatteryWidget.js";
 import ClockWidget from "./widgets/ClockWidget.js";
 import KeyboardLayout from "./widgets/KeyboardLayout.js";
 import SysTray from "./widgets/SysTray.js";
+import TodoTxtWidget from "./widgets/TodoTxtWidget.js";
 import WeatherWidget from "./widgets/WeatherWidget.js";
 import Workspaces from "./widgets/Workspaces.js";
 
 function Left() {
   return Widget.Box({
     spacing: 8,
-    children: [SysTray()],
+    children: [TodoTxtWidget(), SysTray()],
   });
 }
 

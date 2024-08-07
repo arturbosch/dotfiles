@@ -43,3 +43,5 @@ export function formatKeyboardLayout(kbLayout) {
 export function getScriptPath(name) {
   return `${App.configDir}/scripts/${name}`;
 }
+
+export const todoTxtFile = `${App.configDir}/../../Nextcloud/todo.txt/todo.txt`;
