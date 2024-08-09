@@ -11,7 +11,7 @@ import Workspaces from "./widgets/Workspaces.js";
 function Left() {
   return Widget.Box({
     spacing: 8,
-    children: [SysTray(), TodoTxtWidget()],
+    children: [TodoTxtWidget(), SysTray()],
   });
 }
 
