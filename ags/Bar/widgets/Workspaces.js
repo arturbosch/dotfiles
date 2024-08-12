@@ -2,7 +2,7 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import { persistentWorkspaces, workspaceLabels } from "../../options.js";
 const hyprland = await Service.import("hyprland");
 
-function Workspaces() {
+export function Workspaces() {
   const activeId = hyprland.active.workspace.bind("id");
   const workspaces = persistentWorkspaces.map((id) =>
     Widget.Button({
@@ -18,4 +18,18 @@ function Workspaces() {
   });
 }
 
-export default Workspaces;
+
+export function Submap() {
+  return Widget.Label({
+    setup: (self) => {
+      self.hook(hyprland, (label, submap) => {
+        label.label = submap;
+      }, "submap")
+    },
+  })
+}
+
+
+export default {
+  Workspaces, Submap,
+};

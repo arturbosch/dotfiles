@@ -7,12 +7,12 @@ import PowerProfileWidget from "./widgets/PowerProfileWidget.js";
 import SysTray from "./widgets/SysTray.js";
 import TodoTxtWidget from "./widgets/TodoTxtWidget.js";
 import WeatherWidget from "./widgets/WeatherWidget.js";
-import Workspaces from "./widgets/Workspaces.js";
+import { Workspaces, Submap } from "./widgets/Workspaces.js";
 
 function Left() {
   return Widget.Box({
     spacing: 8,
-    children: [TodoTxtWidget(), SysTray()],
+    children: [TodoTxtWidget(), SysTray(), Submap()],
   });
 }
 
