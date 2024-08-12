@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+arg_value=${1:-"all"}
+hyprctl monitors all -j | $HOME/dotfiles/ags/scripts/monitors.py --mode $arg_value
