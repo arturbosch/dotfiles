@@ -6,6 +6,8 @@ formatter = { command = "taplo", args = ["fmt", "-"] }
 name = "python"
 roots = ["pyproject.toml"]
 language-servers = ["pyright-langserver"]
+auto-format = true
+formatter = { command = "black", args = ["-", "--quiet"] }
 
 [language-server.pyright-langserver]
 command = "pyright-langserver"
@@ -44,6 +46,66 @@ language-servers = ["swipl"]
 
 [language-server.swipl]
 command = "swipl"
-args = ["-g", "use_module(library(lsp_server))",
-    "-g", "lsp_server:main",
-    "-t", "halt", "--", "stdio"]
+args = [
+  "-g",
+  "use_module(library(lsp_server))",
+  "-g",
+  "lsp_server:main",
+  "-t",
+  "halt",
+  "--",
+  "stdio",
+]
+
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy", "--config-path=biome.json"]
+
+[[language]]
+name = "javascript"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
+
+[[language]]
+name = "typescript"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
+
+[[language]]
+name = "json"
+language-servers = [
+  { name = "vscode-json-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [
+  { name = "typescript-language-server", except-features = [
+    "format",
+  ] },
+  "biome",
+]

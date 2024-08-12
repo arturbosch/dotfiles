@@ -30,7 +30,11 @@ install_software() {
 
 install_rust_tools() {
     $install_command "cargo"
-    cargo install exa html-query
+    cargo install exa html-query taplo-cli --locked
+}
+
+install_npm_tools() {
+    npm install -g typescript typescript-language-server @biomejs/biome
 }
 
 install_brave_browser() {
@@ -100,6 +104,14 @@ echo "Install rust tools?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) install_rust_tools || error 'Error while installing rust packages.'; break;;
+        No ) break;;
+    esac
+done
+
+echo "Install npm tools?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) install_npm_tools || error 'Error while installing npm packages.' ; break;;
         No ) break;;
     esac
 done
