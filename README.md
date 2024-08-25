@@ -11,8 +11,8 @@ git clone https://github.com/arturbosch/dotfiles
 cd ~/dotfiles/install
 ./links.sh
 ./fedora.sh
-./gnome_defaults.sh
-./gnome_extensions.sh
+./gnome/gnome_defaults.sh
+./gnome/gnome_extensions.sh
 ./install_helix.sh
 ./../vscode/apply.sh
 ```
