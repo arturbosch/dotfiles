@@ -11,7 +11,8 @@ for dir in $confdir/fish/conf.d \
             $HOME/git/test \
             $HOME/git/system \
             $confdir/foot \
-            $confdir/helix
+            $confdir/helix \
+            $confdir/fuzzel
 do
     mkdir -p $dir
 done
@@ -29,6 +30,7 @@ ln -sf $dotfiles/.gitignore $HOME/.gitignore
 ln -sf $dotfiles/.npmrc $HOME/.npmrc
 ln -sf $dotfiles/ags $confdir/ags
 ln -sf $dotfiles/hypr $confdir/hypr
+ln -sf $dotfiles/hypr/fuzzel.ini $confdir/fuzzel/fuzzel.ini
 
 if [ ! -d $bashrcd ]
 then
