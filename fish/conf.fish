@@ -86,6 +86,9 @@ abbr jj "java -jar"
 abbr jv "java -version"
 abbr gsc XDG_CURRENT_DESKTOP=Gnome gnome-control-center
 
+## hyprland
+abbr wallpaper hyprctl hyprpaper wallpaper ,~/wallpapers/current
+
 ### pi shortcuts
 abbr piauth ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o PasswordAuthentication=yes pi
 
