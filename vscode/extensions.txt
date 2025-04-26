@@ -1,8 +1,8 @@
-eamodio.gitlens
+charliermarsh.ruff
 k--kato.intellij-idea-keybindings
 mobalic.jetbrains-new-dark
-MoBalic.jetbrains-new-dark
 ms-python.black-formatter
+ms-python.debugpy
 ms-python.isort
 ms-python.python
 ms-toolsai.jupyter
@@ -10,8 +10,10 @@ ms-toolsai.jupyter-keymap
 ms-toolsai.jupyter-renderers
 ms-toolsai.vscode-jupyter-cell-tags
 ms-toolsai.vscode-jupyter-slideshow
+ndonfris.fish-lsp
 redhat.java
 tomoki1207.pdf
+vscjava.vscode-gradle
 vscjava.vscode-java-debug
 vscjava.vscode-java-dependency
 vscjava.vscode-java-pack
