@@ -17,6 +17,9 @@ helix-runtime
 htop
 hyprland
 hyprland-qtutils
+hyprlock
+hyprpaper
+hyprshot
 jetbrains-mono-fonts
 jq
 nextcloud-client

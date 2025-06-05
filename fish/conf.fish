@@ -30,21 +30,16 @@ set PATH $JAVA_HOME/bin $GRADLE_HOME/bin $HOME/bin $HOME/dotfiles/ags/scripts $H
 set -Ux TERM foot
 set -Ux LANG en_US.UTF-8
 set -Ux EDITOR hx
-set -Ux ALT_EDITOR nvim
 set -Ux VISUAL hx
+set -Ux SCROLLER hx
 set -Ux BROWSER brave-browser
 
 ## fix java gui apps on wayland
 set -Ux _JAVA_AWT_WM_NONREPARENTING 1
 abbr idea _JAVA_AWT_WM_NONREPARENTING=1 idea
 
-## show app indicators in waybar
-set -Ux XDG_CURRENT_DESKTOP Unity
-
 # aliases && abbreveations
 abbr e $EDITOR
-abbr vim $ALT_EDITOR
-abbr vi $ALT_EDITOR
 
 ## timewarrior shortcuts
 abbr tw timew
@@ -87,10 +82,7 @@ abbr jv "java -version"
 abbr gsc XDG_CURRENT_DESKTOP=Gnome gnome-control-center
 
 ## hyprland
-abbr wallpaper hyprctl hyprpaper wallpaper ,~/wallpapers/current
-
-### pi shortcuts
-abbr piauth ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o PasswordAuthentication=yes pi
+abbr wallpaper hyprctl hyprpaper wallpaper ,~/Nextcloud/wallpapers/current
 
 # installer
 ## apt
@@ -118,6 +110,10 @@ else if test (uname -a | grep -i '.fc')
     abbr upa "sudo dnf update && flatpak update && sdk upgrade"
     abbr uninst "sudo dnf remove"
     abbr unin "sudo dnf remove"
+else if test (head -1 /etc/os-release | grep -i 'Aeon')
+    abbr inst "sudo transactional-update pkg install"
+    abbr unin "sudo transactional-update pkg remove"
+    abbr uninst "sudo transactional-update pkg remove"
 end
 
 # aliases
@@ -127,6 +123,7 @@ alias cat bat
 abbr catp cat --decorations never
 
 ## ls replacement
+alias exa eza
 alias ls exa
 alias ll "exa --long --git -h"
 alias lt "exa --tree"
@@ -141,7 +138,7 @@ alias zip_git "zip -r git-with-excludes.zip git/ -x '**/node_modules/**' '**/bui
 
 ## shows weather
 function weather
-    set city Duisburg
+    set city Duesseldorf
     if test (count $argv) -eq 1
         set city $argv[1]
     end
