@@ -1,0 +1,149 @@
+#!/bin/env fish
+
+function help
+    echo "Usage: ./dots <command>"
+    echo "Commands: links, software, flatpak, sort, defaults, fisher, ts, gnome-extensions, brave"
+end
+
+set DOTS ~/dotfiles
+set CONFS ~/.config
+
+# Software
+
+function software
+    echo "Installing software ..."
+    if test -f /bin/zypper
+        set software (cat $DOTS/packages/opensuse.txt)
+        sudo transactional-update pkg install $software
+    else if test -f /bin/dnf
+        set software (cat $DOTS/packages/fedora.txt)
+        sudo dnf install $software
+    end
+end
+
+# Flatpak
+
+function flatpak_software
+    for plugin in (cat $DOTS/install/flatpak_software.txt)
+        echo Installing $plugin "..."
+        flatpak install flathub -y $plugin
+    end
+end
+
+function flatpak_defaults
+    flatpak override --user --filesystem=host-os com.vscodium.codium
+end
+
+function sort_flatpak
+    set flatpak_file $DOTS/packages/flatpak.txt
+    sort -u -o $flatpak_file $flatpak_file
+end
+
+function sort_software
+    set opensuse_file $DOTS/packages/opensuse.txt
+    set fedora_file $DOTS/packages/fedora.txt
+    sort -u -o $opensuse_file $opensuse_file
+    sort -u -o $fedora_file $fedora_file
+end
+
+# Gnome
+
+function gnome_defaults
+    env sh $DOTS/gnome/defaults.sh
+end
+
+function gnome_extensions
+    env sh $DOTS/gnome/extensions.sh
+end
+
+# Fish
+
+function install_fisher
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+    for plugin in (cat $DOTS/fish/fish_plugins)
+        echo Installing fish plugin $plugin "..."
+        fisher install $plugin
+    end
+end
+
+# NPM
+
+function install_ts
+    npm install -g typescript typescript-language-server @biomejs/biome
+end
+
+# Browser
+
+function install_brave
+    if test -f /bin/dnf
+        sudo dnf install dnf-plugins-core
+        sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        sudo dnf install brave-browser
+    else if test -f /bin/zypper
+        sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+        sudo zypper install brave-browser
+    else
+
+    end
+end
+
+# Misc
+
+function create_links
+    for dir in $CONFS/fish/conf.d \
+        $HOME/bin \
+        $HOME/git/repos \
+        $HOME/git/test \
+        $HOME/git/system \
+        $CONFS/foot \
+        $CONFS/helix \
+        $CONFS/hypr \
+        $CONFS/fuzzel
+        mkdir -p $dir
+    end
+
+    ln -sf $DOTS/fish/conf.fish $CONFS/fish/conf.d/conf.fish
+    ln -sf $DOTS/fish/hhu.fish $CONFS/fish/conf.d/hhu.fish
+    ln -sf $DOTS/fish/fish_plugins $CONFS/fish/fish_plugins
+    ln -sf $DOTS/foot/foot.ini $CONFS/foot/foot.ini
+    ln -sf $DOTS/helix/config.toml $CONFS/helix/config.toml
+    ln -sf $DOTS/helix/languages.toml $CONFS/helix/languages.toml
+    ln -sf $DOTS/.gitconfig $HOME/.gitconfig
+    ln -sf $DOTS/.gitignore $HOME/.gitignore
+    ln -sf $DOTS/.npmrc $HOME/.npmrc
+    ln -sf $DOTS/ags $CONFS/ags
+    ln -sf $DOTS/hypr $CONFS/hypr
+    ln -sf $DOTS/hypr/fuzzel.ini $CONFS/fuzzel/fuzzel.ini
+end
+
+# Main
+
+if test $argv[1]
+    switch $argv[1]
+        case links
+            create_links
+        case software
+            software
+        case flatpak
+            flatpak_software
+        case sort
+            sort_software
+            sort_flatpak
+        case defaults
+            flatpak_defaults
+            gnome_defaults
+        case gnome-extensions
+            gnome_extensions
+        case fisher
+            install_fisher
+        case ts
+            install_ts
+        case brave
+            install_brave
+        case '*'
+            echo "Unknown command: " $argv[1]
+            help
+    end
+else
+    help
+end

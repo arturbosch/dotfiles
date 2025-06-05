@@ -1,7 +1,6 @@
 #!/bin/bash
 
 array=(
-https://extensions.gnome.org/extension/3193/blur-my-shell/
 https://extensions.gnome.org/extension/1319/gsconnect/
 https://extensions.gnome.org/extension/5470/weather-oclock/
 https://extensions.gnome.org/extension/615/appindicator-support/
@@ -9,7 +8,6 @@ https://extensions.gnome.org/extension/16/auto-move-windows/
 https://extensions.gnome.org/extension/600/launch-new-instance/
 https://extensions.gnome.org/extension/570/todotxt/
 https://extensions.gnome.org/extension/5489/search-light/
-https://extensions.gnome.org/extension/545/hide-top-bar/
 )
 
 for i in "${array[@]}"
