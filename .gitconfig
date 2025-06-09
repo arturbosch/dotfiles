@@ -3,6 +3,8 @@
 	name = Artur Bosch
 [pull]
 	rebase = true
+[push]
+	autoSetupRemote = true
 [core]
 	autocrlf = input
 	editor = hx
