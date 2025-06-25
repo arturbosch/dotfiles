@@ -123,7 +123,9 @@ alias cat bat
 abbr catp cat --decorations never
 
 ## ls replacement
-alias exa eza
+if type -q eza
+    alias exa eza
+end
 alias ls exa
 alias ll "exa --long --git -h"
 alias lt "exa --tree"
