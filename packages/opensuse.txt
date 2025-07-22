@@ -24,6 +24,7 @@ jetbrains-mono-fonts
 jq
 nextcloud-client
 openssl-devel
+pavucontrol
 playerctl
 powertop
 qt6ct
