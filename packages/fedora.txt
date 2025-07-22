@@ -33,6 +33,7 @@ meson
 nextcloud-client
 nodejs
 openssl
+pavucontrol
 pip
 pkgconf-pkg-config
 pl
