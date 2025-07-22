@@ -32,6 +32,7 @@ set -Ux LANG en_US.UTF-8
 set -Ux EDITOR hx
 set -Ux VISUAL hx
 set -Ux SCROLLER hx
+set -Ux PAGER bat
 set -Ux BROWSER brave-browser
 
 ## fix java gui apps on wayland
