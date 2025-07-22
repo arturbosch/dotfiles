@@ -2,7 +2,7 @@
 
 function help
     echo "Usage: ./dots <command>"
-    echo "Commands: links, software, flatpak, sort, defaults, fisher, ts, gnome-extensions, brave"
+    echo "Commands: links, software, flatpak, sort, defaults, fisher, ts, gnome-extensions, brave, rust"
 end
 
 set DOTS ~/dotfiles
@@ -19,6 +19,11 @@ function software
         set software (cat $DOTS/packages/fedora.txt)
         sudo dnf install $software
     end
+end
+
+function rust_tools
+    echo "installing rust tools ..."
+    cargo install --locked bluetui slumber
 end
 
 # Flatpak
@@ -140,6 +145,8 @@ if test $argv[1]
             install_ts
         case brave
             install_brave
+        case rust
+            rust_tools
         case '*'
             echo "Unknown command: " $argv[1]
             help
