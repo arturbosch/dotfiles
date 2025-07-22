@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# https://github.com/bitterhalt
+set -euo pipefail
+
+CONFIRM="fuzzel -d -a top-right --x 4 --y 4 -w 10 -l2 -p Sure? "
+
+case $(printf "%s\n" "Lock" "Logout" "Suspend" "Reboot" "Shutdown" | fuzzel -d -a top-right --x 4 --y 4 -l5 -w 10 -p "" --placeholder "Select:") in
+"Shutdown")
+  confirm=$(echo -e "Yes\nNo" | $CONFIRM)
+  if [[ "$confirm" == "Yes" ]]; then
+    systemctl poweroff
+  fi
+  ;;
+"Reboot")
+  confirm=$(echo -e "Yes\nNo" | $CONFIRM)
+  if [[ "$confirm" == "Yes" ]]; then
+    systemctl reboot
+  fi
+  ;;
+"Suspend")
+  systemctl suspend
+  ;;
+"Lock")
+  loginctl lock-session
+  ;;
+"Logout")
+  # Bit dirty but makes sure that nothing lingers after user exits
+  loginctl terminate-user "$USER"
+  ;;
+esac

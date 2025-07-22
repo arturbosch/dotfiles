@@ -100,25 +100,22 @@ function create_links
         $HOME/git/repos \
         $HOME/git/test \
         $HOME/git/system \
-        $CONFS/foot \
-        $CONFS/helix \
-        $CONFS/hypr \
-        $CONFS/fuzzel
         mkdir -p $dir
     end
 
     ln -sf $DOTS/fish/conf.fish $CONFS/fish/conf.d/conf.fish
     ln -sf $DOTS/fish/hhu.fish $CONFS/fish/conf.d/hhu.fish
     ln -sf $DOTS/fish/fish_plugins $CONFS/fish/fish_plugins
-    ln -sf $DOTS/foot/foot.ini $CONFS/foot/foot.ini
-    ln -sf $DOTS/helix/config.toml $CONFS/helix/config.toml
-    ln -sf $DOTS/helix/languages.toml $CONFS/helix/languages.toml
+    ln -sf $DOTS/foot $CONFS/foot
+    ln -sf $DOTS/helix $CONFS/helix
     ln -sf $DOTS/.gitconfig $HOME/.gitconfig
     ln -sf $DOTS/.gitignore $HOME/.gitignore
     ln -sf $DOTS/.npmrc $HOME/.npmrc
     ln -sf $DOTS/ags $CONFS/ags
     ln -sf $DOTS/hypr $CONFS/hypr
-    ln -sf $DOTS/hypr/fuzzel.ini $CONFS/fuzzel/fuzzel.ini
+    ln -sf $DOTS/fuzzel $CONFS/fuzzel
+    ln -sf $DOTS/waybar $CONFS/waybar
+    ln -sf $DOTS/knott $CONFS/knott
 end
 
 # Main

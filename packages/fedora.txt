@@ -2,6 +2,7 @@ asciinema
 bat
 cairo-devel
 cairo-gobject-devel
+cascadia-code-nf-fonts
 clutter
 curl
 dbus-devel
