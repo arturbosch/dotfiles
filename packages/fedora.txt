@@ -42,6 +42,7 @@ ripgrep
 rsms-inter-fonts
 sassc
 systemd-devel
+slurp
 tcl
 thunderbird
 tig
@@ -51,6 +52,7 @@ tokei
 unzip
 wget
 wl-clipboard
+wf-recorder
 wlsunset
 xprop
 zip

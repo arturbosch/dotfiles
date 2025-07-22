@@ -33,5 +33,6 @@ sensors
 tig
 tokei
 wl-clipboard
+wf-recorder
 xdg-desktop-portal-hyprland
 zip
