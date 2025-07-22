@@ -24,7 +24,7 @@ set -Ux GOPATH $HOME/go
 set -Ux GEM_HOME $HOME/.gem
 
 ## application paths
-set PATH $JAVA_HOME/bin $GRADLE_HOME/bin $HOME/bin $HOME/dotfiles/ags/scripts $HOME/.local/bin $NPM_PACKAGES/bin $HOME/.yarn/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.nimble/bin $PATH
+set PATH $JAVA_HOME/bin $GRADLE_HOME/bin $HOME/bin $HOME/dotfiles/bin $HOME/dotfiles/ags/scripts $HOME/.local/bin $NPM_PACKAGES/bin $HOME/.yarn/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.nimble/bin $PATH
 
 # vars
 set -Ux TERM foot
