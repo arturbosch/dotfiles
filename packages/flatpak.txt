@@ -14,5 +14,6 @@ org.gnome.Connections
 org.gnome.Geary
 org.gnome.Loupe
 org.gnome.Papers
+org.gnome.Showtime
 org.gnome.TextEditor
 org.gnome.World.Secrets
