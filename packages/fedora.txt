@@ -20,6 +20,7 @@ glib-compile-resources
 gnome-extensions-app
 gnome-tweaks
 gtk4-devel
+gtk4-layer-shell
 gtk4-layer-shell-devel
 helix
 htop
@@ -51,6 +52,8 @@ tig
 tk
 tldr
 tokei
+swayosd
+SwayNotificationCenter
 unzip
 wget
 wl-clipboard

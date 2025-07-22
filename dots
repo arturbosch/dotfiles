@@ -16,6 +16,7 @@ function software
         set software (cat $DOTS/packages/opensuse.txt)
         sudo transactional-update pkg install $software
     else if test -f /bin/dnf
+        sudo dnf copr enable errornointernet/packages
         set software (cat $DOTS/packages/fedora.txt)
         sudo dnf install $software
     end
