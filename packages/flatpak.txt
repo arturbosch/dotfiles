@@ -17,3 +17,4 @@ org.gnome.Papers
 org.gnome.Showtime
 org.gnome.TextEditor
 org.gnome.World.Secrets
+org.localsend.localsend_app
