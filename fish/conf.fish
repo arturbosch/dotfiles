@@ -83,7 +83,7 @@ abbr jv "java -version"
 abbr gsc XDG_CURRENT_DESKTOP=Gnome gnome-control-center
 
 ## hyprland
-abbr wallpaper hyprctl hyprpaper wallpaper ,~/Nextcloud/wallpapers/current
+abbr wallpaper hyprctl hyprpaper reload ,~/Nextcloud/wallpapers/current
 
 # installer
 ## apt
