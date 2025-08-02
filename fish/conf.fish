@@ -1,3 +1,4 @@
+# Remove help message
 function fish_greeting
 end
 
@@ -10,23 +11,24 @@ if test "$XDG_SESSION_TYPE" = x11
     setxkbmap -option caps:escape
 end
 
-# paths
+# Paths
 set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
 set -Ux GRADLE_HOME $HOME/.sdkman/candidates/gradle/current
-set -Ux JENKINS_HOME /var/lib/jenkins
-set -Ux SSH_KEY_PTH $HOME/.ssh/rsa_id
-set -Ux NPM_PACKAGES $HOME/.local
-set -Ux NODE_PATH $NPM_PACKAGES/lib/node_modules
-set -Ux GOPATH $HOME/go
 
-## echo "gem: --user-install" >> ~/.gemrc
-set -Ux GEM_HOME $HOME/.gem
+set PATH \
+    $JAVA_HOME/bin \
+    $GRADLE_HOME/bin \
+    $HOME/bin \
+    $HOME/dotfiles/bin \
+    $HOME/dotfiles/ags/scripts \
+    $HOME/.local/bin \
+    $HOME/go/bin \
+    $HOME/.cargo/bin \
+    $HOME/.nimble/bin \
+    $PATH
 
-## application paths
-set PATH $JAVA_HOME/bin $GRADLE_HOME/bin $HOME/bin $HOME/dotfiles/bin $HOME/dotfiles/ags/scripts $HOME/.local/bin $NPM_PACKAGES/bin $HOME/.yarn/bin $HOME/go/bin $HOME/.cargo/bin $HOME/.nimble/bin $PATH
-
-# vars
+# Vars
 set -Ux TERM foot
 set -Ux LANG en_US.UTF-8
 set -Ux EDITOR hx
@@ -35,12 +37,38 @@ set -Ux SCROLLER hx
 set -Ux PAGER bat
 set -Ux BROWSER brave-browser
 
-## fix java gui apps on wayland
+## Java Swing on Wayland
 set -Ux _JAVA_AWT_WM_NONREPARENTING 1
 abbr idea _JAVA_AWT_WM_NONREPARENTING=1 idea
 
-# aliases && abbreveations
+# Aliases && Abbreveations
 abbr e $EDITOR
+
+## cat replacement
+alias cat bat
+abbr catp cat --decorations never
+
+## ls replacement
+if type -q eza
+    alias exa eza
+end
+alias ls exa
+alias ll "exa --long --git -h"
+alias lt "exa --tree"
+
+## Package Manager
+if test (head -1 /etc/os-release | grep -i 'Fedora')
+    abbr inst "sudo dnf install"
+    abbr up "sudo dnf update"
+    abbr upa "sudo dnf update && flatpak update && sdk upgrade"
+    abbr un "sudo dnf remove"
+else if test (head -1 /etc/os-release | grep -i 'Aeon')
+    abbr inst "sudo transactional-update pkg install"
+    abbr un "sudo transactional-update pkg remove"
+end
+
+## hyprland
+abbr wallpaper hyprctl hyprpaper reload ,~/Nextcloud/wallpapers/current
 
 ## timewarrior shortcuts
 abbr tw timew
@@ -58,11 +86,10 @@ abbr ehp "$EDITOR $HOME/dotfiles/hypr/hyprlpaper.conf"
 
 ## other shortcuts
 abbr gl tig
-abbr bb bluetoothctl
+abbr bb bluetui
 abbr loc "tokei --sort=lines"
 abbr md "mkdir -pv"
 abbr rd "rm -R"
-abbr nf "clear && neofetch"
 abbr g "gradle -q"
 abbr gw "./gradlew -q"
 abbr gv "gradle -v"
@@ -73,71 +100,19 @@ abbr gcb "gradle clean build -q"
 abbr gbp "gradle build publishToMavenLocal -q"
 abbr gdu "gradle -q dU"
 abbr gd "gradle detekt -q"
-abbr f "cd ~/files && ls ~/files/ | dmenu -l 30"
-abbr eff "$EDITOR (cd ~/.config/fish/functions && ls | dmenu -l 30)"
-abbr ff "cat (cd ~/files && ls ~/files/ | dmenu -l 30)"
-abbr fe "$EDITOR (cd ~/files && ls ~/files/ | dmenu -l 30)"
 abbr j just
 abbr jj "java -jar"
 abbr jv "java -version"
 abbr gsc XDG_CURRENT_DESKTOP=Gnome gnome-control-center
 
-## hyprland
-abbr wallpaper hyprctl hyprpaper reload ,~/Nextcloud/wallpapers/current
+# Functions
 
-# installer
-## apt
-if test (uname -a | grep -i 'ubuntu')
-    abbr inst "sudo apt install"
-    abbr fp "sudo apt search"
-    abbr up "sudo apt update && sudo apt upgrade"
-    abbr upa "sudo apt update && sudo apt upgrade && sudo flatpak update && sdk upgrade"
-    ## pacman
-else if test (uname -a | grep -i 'manjaro')
-    abbr inst "sudo pacman -S"
-    abbr up "sudo yay"
-    abbr p "sudo pacman"
-    abbr pmi "sudo pacman -S"
-    abbr pms "pacman -Ss"
-    abbr pmr "sudo pacman -Rns"
-    abbr pmu "sudo pacman -Syu"
-    abbr pmq "pacman -Qe"
-    abbr pmold "pacman -Qdt"
-    abbr pmrold "sudo pacman -Sc"
-    abbr fixpacman "rm /var/lib/pacman/db.lck"
-else if test (uname -a | grep -i '.fc')
-    abbr inst "sudo dnf install"
-    abbr up "sudo dnf update"
-    abbr upa "sudo dnf update && flatpak update && sdk upgrade"
-    abbr uninst "sudo dnf remove"
-    abbr unin "sudo dnf remove"
-else if test (head -1 /etc/os-release | grep -i 'Aeon')
-    abbr inst "sudo transactional-update pkg install"
-    abbr unin "sudo transactional-update pkg remove"
-    abbr uninst "sudo transactional-update pkg remove"
+function dots
+    set currentDir (pwd)
+    cd ~/dotfiles
+    ./dots $argv
+    cd $currentDir
 end
-
-# aliases
-
-## cat replacement
-alias cat bat
-abbr catp cat --decorations never
-
-## ls replacement
-if type -q eza
-    alias exa eza
-end
-alias ls exa
-alias ll "exa --long --git -h"
-alias lt "exa --tree"
-
-## flatpak
-alias nextc "flatpak run com.nextcloud.desktopclient.nextcloud"
-
-## misc aliases
-alias zip_git "zip -r git-with-excludes.zip git/ -x '**/node_modules/**' '**/build/**' '**/.idea/**' 'git/test/**' '**/target/**' '**/.gradle/**' '**/out/production/**' '**/out/test/**' '**/gbt_build/**'"
-
-# additional functions
 
 ## shows weather
 function weather
@@ -150,6 +125,12 @@ end
 
 alias wetter weather
 
+## show memory usage
+function vmrss
+    set pid $argv[1]
+    cat /proc/$pid/status | grep -i vmrss | awk '{print $2/1000 " MB"}'
+end
+
 # git
 
 ## git add support via fzf
@@ -157,9 +138,4 @@ bind \cga git-add-fzf
 bind -M insert \cga git-add-fzf
 function git-add-fzf
     git add (git ls-files --modified --exclude-standard | fzf --ansi --no-sort --preview 'git diff --color=always -- {}')
-end
-
-function vmrss
-    set pid $argv[1]
-    cat /proc/$pid/status | grep -i vmrss | awk '{print $2/1000 " MB"}'
 end
