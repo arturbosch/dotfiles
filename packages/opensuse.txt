@@ -34,7 +34,7 @@ sensors
 socat
 tig
 tokei
-wl-clipboard
 wf-recorder
+wl-clipboard
 xdg-desktop-portal-hyprland
 zip
