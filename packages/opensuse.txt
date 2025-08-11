@@ -15,6 +15,7 @@ helix
 helix-fish-completion
 helix-runtime
 htop
+hypridle
 hyprland
 hyprland-qtutils
 hyprlock

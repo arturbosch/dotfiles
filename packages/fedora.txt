@@ -24,6 +24,11 @@ gtk4-layer-shell
 gtk4-layer-shell-devel
 helix
 htop
+hypridle
+hyprland
+hyprlock
+hyprpaper
+hyprshot
 jetbrains-mono-fonts-all
 jq
 libevdev-devel
