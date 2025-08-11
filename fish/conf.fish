@@ -37,6 +37,9 @@ set -Ux SCROLLER hx
 set -Ux PAGER bat
 set -Ux BROWSER brave-browser
 
+## Electron App Font Scaling
+set -Ux ELECTRON_OZONE_PLATFORM_HINT wayland
+
 ## Java Swing on Wayland
 set -Ux _JAVA_AWT_WM_NONREPARENTING 1
 abbr idea _JAVA_AWT_WM_NONREPARENTING=1 idea
