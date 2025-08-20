@@ -1,8 +1,6 @@
 import os
 
-from statusbar import bar
-from launcher import Launcher
-from control_center import ControlCenter
+from modules import Launcher, control_center, status_bar
 
 from ignis import utils
 from ignis.css_manager import CssInfoPath, CssManager
@@ -19,7 +17,7 @@ css_manager.apply_css(
 
 # this will display bar on all monitors
 for i in range(utils.get_n_monitors()):
-    bar(i)
+    status_bar(i)
 
 Launcher()
-ControlCenter()
+control_center()

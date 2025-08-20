@@ -35,7 +35,7 @@ def right() -> widgets.Box:
     )
 
 
-def bar(monitor_id: int = 0) -> widgets.Window:
+def status_bar(monitor_id: int = 0) -> widgets.Window:
     monitor_name = utils.get_monitor(monitor_id).get_connector()  # type: ignore
     return widgets.Window(
         namespace=f"ignis_bar_{monitor_id}",
