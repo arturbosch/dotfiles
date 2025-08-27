@@ -1,12 +1,15 @@
+import asyncio
 import os
-from ignis import widgets
-from ignis import utils
-from ignis.window_manager import WindowManager
-from ignis.services.fetch import FetchService
+
 from user_options import user_options
+
+from ignis import utils, widgets
+from ignis.services.fetch import FetchService
+from ignis.window_manager import WindowManager
 
 fetch = FetchService.get_default()
 window_manager = WindowManager.get_default()
+
 
 def format_uptime(value: tuple[int, int, int, int]) -> str:
     days, hours, minutes, seconds = value
@@ -58,7 +61,7 @@ class User(widgets.Box):
             child=widgets.Icon(image="system-shutdown-symbolic", pixel_size=20),
             halign="end",
             css_classes=["user-power", "unset"],
-            on_click=lambda x: window_manager.toggle_window("ignis_POWERMENU"),
+            on_click=lambda _: asyncio.create_task(utils.exec_sh_async("wlogout")),
         )
         super().__init__(
             child=[user_image, username, settings_button, power_button],
@@ -66,5 +69,6 @@ class User(widgets.Box):
         )
 
     def __on_settings_button_click(self) -> None:
-        window = window_manager.get_window("ignis_SETTINGS")
-        window.visible = not window.visible  # type: ignore
+        asyncio.create_task(
+            utils.exec_sh_async("XDG_CURRENT_DESKTOP=Gnome gnome-control-center")
+        )
