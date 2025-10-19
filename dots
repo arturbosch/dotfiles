@@ -14,7 +14,7 @@ function software
     echo "Installing software ..."
     if test -f /bin/zypper
         set software (cat $DOTS/packages/opensuse.txt)
-        sudo transactional-update pkg install $software
+        sudo zypper install $software
     else if test -f /bin/dnf
         sudo dnf copr enable errornointernet/packages
         set software (cat $DOTS/packages/fedora.txt)
@@ -30,7 +30,7 @@ end
 # Flatpak
 
 function flatpak_software
-    for plugin in (cat $DOTS/install/flatpak_software.txt)
+    for plugin in (cat $DOTS/packages/flatpak.txt)
         echo Installing $plugin "..."
         flatpak install flathub -y $plugin
     end
@@ -105,7 +105,6 @@ function create_links
     end
 
     ln -sf $DOTS/fish/conf.fish $CONFS/fish/conf.d/conf.fish
-    ln -sf $DOTS/fish/hhu.fish $CONFS/fish/conf.d/hhu.fish
     ln -sf $DOTS/fish/fish_plugins $CONFS/fish/fish_plugins
     ln -sf $DOTS/foot $CONFS/foot
     ln -sf $DOTS/helix $CONFS/helix

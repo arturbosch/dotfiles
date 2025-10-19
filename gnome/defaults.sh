@@ -6,6 +6,7 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
 gsettings set org.gnome.desktop.notifications show-banners false
 
 gsettings set org.gnome.mutter experimental-features "['variable-refresh-rate']"
+gsettings set org.gnome.mutter experimental-features "['scale-monitor-framebuffer']"
 
 # disable favorite applications hotkeys
 gsettings set org.gnome.shell.keybindings switch-to-application-1 []

@@ -34,7 +34,7 @@ set -Ux LANG en_US.UTF-8
 set -Ux EDITOR hx
 set -Ux VISUAL hx
 set -Ux SCROLLER hx
-set -Ux PAGER bat
+set -Ux PAGER cat
 set -Ux BROWSER brave-browser
 
 ## Electron App Font Scaling
@@ -48,8 +48,10 @@ abbr idea _JAVA_AWT_WM_NONREPARENTING=1 idea
 abbr e $EDITOR
 
 ## cat replacement
-alias cat bat
-abbr catp cat --decorations never
+if test -f /bin/bat
+    alias cat bat
+    abbr catp cat --decorations never
+end
 
 ## ls replacement
 if type -q eza
@@ -60,10 +62,15 @@ alias ll "exa --long --git -h"
 alias lt "exa --tree"
 
 ## Package Manager
-if test (head -1 /etc/os-release | grep -i 'Fedora')
+if test (head -1 /etc/os-release | grep -i 'openSUSE Tumbleweed')
+    abbr inst "sudo zypper install"
+    abbr up "sudo zypper up"
+    abbr upa "sudo zypper up && flatpak update"
+    abbr un "sudo zypper remove"
+else if test (head -1 /etc/os-release | grep -i 'Fedora')
     abbr inst "sudo dnf install"
     abbr up "sudo dnf update"
-    abbr upa "sudo dnf update && flatpak update && sdk upgrade"
+    abbr upa "sudo dnf update && flatpak update"
     abbr un "sudo dnf remove"
 else if test (head -1 /etc/os-release | grep -i 'Aeon')
     abbr inst "sudo transactional-update pkg install"

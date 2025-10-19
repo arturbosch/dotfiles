@@ -1,5 +1,4 @@
 adw-gtk3-dark
-aylurs-gtk-shell
 bat
 brightnessctl
 eza
