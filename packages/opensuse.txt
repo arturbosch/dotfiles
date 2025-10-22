@@ -32,6 +32,7 @@ ripgrep
 rustup
 sensors
 socat
+sof-firmware
 tig
 tokei
 wf-recorder
