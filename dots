@@ -111,7 +111,7 @@ function create_links
     ln -sf $DOTS/.gitconfig $HOME/.gitconfig
     ln -sf $DOTS/.gitignore $HOME/.gitignore
     ln -sf $DOTS/.npmrc $HOME/.npmrc
-    ln -sf $DOTS/ags $CONFS/ags
+    ln -sf $DOTS/ignis $CONFS/ignis
     ln -sf $DOTS/hypr $CONFS/hypr
     ln -sf $DOTS/fuzzel $CONFS/fuzzel
     ln -sf $DOTS/waybar $CONFS/waybar
