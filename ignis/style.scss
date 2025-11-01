@@ -35,7 +35,8 @@ $error: red;
 
   .cc-button {
     @include hover($bg);
-    padding: 0.2rem 0.5rem;
+    padding: 0.5rem 1rem;
+    margin: -0.5rem -1rem;
     margin-left: 0.2rem;
     border-radius: 1rem;
   }
