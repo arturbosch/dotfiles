@@ -24,7 +24,7 @@ end
 
 function rust_tools
     echo "installing rust tools ..."
-    cargo install --locked bluetui slumber grass
+    cargo install --locked bluetui slumber grass tealdeer
 end
 
 # Flatpak
