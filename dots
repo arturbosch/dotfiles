@@ -95,6 +95,11 @@ end
 
 # Misc
 
+function create_link --argument source --argument target
+    rm -rf $target
+    ln -s $source $target
+end
+
 function create_links
     for dir in $CONFS/fish/conf.d \
         $HOME/bin \
@@ -104,18 +109,18 @@ function create_links
         mkdir -p $dir
     end
 
-    ln -sf $DOTS/fish/conf.fish $CONFS/fish/conf.d/conf.fish
-    ln -sf $DOTS/fish/fish_plugins $CONFS/fish/fish_plugins
-    ln -sf $DOTS/foot $CONFS/foot
-    ln -sf $DOTS/helix $CONFS/helix
-    ln -sf $DOTS/.gitconfig $HOME/.gitconfig
-    ln -sf $DOTS/.gitignore $HOME/.gitignore
-    ln -sf $DOTS/.npmrc $HOME/.npmrc
-    ln -sf $DOTS/ignis $CONFS/ignis
-    ln -sf $DOTS/hypr $CONFS/hypr
-    ln -sf $DOTS/fuzzel $CONFS/fuzzel
-    ln -sf $DOTS/waybar $CONFS/waybar
-    ln -sf $DOTS/knott $CONFS/knott
+    create_link $DOTS/fish/conf.fish $CONFS/fish/conf.d/conf.fish
+    create_link $DOTS/fish/fish_plugins $CONFS/fish/fish_plugins
+    create_link $DOTS/foot $CONFS/foot
+    create_link $DOTS/helix $CONFS/helix
+    create_link $DOTS/.gitconfig $HOME/.gitconfig
+    create_link $DOTS/.gitignore $HOME/.gitignore
+    create_link $DOTS/.npmrc $HOME/.npmrc
+    create_link $DOTS/ignis $CONFS/ignis
+    create_link $DOTS/hypr $CONFS/hypr
+    create_link $DOTS/fuzzel $CONFS/fuzzel
+    create_link $DOTS/waybar $CONFS/waybar
+    create_link $DOTS/knott $CONFS/knott
 end
 
 # Main
