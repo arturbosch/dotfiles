@@ -3,6 +3,7 @@ adw-gtk3-dark
 bat
 brightnessctl
 cairo-devel
+dbus-1-devel
 eza
 fd
 fish
