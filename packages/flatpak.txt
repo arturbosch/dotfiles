@@ -11,6 +11,7 @@ io.freetubeapp.FreeTube
 md.obsidian.Obsidian
 org.gnome.Boxes
 org.gnome.Connections
+org.gnome.Evince
 org.gnome.Geary
 org.gnome.Loupe
 org.gnome.Papers

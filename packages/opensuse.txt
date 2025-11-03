@@ -27,6 +27,7 @@ hyprshot
 jetbrains-mono-fonts
 jq
 libpulse-devel
+kitty
 meson
 nextcloud-client
 openssl-devel
