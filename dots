@@ -2,7 +2,7 @@
 
 function help
     echo "Usage: ./dots <command>"
-    echo "Commands: links, software, flatpak, sort, defaults, fisher, ts, gnome-extensions, brave, rust"
+    echo "Commands: links, ssh-agent, software, flatpak, sort, defaults, fisher, ts, gnome-extensions, brave, rust"
 end
 
 set DOTS ~/dotfiles
@@ -123,6 +123,11 @@ function create_links
     create_link $DOTS/knott $CONFS/knott
 end
 
+function ssh_agent
+    systemctl --user enable gcr-ssh-agent.socket
+    systemctl --user start gcr-ssh-agent.socket
+end
+
 # Main
 
 if test $argv[1]
@@ -149,6 +154,8 @@ if test $argv[1]
             install_brave
         case rust
             rust_tools
+        case ssh-agent
+            ssh_agent
         case '*'
             echo "Unknown command: " $argv[1]
             help
