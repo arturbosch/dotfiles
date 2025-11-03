@@ -42,6 +42,13 @@ def settings_menu() -> widgets.EventBox:
                     if bat
                     else None
                 ),
+                (
+                    widgets.Label(
+                        label=bat.bind("percent", transform=lambda percent: str(int(percent)) + "%"),
+                    )
+                    if bat
+                    else None
+                ),
                 widgets.Icon(image="system-shutdown-symbolic", pixel_size=16),
             ],
         ),
