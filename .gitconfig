@@ -19,6 +19,9 @@
 	ap = add -p
 	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
 	amend = commit --amend
+	b = rev-parse --abbrev-ref HEAD
+	cha = cherry-pick --abort
+	chc = cherry-pick --continue
 	cm = commit -m
 	co = checkout
 	cob = checkout -b
