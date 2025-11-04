@@ -1,6 +1,10 @@
 [user]
 	email = abosch@posteo.de
 	name = Artur Bosch
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
 [pull]
 	rebase = true
 [push]
@@ -22,7 +26,7 @@
 	noc = rev-list HEAD --count
 	lc = log --graph --pretty=format:\"%an: %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset\" --date=relative
 	rev = rev-parse HEAD
-	pf = push -f
+	pf = push --force-with-lease --force-if-includes
 	pou = push origin -u
 	s = status
 	rba = rebase --abort
@@ -32,18 +36,36 @@
 	tags = fetch --tags
 	tl = log --tags --simplify-by-decoration --pretty='format:%ci %d'
 	tree = ls-tree -r main --name-only
-	up = pull --rebase --autostash
-[fetch]
-	prune = true
 [rebase]
 	autoStash = true
-    autosquash = true
+	autosquash = true
+	updateRefs = true
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[difftool "idea"]
+	cmd = idea diff \"$LOCAL\" \"$REMOTE\"
+[diff]
+	tool = idea
+	colorMoved = plain
+	renames = true
+	algorithm = histogram
+	mnemonicPrefix = true
+[mergetool "idea"]
+	cmd = idea merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
 [merge]
-	tool = meld
+	tool = idea
+[commit]
+	verbose = true
+[grep]
+	patternType = perl
 [init]
 	defaultBranch = main
+[column]
+	ui = auto
+[branch]
+	sort = -comitterdate
+[tag]
+	sort = version:refname
