@@ -33,15 +33,32 @@ function handle --argument line
             set name $args[3]
             set desc $args[4]
             log activate $name
-            switch $desc
-                case "*DELL U2518*"
-                    setMonitor "desc:Dell Inc. DELL U2518D 3C4YP89TA5PL,preferred,auto,1"
-                case "*DELL U2725QE*"
-                    setMonitor "desc:Dell Inc. DELL U2725QE 5VRC734,3840x2160@120,auto,1.5"
-            end
-            setMonitor $laptopDisable
+            useMonitor $name $desc
     end
 end
+
+function useMonitor --argument name --argument desc
+    switch $desc
+        case "*DELL U2518*"
+            setMonitor "desc:Dell Inc. DELL U2518D 3C4YP89TA5PL,preferred,auto,1"
+        case "*DELL U2725QE*"
+            setMonitor "desc:Dell Inc. DELL U2725QE 5VRC734,3840x2160@120,auto,1.5"
+        case "*"
+            setMonitor "$name,preferred,auto,1"
+    end
+    setMonitor $laptopDisable
+end
+
+function init
+    if test (hyprctl monitors -j | jq length) = 2
+        set external_monitor (hyprctl monitors -j | jq 'map(select(.id)) | max')
+        set monitor_name (echo $external_monitor | jq '.name')
+        set monitor_desc (echo $external_monitor | jq '.description')
+        useMonitor $monitor_name $monitor_desc
+    end
+end
+
+init
 
 socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | while read -l line
     handle "$line"
