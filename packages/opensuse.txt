@@ -27,8 +27,8 @@ hyprpaper
 hyprshot
 jetbrains-mono-fonts
 jq
-libpulse-devel
 kitty
+libpulse-devel
 meson
 nextcloud-client
 openssl-devel
@@ -46,5 +46,6 @@ tig
 tokei
 wf-recorder
 wl-clipboard
+wlogout
 xdg-desktop-portal-hyprland
 zip
