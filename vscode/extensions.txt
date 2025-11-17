@@ -10,6 +10,7 @@ ms-toolsai.jupyter-keymap
 ms-toolsai.jupyter-renderers
 ms-toolsai.vscode-jupyter-cell-tags
 ms-toolsai.vscode-jupyter-slideshow
+myriad-dreamin.tinymist
 ndonfris.fish-lsp
 redhat.java
 tomoki1207.pdf
