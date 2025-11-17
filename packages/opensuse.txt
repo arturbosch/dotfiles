@@ -15,6 +15,7 @@ git
 git-lfs
 go
 gobject-introspection-devel
+google-noto-sans-cjk-fonts
 helix
 helix-fish-completion
 helix-runtime
@@ -25,6 +26,7 @@ hyprland-qtutils
 hyprlock
 hyprpaper
 hyprshot
+ibus-libpinyin
 jetbrains-mono-fonts
 jq
 kitty
@@ -39,9 +41,11 @@ python3-devel
 qt6ct
 ripgrep
 rustup
+sassc
 sensors
 socat
 sof-firmware
+systemd-dev
 tig
 tokei
 wf-recorder
