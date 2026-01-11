@@ -48,6 +48,7 @@ sof-firmware
 systemd-dev
 tig
 tokei
+vlc
 wf-recorder
 wl-clipboard
 wlogout
