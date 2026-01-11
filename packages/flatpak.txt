@@ -9,6 +9,7 @@ com.gitlab.newsflash
 dev.bragefuglseth.Keypunch
 io.freetubeapp.FreeTube
 md.obsidian.Obsidian
+net.trowell.typesetter
 org.gnome.Boxes
 org.gnome.Connections
 org.gnome.Evince
