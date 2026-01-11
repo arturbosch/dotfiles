@@ -6,6 +6,9 @@ function mark_prompt_start --on-event fish_prompt
     echo -en "\e]133;A\e\\"
 end
 
+# 4.1: alt-backspace changed from word deletion, restore it.
+bind alt-backspace backward-kill-word
+
 # gnome: map caps to escape key
 if test "$XDG_SESSION_TYPE" = x11
     setxkbmap -option caps:escape
