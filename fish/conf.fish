@@ -81,7 +81,7 @@ else if test (head -1 /etc/os-release | grep -i 'Aeon')
 end
 
 ## hyprland
-abbr wallpaper hyprctl hyprpaper reload ,~/Nextcloud/wallpapers/current
+abbr wallpaper hyprctl hyprpaper wallpaper ,~/Nextcloud/wallpapers/current
 
 ## timewarrior shortcuts
 abbr tw timew
