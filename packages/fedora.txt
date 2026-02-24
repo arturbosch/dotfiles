@@ -3,6 +3,7 @@ bat
 cairo-devel
 cairo-gobject-devel
 cascadia-code-nf-fonts
+clang
 clutter
 curl
 dbus-devel
@@ -41,6 +42,7 @@ nodejs
 openssl
 pavucontrol
 pip
+pipewire-devel
 pkgconf-pkg-config
 pl
 powertop

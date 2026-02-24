@@ -1,0 +1,32 @@
+outputs = "All"
+enable_esc_key = true
+
+[appearance]
+scale_factor = 1.2
+style = "Solid"
+opacity = 1.0
+font_name = "Inter"
+text_color = "#FFFFFF"
+workspace_colors = [ "#899f93", "#899f93", "#FFFFFF" ]
+
+[appearance.primary_color]
+base = "#899f93"
+text = "#FFFFFF"
+
+[appearance.background_color]
+base = "#000000"
+weak = "#1e1e2e"
+strong = "#313244"
+text = "#ffffff"
+
+[workspaces]
+workspace_names = ["一","二","三","四","五","六","七","八","九","十",]
+max_workspaces = 10
+enable_workspace_filling = false
+visibility_mode = "All"
+disable_special_workspaces = true
+
+[modules]
+left = ["Workspaces", "WindowTitle"]
+center = ["Clock"]
+right = ["SystemInfo", ["Tray", "Privacy", "Settings"]]

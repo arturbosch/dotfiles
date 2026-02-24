@@ -3,6 +3,7 @@ adw-gtk3-dark
 bat
 brightnessctl
 cairo-devel
+clang
 dbus-1-devel
 eza
 fd
@@ -35,6 +36,7 @@ meson
 nextcloud-client
 openssl-devel
 pavucontrol
+pipewire-devel
 playerctl
 powertop
 python3-devel
