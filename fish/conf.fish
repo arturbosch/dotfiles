@@ -152,3 +152,5 @@ bind -M insert \cga git-add-fzf
 function git-add-fzf
     git add (git ls-files --modified --exclude-standard | fzf --ansi --no-sort --preview 'git diff --color=always -- {}')
 end
+
+bind \cb 'commandline -i (git rev-parse --abbrev-ref HEAD)'
