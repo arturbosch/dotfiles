@@ -8,6 +8,10 @@ function setMonitor --argument monitorConfig
     hyprctl keyword monitor "$monitorConfig"
 end
 
+function setCursor --argument size
+    hyprctl setcursor Adwaita $size
+end
+
 function log --argument message
     echo $message >>$logFile
 end
@@ -22,6 +26,7 @@ function handle --argument line
             if test $id = -1 # activate laptop monitor on fallback
                 log "activate eDP-1"
                 setMonitor $laptopMonitor
+                setCursor 15
                 return
             end
 
@@ -41,10 +46,13 @@ function useMonitor --argument name --argument desc
     switch $desc
         case "*DELL U2518*"
             setMonitor "desc:Dell Inc. DELL U2518D 3C4YP89TA5PL,preferred,auto,1"
+            setCursor 20
         case "*DELL U2725QE*"
             setMonitor "desc:Dell Inc. DELL U2725QE 5VRC734,3840x2160@120,auto,1.5"
+            setCursor 30
         case "*"
             setMonitor "$name,preferred,auto,1"
+            setCursor 15
     end
     setMonitor $laptopDisable
 end
