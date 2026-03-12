@@ -19,6 +19,15 @@ weak = "#1e1e2e"
 strong = "#313244"
 text = "#ffffff"
 
+[modules]
+left = ["Workspaces", "WindowTitle"]
+center = ["Tempo"]
+right = ["SystemInfo", ["Tray", "Privacy", "Settings"]]
+
+[window_title]
+mode = "Title"
+truncate_title_after_length = 75
+
 [workspaces]
 workspace_names = ["一","二","三","四","五","六","七","八","九","十",]
 max_workspaces = 10
@@ -26,7 +35,15 @@ enable_workspace_filling = false
 visibility_mode = "All"
 disable_special_workspaces = true
 
-[modules]
-left = ["Workspaces", "WindowTitle"]
-center = ["Clock"]
-right = ["SystemInfo", ["Tray", "Privacy", "Settings"]]
+[tempo]
+clock_format = "%a %d %b %R"
+weather_location = "Current"
+
+[system_info]
+indicators = [ "Cpu", "Memory", "Temperature" ]
+
+[system_info.temperature]
+warn_threshold = 60
+alert_threshold = 80
+# TODO even echo 40 does not work, why?
+#sensor = "sensors -j | jq '.[\"coretemp-isa-0000\"] [\"Package id 0\"] [\"temp1_input\"]' | string sub -e 2"
