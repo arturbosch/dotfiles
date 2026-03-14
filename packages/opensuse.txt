@@ -5,6 +5,7 @@ brightnessctl
 cairo-devel
 clang
 dbus-1-devel
+ddcutil
 eza
 fd
 fish

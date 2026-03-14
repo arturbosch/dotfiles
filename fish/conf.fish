@@ -118,6 +118,12 @@ abbr jj "java -jar"
 abbr jv "java -version"
 abbr gsc XDG_CURRENT_DESKTOP=Gnome gnome-control-center
 
+# Monitor
+abbr ddc-work sudo ddcutil setvcp 10 70
+abbr ddc-sleep sudo ddcutil setvcp 10 0
+abbr ddc-dimmed sudo ddcutil setvcp 10 20
+abbr ddc-evening sudo ddcutil setvcp 10 50
+
 # Functions
 
 function dots
