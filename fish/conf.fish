@@ -68,12 +68,12 @@ alias lt "exa --tree"
 if test (head -1 /etc/os-release | grep -i 'openSUSE Tumbleweed')
     abbr inst "sudo zypper install"
     abbr up "sudo zypper up"
-    abbr upa "sudo zypper up && flatpak update"
+    abbr upa "sudo zypper up && flatpak update & rustup update"
     abbr un "sudo zypper remove"
 else if test (head -1 /etc/os-release | grep -i 'Fedora')
     abbr inst "sudo dnf install"
     abbr up "sudo dnf update"
-    abbr upa "sudo dnf update && flatpak update"
+    abbr upa "sudo dnf update && flatpak update & rustup update"
     abbr un "sudo dnf remove"
 else if test (head -1 /etc/os-release | grep -i 'Aeon')
     abbr inst "sudo transactional-update pkg install"
@@ -93,7 +93,7 @@ abbr twm "timew month"
 ## config shortcuts
 abbr ef "$EDITOR $HOME/dotfiles/fish/conf.fish"
 abbr eg "$EDITOR $HOME/dotfiles/.gitconfig"
-abbr eh "$EDITOR $HOME/dotfiles/hypr/hyprland.conf"
+abbr eh "$EDITOR $HOME/dotfiles/hypr/hyprland.lua"
 abbr ehl "$EDITOR $HOME/dotfiles/hypr/hyprlock.conf"
 abbr ehp "$EDITOR $HOME/dotfiles/hypr/hyprlpaper.conf"
 

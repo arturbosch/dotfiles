@@ -1,141 +1,104 @@
-/* -----------------------------------------------------
- *                      Config
- * ----------------------------------------------------- */
-@define-color bg-1 #100f0f;
-@define-color bg-2 #1C1B1A;
-@define-color ui-1 #282726;
-@define-color ui-2 #343331;
-@define-color ui-3 #403E3C;
-@define-color tx-1 #CECDC3;
-@define-color tx-2 #F2F0E5;
-@define-color tx-3 #878580;
-@define-color cyan #24837B;
-@define-color magenta #A02F6F;
-@define-color red #AF3029;
+@define-color highlight rgba(230, 213, 184, 0.93);
+@define-color dark-9 rgba(24, 24, 27, 1);
+@define-color dark-8 rgba(39, 39, 42, 1);
+@define-color dark-7 rgba(63, 63, 70, 1);
+@define-color dark-6 rgba(82, 82, 91, 1);
+@define-color dark-5 rgba(113, 113, 122, 1);
 
 * {
-  font-family:
-    JetBrains Mono,
-    Symbols Nerd Font Mono;
-  font-size: 15px;
-  border-radius: 0;
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: JetBrainsMono Nerd Font Propo;
+  font-size: 20px;
+}
+
+window#waybar {
+  background-color: @dark-9;
+  color: white;
+}
+
+#workspaces button {
+  padding: 0 8px;
+  background: transparent;
+  border-radius: 2px;
+  color: white;
+}
+
+#workspaces button.active {
+  background: @highlight;
+  color: black;
+  font-weight: 700;
+}
+
+#submap,
+#battery,
+#bluetooth,
+#network,
+#cpu,
+#memory,
+#volume {
+  padding: 2px 10px;
+  margin: 0px 2px;
+}
+
+#submap,
+#workspaces button.urgent {
+  background: rgba(227, 81, 73, 1);
+  color: black;
+}
+
+#pulseaudio-slider {
+  padding: 0px;
+  margin: 0px;
+  margin-left: 8px;
+}
+
+#pulseaudio-slider slider {
+  all: unset;
+  min-height: 0;
+  min-width: 0;
+  opacity: 0;
+  background-image: none;
   border: none;
   box-shadow: none;
-  transition: none;
 }
 
-/* -----------------------------------------------------
- *                      Bar
- * ----------------------------------------------------- */
-window#waybar {
-  color: @tx-1;
-  background-color: @bg-1;
+#pulseaudio-slider trough {
+  min-height: 8px;
+  min-width: 75px;
+  border-radius: 5px;
+  background: @dark-7;
 }
 
-/* -----------------------------------------------------
- *                      Tooltip
- * ----------------------------------------------------- */
+#pulseaudio-slider highlight {
+  min-width: 10px;
+  border-radius: 5px;
+  background: @highlight;
+}
+
+#media {
+  color: #E6D5B8;
+  margin: 0px 0px 0px 80px;
+}
+
+#custom-media-animation {
+  font-size: 13px;
+  margin-right: 10px;
+}
+
+#custom-media-now-playing {
+  margin-right: 10px;
+}
+
+#custom-media-time {
+  color: @dark-5;
+  font-size: 14px;
+}
+
 tooltip {
-  background: @bg-1;
-  border: solid 1px @ui-1;
-  border-radius: 6px;
+  background: @dark-9;
+  border-radius: 5px;
 }
 
 tooltip label {
-  color: @tx-1;
-}
-
-/* -----------------------------------------------------
- *                  Hyprland workspaces
- * ----------------------------------------------------- */
-#workspaces {
-  background-color: @bg-1;
-  margin: 0 4px;
-}
-#workspaces button {
-  color: @tx-1;
-  font-weight: normal;
-  padding: 0 5px;
-  margin: 3px 0;
-}
-#workspaces button.active {
-  color: @tx-2;
-  font-weight: normal;
-  background-color: @ui-2;
-  border-radius: 6px;
-}
-
-#workspaces button.urgent {
-  color: @magenta;
-}
-#mode {
-  color: @tx-1;
-  padding: 0 10px;
-  margin: 3px 2px;
-  background-color: @ui-2;
-  border-radius: 6px;
-}
-#window {
-  color: @tx-1;
-  padding: 0 10px;
-}
-/* -----------------------------------------------------
- *                      Modules
- * ----------------------------------------------------- */
-#clock,
-#battery,
-#wireplumber,
-#custom-mic,
-#custom-idle,
-#cpu,
-#tray,
-#memory,
-#network {
-  color: @tx-1;
-  padding: 0 10px;
-  margin: 3px 2px;
-}
-#tray {
-  background-color: @bg-2;
-  box-shadow: inset 0 0 0 1px @ui-1;
-  border-radius: 6px;
-}
-#tray menu {
-  background-color: @bg-1;
-  border: solid 1px @ui-1;
-  border-radius: 6px;
-}
-#wireplumber.muted {
-  color: @tx-1;
-  background-color: @ui-2;
-  border-radius: 6px;
-}
-
-/* -----------------------------------------------------
- *                      Hover candy
- * ----------------------------------------------------- */
-#custom-power:hover,
-#network:hover,
-#tray:hover,
-#tray menu menuitem:hover,
-#wireplumber:hover,
-#workspaces button:hover {
-  background: @ui-1;
-  border-radius: 6px;
-}
-#custom-idle {
-  color: @tx-1;
-  background-color: @ui-2;
-  border-radius: 6px;
-}
-#custom-sep,
-#custom-markl,
-#custom-markr {
-  color: @tx-3;
-  padding: 0 4px;
-}
-#custom-power {
-  color: @tx-1;
-  padding: 0 10px;
-  margin: 3px 5px;
+  color: white;
 }

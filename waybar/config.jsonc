@@ -1,157 +1,109 @@
 {
-  "layer": "bottom",
-  "position": "top",
-  //"height": 28,
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["clock"],
-  "modules-right": [
-    "group/sys",
-    "tray",
-    "network",
-    // "custom/idle",
-    "group/sound",
-    "battery",
-    "backlight",
-    "custom/power",
-  ],
-  "hyprland/workspaces": {
-    "disable-scroll": true,
-  },
-  "hyprland/window": {
-    "format": "{}",
-    "max-length": 70,
-    "icon": true,
-    "icon-size": 20,
-  },
-  "tray": {
-    "icon-size": 16,
-    "spacing": 12,
-  },
-  "battery": {
-    "bat": "BAT0",
-    "interval": 60,
-    "states": {
-      "warning": 30,
-      "critical": 15,
+    "layer": "top",
+    "height": 32,
+    "modules-left": ["hyprland/workspaces", "group/media"],
+    "modules-center": ["clock"],
+    "modules-right": ["hyprland/submap", "group/volume", "battery", "bluetooth", "network", "cpu", "memory"],
+    "hyprland/window": {
+        "max-length": 50
     },
-    "format": "{capacity}% {icon}",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "max-length": 25,
-  },
-  "backlight": {
-    "format": "{icon} {percent}%",
-    "format-icons": ["", ""]
-  },
-  "network": {
-    "format-wifi": "󰖩",
-    "format-ethernet": "", // No icons needed if ethernet is connected
-    "format-linked": "{ifname} (No IP) ?",
-    "format-disconnected": "󰅛",
-    "tooltip-format": "{ifname} via {gwaddr}",
-    "tooltip-format-wifi": "Network: <b>{essid}</b>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 30,
-    "on-click": "foot -T nmtui -a floatterm -e nmtui",
-    "on-click-right": "foot -T bluetui -a floatterm -e ~/.cargo/bin/bluetui",
-  },
-  "wireplumber#sink": {
-    "format": "{icon}",
-    "format-icons": ["󰕿", "󰖀", "󰕾"],
-    "tooltip-format": "{node_name}\nVolume: {volume}%",
-    "format-muted": "󰝟",
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "on-click-right": "pavucontrol",
-  },
-  "wireplumber#source": {
-    "node-type": "Audio/Source",
-    "format": "󰍬",
-    "format-muted": "󰍭",
-    "tooltip-format": "{node_name}\nVolume: {volume}%",
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-    "on-click-right": "pavucontrol",
-    "scroll-step": 5,
-  },
-  "clock": {
-    "format": "{:%b %d %H:%M}",
-    "tooltip-format": "<span color='#CECDC3'><tt>{calendar}</tt></span>",
-    "calendar": {
-      "mode-mon-col": 3,
-      "on-scroll": 1,
-      "on-click-right": "mode",
-      "format": {
-        "months": "<span color='#CECDC3'><b>{}</b></span>",
-        "weekdays": "<span color='#24837B'><b>{}</b></span>",
-        "today": "<span color='#24837B'><b>{}</b></span>",
+    "battery": {
+        "interval": 60,
+        "format": "{capacity}% {icon}",
+        "format-icons": {
+            "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+            "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+        },
+    },
+    "bluetooth": {
+      "format": "",
+      "format-disabled": "", // an empty format will hide the module
+      "format-connected": " {num_connections}",
+      "tooltip-format": "{controller_alias}\t{controller_address}",
+      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+      "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+      "on-click": "exec kitty --title=bluetui -e bluetui"
+    },
+    "cpu": {
+        "interval": 10,
+        "format": " {}%",
+        "max-length": 10,
+        "on-click": "exec kitty --title=btop -e btop"
+    },
+    "memory": {
+        "interval": 30,
+        "format": " {percentage}%",
+        "tooltip-format": "{used:0.1f}G/{total:0.1f}G used",
+        "on-click": "exec kitty --title=htop -e htop",
+    },
+    "network": {
+        "format": "",
+        "format-wifi": "",
+        "format-ethernet": "",
+        "format-disconnected": "󰤭", //An empty format will hide the module.
+        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "󰖪",
+        "max-length": 50,
+        "on-click": "exec kitty --title=nmrs-gui -e nmrs-gui",
+    },
+    "clock": {
+      "format": "󰥔 {:%a, %d. %b %I:%M %p}",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+        "format": {
+          "today": "<span color='#75f1fa'><b>{}</b></span>"
+        }
       },
+      "on-click": "exec chromium --app=https://calendar.google.com"
     },
-    "actions": {
-      "on-click-right": "mode",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down",
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", ""]
+        },
+        "scroll-step": 1,
+        "ignored-sinks": ["Easy Effects Sink"],
+        "on-click": "pavucontrol",
     },
-  },
-  // "in case tzdata update fucks up your clock",
-  "custom/clock": {
-    "format": "{}",
-    "tooltip": false,
-    "exec": "date +'%b %d %H:%M'",
-    "interval": 60,
-    "on-click": "~/.local/bin/noti_cal",
-  },
-  "custom/power": {
-    "interval": "once",
-    "format": "󰐥",
-    "tooltip": false,
-    "on-click": "~/dotfiles/bin/menu_power",
-  },
-  "custom/idle": {
-    "interval": "once",
-    "return-type": "json",
-    "format": "{}",
-    "exec": "~/.config/waybar/scripts/idle.sh",
-    "signal": 1,
-    "on-click": "~/.config/hypr/scripts/hypridle-toggle.sh; pkill -SIGRTMIN+1 waybar",
-  },
-  "cpu": {
-    "interval": 10,
-    "format": "󰘚 {usage}%",
-    "max-length": 10,
-  },
-  "memory": {
-    "interval": 30,
-    "format": "󰍛 {percentage}%",
-    "max-length": 10,
-  },
-  "group/sys": {
-    "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 700,
-      "transition-to-left": true,
-      "click-to-reveal": true,
+    "pulseaudio/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal"
     },
-    "modules": ["custom/markl", "cpu", "memory"],
-  },
-  "group/sound": {
-    "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 700,
-      "transition-to-left": true,
+    "group/volume": {
+      "orientation": "horizontal",
+      "modules": [
+        "pulseaudio",
+        "pulseaudio/slider"
+      ]
     },
-    "modules": ["wireplumber#sink", "wireplumber#source"],
-  },
-  "custom/markr": {
-    "interval": "once",
-    "format": "",
-    "tooltip": false,
-  },
-  "custom/markl": {
-    "interval": "once",
-    "format": "",
-    "tooltip": false,
-  },
-  "custom/sep": {
-    "interval": "once",
-    "format": "|",
-    "tooltip": false,
-  },
+    "group/media": {
+      "orientation": "horizontal",
+      "modules": [
+        "custom/media-animation",
+        "custom/media-now-playing",
+        "custom/media-time"
+      ]
+    },
+    "custom/media-now-playing": {
+      "exec": "~/.config/waybar/modules/media-now-playing.sh",
+      "escape": true,
+      "tooltip": false,
+      "on-click": "playerctl play-pause",
+      "on-click-middle": "playerctl previous",
+      "on-click-right": "playerctl next",
+    },
+    "custom/media-animation": {
+      "exec": "~/.config/waybar/modules/media-animation.sh",
+      "tooltip": false,
+    },
+    "custom/media-time": {
+      "exec": "~/.config/waybar/modules/media-time.sh",
+      "escape": true,
+      "interval": 1,
+      "tooltip": false,
+    }
 }

@@ -33,6 +33,7 @@ jetbrains-mono-fonts
 jq
 kitty
 libpulse-devel
+lua-language-server
 meson
 nextcloud-client
 openssl-devel

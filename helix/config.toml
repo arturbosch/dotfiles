@@ -14,10 +14,16 @@ display-messages = true
 
 [keys.normal]
 C-s = ":w"
+A-s = [":format", ":w"]
 C-q = ":q"
 
 A-n = "search_next"
 A-N = "search_prev"
+
+C-K    = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+"C-S-up"   = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+C-J    = ["extend_to_line_bounds", "delete_selection", "paste_after"]   
+"C-S-down" = ["extend_to_line_bounds", "delete_selection", "paste_after"]   
 
 esc = ["collapse_selection", "keep_primary_selection"]
 
