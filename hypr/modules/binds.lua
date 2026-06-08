@@ -8,6 +8,7 @@ local menu           = "fuzzel"
 local bar            = "$HOME/dotfiles/waybar/scripts/waybar.sh"
 local barToggle      = "$HOME/dotfiles/waybar/scripts/waybar-hide.sh"
 local logout         = "wlogout"
+local lock           = "lock"
 local bluetooth      = "kitty -e bluetui"
 local wifi           = "kitty -e nmtui"
 local processManager = "kitty -e htop"
@@ -33,6 +34,8 @@ hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(wifi))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(bluetooth))
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd(processManager))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(settings))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lock))
+hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd(lock))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd(logout))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd(wmReload))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(flatpakRun .. "org.localsend.localsend_app"))
@@ -54,6 +57,18 @@ hl.bind(mainMod .. " + minus", hl.dsp.layout("colresize -conf"))
 --hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 local closeWindowBind = hl.bind(mainMod .. "+ SHIFT + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
+
+
+local laptopMonitor = "eDP-1"
+function ToggleLaptopMonitor()
+  if hl.get_monitor(laptopMonitor) ~= nil then
+    hl.monitor({ output = laptopMonitor, disabled = true })
+  else
+    hl.monitor({ output = laptopMonitor, disabled = false })
+  end
+end
+
+hl.bind(mainMod .. " + SHIFT + I", ToggleLaptopMonitor)
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))

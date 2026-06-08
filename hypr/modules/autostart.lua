@@ -16,16 +16,18 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("hypridle")
   -- TODO conditional on amount of monitors
   hl.exec_cmd("hyprctl setcursor Adwaita 15")
-  -- TODO portals, needed?
   -- TODO monitors script for now, rewrite to lua
   --hl.exec_cmd("$HOME/.config/hypr/scripts/monitors.fish")
-  hl.exec_cmd("$HOME/.config/hypr/scripts/waybar.sh")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3:dark'")  -- for GTK3 apps
+  hl.exec_cmd("$HOME/.config/hypr/scripts/portals.sh")
+  hl.exec_cmd("$HOME/.config/waybar/scripts/waybar.sh")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'")  -- for GTK3 apps
   hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'") -- for GTK4 apps
 end)
 
 hl.on("hyprland.start", function()
   hl.exec_cmd("brave-browser", { workspace = "1" })
+  hl.exec_cmd("kitty", { workspace = "3" })
+  hl.exec_cmd("nautilus", { workspace = "4" })
   hl.exec_cmd("thunderbird", { workspace = "8" })
 end)
 

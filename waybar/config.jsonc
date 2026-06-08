@@ -3,13 +3,17 @@
     "height": 32,
     "modules-left": ["hyprland/workspaces", "group/media"],
     "modules-center": ["clock"],
-    "modules-right": ["hyprland/submap", "group/volume", "battery", "bluetooth", "network", "cpu", "memory"],
+    "modules-right": ["tray", "cpu", "memory", "network", "bluetooth", "group/volume", "battery"],
     "hyprland/window": {
         "max-length": 50
     },
     "battery": {
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
         "interval": 60,
-        "format": "{capacity}% {icon}",
+        "format": "{icon} {capacity}%",
         "format-icons": {
             "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
             "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
@@ -105,5 +109,10 @@
       "escape": true,
       "interval": 1,
       "tooltip": false,
+    },
+    "tray": {
+      "icon-size": 16,
+      "spacing": 8,
+      "show-passive-items": false,
     }
 }

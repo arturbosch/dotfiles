@@ -6,7 +6,7 @@ function mark_prompt_start --on-event fish_prompt
     echo -en "\e]133;A\e\\"
 end
 
-# 4.1: alt-backspace changed from word deletion, restore it.
+# fish 4.1: alt-backspace changed from word deletion, restore it.
 bind alt-backspace backward-kill-word
 
 # gnome: map caps to escape key
@@ -68,12 +68,12 @@ alias lt "exa --tree"
 if test (head -1 /etc/os-release | grep -i 'openSUSE Tumbleweed')
     abbr inst "sudo zypper install"
     abbr up "sudo zypper up"
-    abbr upa "sudo zypper up && flatpak update & rustup update"
+    abbr upa "sudo zypper up && flatpak update && rustup update"
     abbr un "sudo zypper remove"
 else if test (head -1 /etc/os-release | grep -i 'Fedora')
     abbr inst "sudo dnf install"
     abbr up "sudo dnf update"
-    abbr upa "sudo dnf update && flatpak update & rustup update"
+    abbr upa "sudo dnf update && flatpak update && rustup update"
     abbr un "sudo dnf remove"
 else if test (head -1 /etc/os-release | grep -i 'Aeon')
     abbr inst "sudo transactional-update pkg install"
@@ -117,12 +117,14 @@ abbr j just
 abbr jj "java -jar"
 abbr jv "java -version"
 abbr gsc XDG_CURRENT_DESKTOP=Gnome gnome-control-center
+abbr logout loginctl terminate-user $USER
 
 # Monitor
-abbr ddc-work sudo ddcutil setvcp 10 70
-abbr ddc-sleep sudo ddcutil setvcp 10 0
-abbr ddc-dimmed sudo ddcutil setvcp 10 20
-abbr ddc-evening sudo ddcutil setvcp 10 50
+abbr ddcfull sudo ddcutil setvcp 10 100
+abbr ddcwork sudo ddcutil setvcp 10 70
+abbr ddcsleep sudo ddcutil setvcp 10 0
+abbr ddcdimmed sudo ddcutil setvcp 10 20
+abbr ddcevening sudo ddcutil setvcp 10 50
 
 # Functions
 
@@ -148,6 +150,13 @@ alias wetter weather
 function vmrss
     set pid $argv[1]
     cat /proc/$pid/status | grep -i vmrss | awk '{print $2/1000 " MB"}'
+end
+
+## fix audio
+function reload_pipewire
+    systemctl --user restart pipewire pipewire-pulse
+    systemctl --user daemon-reload
+    systemctl --user restart wireplumber
 end
 
 # git

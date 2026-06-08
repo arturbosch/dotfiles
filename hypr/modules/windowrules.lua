@@ -50,3 +50,7 @@ hl.window_rule({
 
 hl.window_rule({ name = "all_scrolling_layout", match = { class = ".*" }, scrolling_width = 1.0 })
 
+hl.window_rule({
+    match = { class = "brave-browser" },
+    workspace = "1 silent"
+})

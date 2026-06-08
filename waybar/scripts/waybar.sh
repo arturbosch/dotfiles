@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-pkill waybar
-waybar &
+killall -e waybar
+waybar 2>&1 > /tmp/waybar.txt &
