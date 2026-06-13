@@ -7,6 +7,8 @@ clang
 dbus-1-devel
 ddcutil
 eza
+fcitx5
+fcitx5-gtk4
 fd
 fish
 foot
@@ -56,5 +58,6 @@ vlc
 wf-recorder
 wl-clipboard
 wlogout
-xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+xdg-desktop-portal-wlr
 zip

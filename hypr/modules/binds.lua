@@ -8,10 +8,11 @@ local menu           = "fuzzel"
 local bar            = "$HOME/dotfiles/waybar/scripts/waybar.sh"
 local barToggle      = "$HOME/dotfiles/waybar/scripts/waybar-hide.sh"
 local logout         = "wlogout"
-local lock           = "lock"
+local lock           = "hyprlock"
 local bluetooth      = "kitty -e bluetui"
 local wifi           = "kitty -e nmtui"
 local processManager = "kitty -e htop"
+local soundManager   = "kitty -e wiremix"
 local settings       = "XDG_CURRENT_DESKTOP=Gnome gnome-control-center"
 local wmReload       = "hyprctl reload"
 local printWindow    = "hyprshot -m window"
@@ -32,6 +33,7 @@ hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(wifi))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(bluetooth))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(soundManager))
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd(processManager))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(settings))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(lock))
