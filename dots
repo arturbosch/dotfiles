@@ -119,6 +119,7 @@ function create_links
     create_link $DOTS/ignis $CONFS/ignis
     create_link $DOTS/hypr $CONFS/hypr
     create_link $DOTS/fcitx5 $CONFS/fcitx5
+    create_link $DOTS/xdg-desktop-portal $CONFS/xdg-desktop-portal
     create_link $DOTS/fuzzel $CONFS/fuzzel
     create_link $DOTS/waybar $CONFS/waybar
     create_link $DOTS/knott $CONFS/knott
