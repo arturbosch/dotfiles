@@ -35,6 +35,7 @@ hyprpaper
 hyprshot
 jetbrains-mono-fonts-all
 jq
+kitty
 libevdev-devel
 libinput-devel
 lm_sensors
@@ -52,8 +53,8 @@ powertop
 pulseaudio-utils
 ranger
 ripgrep
-rustup
 rsms-inter-fonts
+rustup
 sassc
 slurp
 socat

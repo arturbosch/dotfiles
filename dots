@@ -122,8 +122,6 @@ function create_links
     create_link $DOTS/xdg-desktop-portal $CONFS/xdg-desktop-portal
     create_link $DOTS/fuzzel $CONFS/fuzzel
     create_link $DOTS/waybar $CONFS/waybar
-    create_link $DOTS/knott $CONFS/knott
-    create_link $DOTS/ashell $CONFS/ashell
 end
 
 function ssh_agent
