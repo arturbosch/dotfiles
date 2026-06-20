@@ -49,7 +49,6 @@ pavucontrol
 pip
 pipewire-devel
 pkgconf-pkg-config
-pl
 powertop
 pulseaudio-utils
 ranger
@@ -59,8 +58,7 @@ rustup
 sassc
 slurp
 socat
-SwayNotificationCenter
-swayosd
+sqlite3
 systemd-devel
 tcl
 thunderbird

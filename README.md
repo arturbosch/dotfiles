@@ -38,5 +38,5 @@ sudo python3 setup.py install
 curl -s "https://get.sdkman.io" | bash
 
 # Rust
-rustup default stable
+rustup-init
 ```
