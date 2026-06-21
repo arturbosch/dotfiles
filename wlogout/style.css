@@ -1,0 +1,38 @@
+* {
+	background-image: none;
+	box-shadow: none;
+	font-family: "JetBrainsMono Nerd Font Propo", monospace;
+	font-size: 16px;
+}
+
+/* biome-ignore lint/correctness/noUnknownTypeSelector: gtk window */
+window  {
+	background-color: rgba(24, 24, 27, 0.9);
+}
+
+button {
+	color: #ffffff;
+	background-color: #18181b;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #3f3f46;
+	border-radius: 8px;
+	margin: 8px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+}
+
+button:focus, button:active, button:hover {
+	background-color: #27272a;
+	border-color: #e6d5b8;
+	color: #e6d5b8;
+	outline-style: none;
+}
+
+#lock      { background-image: image(url("icons/lock.svg")); }
+#logout    { background-image: image(url("icons/logout.svg")); }
+#suspend   { background-image: image(url("icons/suspend.svg")); }
+#hibernate { background-image: image(url("icons/hibernate.svg")); }
+#shutdown  { background-image: image(url("icons/shutdown.svg")); }
+#reboot    { background-image: image(url("icons/reboot.svg")); }

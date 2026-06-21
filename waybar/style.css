@@ -35,9 +35,12 @@ window#waybar {
 #network,
 #cpu,
 #memory,
-#volume {
-  padding: 2px 10px;
-  margin: 0px 2px;
+#volume,
+#tray,
+#custom-mako,
+#custom-power {
+  padding: 2px 8px;
+  margin: 0;
 }
 
 #submap,
@@ -121,6 +124,15 @@ tooltip label {
     100% { opacity: 1; }
 }
 
-#tray {
-  margin-right: 1rem;
+#custom-mako.dnd {
+  color: #71717a;
+}
+
+#custom-mako.active {
+  color: #e6d5b8;
+}
+
+#custom-power {
+  color: #e6d5b8;
+  margin-right: 6px;
 }

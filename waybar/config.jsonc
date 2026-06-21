@@ -1,11 +1,30 @@
 {
     "layer": "top",
     "height": 32,
+    "spacing": 0,
     "modules-left": ["hyprland/workspaces", "group/media"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "cpu", "memory", "network", "bluetooth", "group/volume", "battery"],
+    "modules-right": ["cpu", "memory", "network", "bluetooth", "group/volume", "battery", "tray", "custom/mako", "custom/power"],
     "hyprland/window": {
         "max-length": 50
+    },
+    "custom/mako": {
+        "format": "{}",
+        "return-type": "json",
+        "interval": 5,
+        "signal": 8,
+        "exec": "$HOME/.config/waybar/scripts/mako-status.sh",
+        "on-click": "makoctl mode -t do-not-disturb; pkill -RTMIN+8 waybar",
+        "on-click-right": "makoctl dismiss --all; pkill -RTMIN+8 waybar",
+        "on-click-middle": "makoctl restore; pkill -RTMIN+8 waybar"
+    },
+    "custom/power": {
+        "format": "󰐥",
+        "tooltip": false,
+        "on-click": "wlogout"
+    },
+    "hyprland/workspaces": {
+        "on-click": "activate"
     },
     "battery": {
         "states": {
@@ -17,7 +36,7 @@
         "format-icons": {
             "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
             "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
-        },
+        }
     },
     "bluetooth": {
       "format": "",
@@ -41,16 +60,17 @@
         "on-click": "exec kitty --title=htop -e htop",
     },
     "network": {
+        "interval": 2, // poll every 2s so the bandwidth rates update
         "format": "",
         "format-wifi": "",
         "format-ethernet": "",
         "format-disconnected": "󰤭", //An empty format will hide the module.
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) \n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}",
+        "tooltip-format-ethernet": "{ifname}\n󰇚 {bandwidthDownBytes}  󰕒 {bandwidthUpBytes}",
         "tooltip-format-disconnected": "󰖪",
         "max-length": 50,
-        "on-click": "exec kitty --title=nmrs-gui -e nmrs-gui",
+        "on-click": "exec kitty --title=nmrs-gui -e nmrs-gui"
     },
     "clock": {
       "format": "󰥔 {:%a, %d. %b %I:%M %p}",
@@ -60,7 +80,7 @@
           "today": "<span color='#75f1fa'><b>{}</b></span>"
         }
       },
-      "on-click": "exec chromium --app=https://calendar.google.com"
+      "on-click": "exec gnome-calendar"
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",
@@ -70,7 +90,7 @@
         },
         "scroll-step": 1,
         "ignored-sinks": ["Easy Effects Sink"],
-        "on-click": "pavucontrol",
+        "on-click": "exec kitty --title=wiremix -e wiremix"
     },
     "pulseaudio/slider": {
         "min": 0,

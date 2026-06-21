@@ -112,6 +112,7 @@ function create_links
     create_link $DOTS/fish/conf.fish $CONFS/fish/conf.d/conf.fish
     create_link $DOTS/fish/fish_plugins $CONFS/fish/fish_plugins
     create_link $DOTS/foot $CONFS/foot
+    create_link $DOTS/kitty $CONFS/kitty
     create_link $DOTS/helix $CONFS/helix
     create_link $DOTS/.gitconfig $HOME/.gitconfig
     create_link $DOTS/.gitignore $HOME/.gitignore
@@ -122,6 +123,8 @@ function create_links
     create_link $DOTS/xdg-desktop-portal $CONFS/xdg-desktop-portal
     create_link $DOTS/fuzzel $CONFS/fuzzel
     create_link $DOTS/waybar $CONFS/waybar
+    create_link $DOTS/mako $CONFS/mako
+    create_link $DOTS/wlogout $CONFS/wlogout
 end
 
 function ssh_agent

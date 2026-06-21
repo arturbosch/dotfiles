@@ -39,6 +39,7 @@ kitty
 libevdev-devel
 libinput-devel
 lm_sensors
+mako
 meld
 meson
 nextcloud-client

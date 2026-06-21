@@ -47,6 +47,17 @@ set -Ux ELECTRON_OZONE_PLATFORM_HINT wayland
 set -Ux _JAVA_AWT_WM_NONREPARENTING 1
 abbr idea _JAVA_AWT_WM_NONREPARENTING=1 idea
 
+# Hydro prompt — sandstone path + prompt symbol; command text stays white
+set -g hydro_color_pwd e6d5b8
+set -g hydro_color_prompt e6d5b8
+set -g hydro_color_duration 71717a
+
+# Syntax colors (was the deleted conf.d/fish_frozen_theme.fish overriding these)
+set -g fish_color_normal ffffff
+set -g fish_color_command e6d5b8
+set -g fish_color_param ffffff
+set -g fish_color_autosuggestion a0947c
+
 # Aliases && Abbreveations
 abbr e $EDITOR
 

@@ -36,6 +36,7 @@ jq
 kitty
 libpulse-devel
 lua-language-server
+mako
 meson
 nextcloud-client
 openssl-devel

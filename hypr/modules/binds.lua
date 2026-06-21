@@ -49,7 +49,7 @@ hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd(printRegion))
 hl.bind(mainMod .. " + CONTROL + SHIFT + P", hl.dsp.exec_cmd(printWindow))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(barToggle))
 hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd(bar))
-
+hl.bind(mainMod .. " + COMMA", hl.dsp.exec_cmd("makoctl menu -- fuzzel --dmenu -p 'Action: '"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + equal", hl.dsp.layout("colresize +conf"))
