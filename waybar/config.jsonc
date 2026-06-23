@@ -62,7 +62,7 @@
     "network": {
         "interval": 2, // poll every 2s so the bandwidth rates update
         "format": "",
-        "format-wifi": "",
+        "format-wifi": " {bandwidthDownBytes}",
         "format-ethernet": "",
         "format-disconnected": "󰤭", //An empty format will hide the module.
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",
