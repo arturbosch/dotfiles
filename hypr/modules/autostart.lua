@@ -18,9 +18,6 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("fcitx5 -d") -- input method pinyin
   -- TODO conditional on amount of monitors
   hl.exec_cmd("hyprctl setcursor Adwaita 15")
-  -- TODO monitors script for now, rewrite to lua
-  --hl.exec_cmd("$HOME/.config/hypr/scripts/monitors.fish")
-  --hl.exec_cmd("$HOME/.config/hypr/scripts/portals.sh")
   hl.exec_cmd("$HOME/.config/waybar/scripts/waybar.sh")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'")       -- for GTK3 apps
   hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'") -- for GTK4 apps

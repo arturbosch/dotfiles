@@ -60,18 +60,6 @@ hl.bind(mainMod .. " + minus", hl.dsp.layout("colresize -conf"))
 local closeWindowBind = hl.bind(mainMod .. "+ SHIFT + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 
-
-local laptopMonitor = "eDP-1"
-function ToggleLaptopMonitor()
-  if hl.get_monitor(laptopMonitor) ~= nil then
-    hl.monitor({ output = laptopMonitor, disabled = true })
-  else
-    hl.monitor({ output = laptopMonitor, disabled = false })
-  end
-end
-
-hl.bind(mainMod .. " + SHIFT + I", ToggleLaptopMonitor)
-
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
