@@ -64,10 +64,20 @@ end
 # Fish
 
 function install_fisher
-    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-    for plugin in (cat $DOTS/fish/fish_plugins)
-        echo Installing fish plugin $plugin "..."
-        fisher install $plugin
+    echo "Installing fisher..."
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; or begin
+        echo "❌ Error: Failed to download/source fisher. Check your internet connection."
+        return 1
+    end
+    fisher install jorgebucaran/fisher
+
+    if test -f $DOTS/fish/fish_plugins
+        for plugin in (cat $DOTS/fish/fish_plugins)
+            echo "Installing fish plugin $plugin ..."
+            fisher install $plugin; or echo "⚠️  Failed to install plugin: $plugin"
+        end
+    else
+        echo "ℹ️  No plugins found in $DOTS/fish/fish_plugins, skipping plugin installation."
     end
 end
 
