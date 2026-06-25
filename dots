@@ -1,81 +1,131 @@
-#!/bin/env fish
-
-function help
-    echo "Usage: ./dots <command>"
-    echo "Commands: links, ssh-agent, software, flatpak, sort, defaults, fisher, ts, gnome-extensions, brave, rust"
-end
+#!/usr/bin/env fish
 
 set DOTS ~/dotfiles
 set CONFS ~/.config
+
+# Single source of truth for commands. Every entry must have a matching
+# function defined below — that's how the dispatcher resolves them.
+set commands links software flatpak sort-packages defaults \
+    gnome-extensions fish-plugins ts brave rust ssh-agent all
+
+function help
+    echo "Usage: dots <command>"
+    echo
+    echo "Commands:"
+    printf "  %s\n" $commands
+end
 
 # Software
 
 function software
     echo "Installing software ..."
-    if test -f /bin/zypper
-        set software (cat $DOTS/packages/opensuse.txt)
-        sudo zypper install $software
-    else if test -f /bin/dnf
-        set software (cat $DOTS/packages/fedora.txt)
-        sudo dnf install $software
+    if command -q zypper
+        set pkgs_file $DOTS/packages/opensuse.txt
+        set pkg_mgr zypper
+    else if command -q dnf
+        set pkgs_file $DOTS/packages/fedora.txt
+        set pkg_mgr dnf
+    else
+        echo "❌ Error: No supported package manager (zypper or dnf) found."
+        return 1
     end
+    if not test -f $pkgs_file
+        echo "❌ Error: Package list not found at $pkgs_file"
+        return 1
+    end
+    set pkgs (cat $pkgs_file)
+    sudo $pkg_mgr install -y $pkgs
 end
 
-function rust_tools
-    echo "installing rust tools ..."
-    cargo install --locked bluetui slumber grass tealdeer wiremix nmrs-gui
+function rust
+    if not command -q cargo
+        echo "❌ Error: cargo not found. Please install Rust first."
+        return 1
+    end
+    if not test -f $DOTS/packages/rust.txt
+        echo "ℹ️  No rust tools defined in $DOTS/packages/rust.txt"
+        return 0
+    end
+    echo "Installing rust tools..."
+    cargo install --locked (cat $DOTS/packages/rust.txt)
 end
 
 # Flatpak
 
-function flatpak_software
-    for plugin in (cat $DOTS/packages/flatpak.txt)
-        echo Installing $plugin "..."
-        flatpak install flathub -y $plugin
+function flatpak
+    if not command -q flatpak
+        echo "❌ Error: flatpak not installed. See https://flatpak.org/setup."
+        return 1
+    end
+    if not test -f $DOTS/packages/flatpak.txt
+        echo "❌ Error: Flatpak package list not found at $DOTS/packages/flatpak.txt"
+        return 1
+    end
+    for app in (cat $DOTS/packages/flatpak.txt)
+        echo "Installing $app ..."
+        sudo flatpak install flathub -y $app
     end
 end
 
 function flatpak_defaults
+    if not command -q flatpak
+        echo "❌ Error: flatpak not installed. See https://flatpak.org/setup."
+        return 1
+    end
+    echo "Allowing VSCodium to use host-os binaries..."
     flatpak override --user --filesystem=host-os com.vscodium.codium
 end
 
-function sort_flatpak
-    set flatpak_file $DOTS/packages/flatpak.txt
-    sort -u -o $flatpak_file $flatpak_file
+function sort_file --argument file_path
+    if test -f $file_path
+        sort -u -o $file_path $file_path
+        echo "✅ Sorted: $file_path"
+    end
 end
 
-function sort_software
-    set opensuse_file $DOTS/packages/opensuse.txt
-    set fedora_file $DOTS/packages/fedora.txt
-    sort -u -o $opensuse_file $opensuse_file
-    sort -u -o $fedora_file $fedora_file
+function sort-packages
+    sort_file $DOTS/packages/flatpak.txt
+    sort_file $DOTS/packages/opensuse.txt
+    sort_file $DOTS/packages/fedora.txt
+    sort_file $DOTS/packages/rust.txt
+    sort_file $DOTS/packages/npm.txt
 end
 
 # Gnome
 
 function gnome_defaults
-    env sh $DOTS/gnome/defaults.sh
+    echo "Applying Gnome defaults..."
+    sh $DOTS/gnome/defaults.sh
 end
 
-function gnome_extensions
-    env sh $DOTS/gnome/extensions.sh
+function gnome-extensions
+    sh $DOTS/gnome/extensions.sh
+end
+
+function defaults
+    flatpak_defaults
+    gnome_defaults
 end
 
 # Fish
 
-function install_fisher
-    echo "Installing fisher..."
-    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; or begin
-        echo "❌ Error: Failed to download/source fisher. Check your internet connection."
-        return 1
-    end
-    fisher install jorgebucaran/fisher
-
-    if test -f $DOTS/fish/fish_plugins
-        for plugin in (cat $DOTS/fish/fish_plugins)
-            echo "Installing fish plugin $plugin ..."
-            fisher install $plugin; or echo "⚠️  Failed to install plugin: $plugin"
+function fish-plugins
+    # Bootstrap fisher once. `fisher install jorgebucaran/fisher` persists it
+    # across future shells; sourcing alone wouldn't.
+    if not functions -q fisher
+        echo "Installing fisher..."
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; or begin
+            echo "❌ Error: Failed to download fisher. Check your internet connection."
+            return 1
         end
+        fisher install jorgebucaran/fisher >/dev/null 2>&1
+    end
+
+    # Install from manifest in one call — fisher handles dedup and rewrites
+    # fish_plugins exactly once at the end. Stdin redirect avoids the subshell
+    # snapshot that `for ... (cat ...)` would create.
+    if test -f $DOTS/fish/fish_plugins
+        fisher install <$DOTS/fish/fish_plugins
     else
         echo "ℹ️  No plugins found in $DOTS/fish/fish_plugins, skipping plugin installation."
     end
@@ -83,22 +133,33 @@ end
 
 # NPM
 
-function install_ts
-    npm install -g typescript typescript-language-server @biomejs/biome
+function ts
+    if not command -q npm
+        echo "❌ Error: npm not found. Please install Node.js first."
+        return 1
+    end
+    if not test -f $DOTS/packages/npm.txt
+        echo "ℹ️  No npm packages defined in $DOTS/packages/npm.txt"
+        return 0
+    end
+    echo "Installing npm packages..."
+    npm install -g (cat $DOTS/packages/npm.txt)
 end
 
 # Browser
 
-function install_brave
-    if test -f /bin/dnf
-        sudo dnf install dnf-plugins-core
-        sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-        sudo dnf install brave-browser
-    else if test -f /bin/zypper
-        sudo zypper addrepo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-        sudo zypper install brave-browser
+function brave
+    set repo_url https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+    if command -q dnf
+        sudo dnf install -y dnf-plugins-core
+        sudo dnf config-manager addrepo --from-repofile=$repo_url
+        sudo dnf install -y brave-browser
+    else if command -q zypper
+        sudo zypper addrepo $repo_url
+        sudo zypper install -y brave-browser
     else
-
+        echo "❌ Error: Brave install not supported on this distro. See https://brave.com/linux."
+        return 1
     end
 end
 
@@ -106,7 +167,7 @@ end
 
 function create_link --argument source --argument target
     if test -z "$source"; or test -z "$target"
-        echo "⚠️  Error: create_link requires both source and target."
+        echo "⚠️ Error: create_link requires both source and target."
         return 1
     end
 
@@ -115,74 +176,104 @@ function create_link --argument source --argument target
         return 1
     end
 
-    rm -rf $target
+    # Critical: `rm -rf` follows symlinks. A pre-existing symlink at $target
+    # would cause us to delete the contents of $source. Check for symlink first.
+    if test -L $target
+        rm $target
+    else if test -e $target
+        if test -d $target
+            echo "⚠️  Warning: Target '$target' is a directory. Deleting content..."
+        end
+        rm -rf $target
+    end
+
     ln -s $source $target
     echo "🔗 Linked: $target -> $source"
 end
 
-function create_links
-    for dir in $CONFS/fish/conf.d \
-        $HOME/bin \
-        $HOME/git/repos \
-        $HOME/git/test \
-        $HOME/git/system \
+function links
+    for dir in $CONFS/fish/conf.d $HOME/bin \
+        $HOME/git/repos $HOME/git/test $HOME/git/system
         mkdir -p $dir
     end
 
-    create_link $DOTS/fish/conf.fish $CONFS/fish/conf.d/conf.fish
-    create_link $DOTS/fish/fish_plugins $CONFS/fish/fish_plugins
-    create_link $DOTS/foot $CONFS/foot
-    create_link $DOTS/kitty $CONFS/kitty
-    create_link $DOTS/helix $CONFS/helix
-    create_link $DOTS/.gitconfig $HOME/.gitconfig
-    create_link $DOTS/.gitignore $HOME/.gitignore
-    create_link $DOTS/.npmrc $HOME/.npmrc
-    create_link $DOTS/ignis $CONFS/ignis
-    create_link $DOTS/hypr $CONFS/hypr
-    create_link $DOTS/fcitx5 $CONFS/fcitx5
-    create_link $DOTS/xdg-desktop-portal $CONFS/xdg-desktop-portal
-    create_link $DOTS/fuzzel $CONFS/fuzzel
-    create_link $DOTS/waybar $CONFS/waybar
-    create_link $DOTS/mako $CONFS/mako
-    create_link $DOTS/wlogout $CONFS/wlogout
+    set -l sources \
+        $DOTS/fish/conf.fish \
+        $DOTS/fish/fish_plugins \
+        $DOTS/foot \
+        $DOTS/kitty \
+        $DOTS/helix \
+        $DOTS/.gitconfig \
+        $DOTS/.gitignore \
+        $DOTS/.npmrc \
+        $DOTS/hypr \
+        $DOTS/fcitx5 \
+        $DOTS/xdg-desktop-portal \
+        $DOTS/fuzzel \
+        $DOTS/waybar \
+        $DOTS/mako \
+        $DOTS/wlogout
+    set -l targets \
+        $CONFS/fish/conf.d/conf.fish \
+        $CONFS/fish/fish_plugins \
+        $CONFS/foot \
+        $CONFS/kitty \
+        $CONFS/helix \
+        $HOME/.gitconfig \
+        $HOME/.gitignore \
+        $HOME/.npmrc \
+        $CONFS/hypr \
+        $CONFS/fcitx5 \
+        $CONFS/xdg-desktop-portal \
+        $CONFS/fuzzel \
+        $CONFS/waybar \
+        $CONFS/mako \
+        $CONFS/wlogout
+
+    if test (count $sources) -ne (count $targets)
+        echo "❌ Internal error: sources/targets count mismatch"
+        return 1
+    end
+
+    set -l failed 0
+    for i in (seq (count $sources))
+        create_link $sources[$i] $targets[$i]; or set failed 1
+    end
+    return $failed
 end
 
-function ssh_agent
+function ssh-agent
+    if not command -q systemctl
+        echo "❌ Error: systemctl not found. This command requires systemd."
+        return 1
+    end
+    if not test -e $HOME/.config/systemd/user/gcr-ssh-agent.socket
+        echo "❌ Error: gcr-ssh-agent.socket not installed. Install gnome-keyring first."
+        return 1
+    end
     systemctl --user enable gcr-ssh-agent.socket
     systemctl --user start gcr-ssh-agent.socket
 end
 
+function all
+    set -l failed 0
+    for cmd in links defaults fish-plugins software flatpak ts brave rust ssh-agent
+        echo
+        echo "=== dots $cmd ==="
+        $cmd; or set failed 1
+    end
+    return $failed
+end
+
 # Main
 
-if test $argv[1]
-    switch $argv[1]
-        case links
-            create_links
-        case software
-            software
-        case flatpak
-            flatpak_software
-        case sort
-            sort_software
-            sort_flatpak
-        case defaults
-            flatpak_defaults
-            gnome_defaults
-        case gnome-extensions
-            gnome_extensions
-        case fisher
-            install_fisher
-        case ts
-            install_ts
-        case brave
-            install_brave
-        case rust
-            rust_tools
-        case ssh-agent
-            ssh_agent
-        case '*'
-            echo "Unknown command: " $argv[1]
-            help
+if set -q argv[1]
+    set cmd $argv[1]
+    if contains -- $cmd $commands
+        $cmd
+    else
+        echo "Unknown command: $cmd"
+        help
     end
 else
     help
