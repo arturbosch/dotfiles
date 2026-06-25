@@ -95,8 +95,19 @@ end
 # Misc
 
 function create_link --argument source --argument target
+    if test -z "$source"; or test -z "$target"
+        echo "⚠️  Error: create_link requires both source and target."
+        return 1
+    end
+
+    if not test -e $source
+        echo "❌ Error: Source '$source' does not exist. Skipping link."
+        return 1
+    end
+
     rm -rf $target
     ln -s $source $target
+    echo "🔗 Linked: $target -> $source"
 end
 
 function create_links
