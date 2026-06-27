@@ -39,6 +39,7 @@ lua-language-server
 mako
 meson
 nextcloud-client
+nodejs-common
 openssl-devel
 pavucontrol
 pipewire-devel
@@ -52,7 +53,6 @@ sassc
 sensors
 socat
 sof-firmware
-systemd-dev
 tig
 tokei
 vlc
