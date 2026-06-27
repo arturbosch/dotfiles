@@ -39,4 +39,7 @@ curl -s "https://get.sdkman.io" | bash
 
 # Rust
 rustup-init
+
+# Pi
+npm install -g --ignore-scripts @earendil-works/pi-coding-agent
 ```
