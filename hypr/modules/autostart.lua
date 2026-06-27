@@ -19,6 +19,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("$HOME/.config/waybar/scripts/waybar.sh")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'")       -- for GTK3 apps
   hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'") -- for GTK4 apps
+  hl.exec_cmd("hyprctl setcursor Adwaita 15")
 end)
 
 hl.on("hyprland.start", function()
