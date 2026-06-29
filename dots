@@ -253,13 +253,11 @@ function ssh-agent
 end
 
 function all
-    set -l failed 0
     for cmd in links defaults fish-plugins software flatpak ts brave rust ssh-agent
         echo
         echo "=== dots $cmd ==="
-        $cmd; or set failed 1
+        $cmd; or return 1
     end
-    return $failed
 end
 
 # Main
