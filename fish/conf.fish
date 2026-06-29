@@ -19,7 +19,7 @@ set -Ux XDG_CONFIG_HOME $HOME/.config
 set -Ux JAVA_HOME $HOME/.sdkman/candidates/java/current
 set -Ux GRADLE_HOME $HOME/.sdkman/candidates/gradle/current
 
-set PATH \
+fish_add_path \
     $JAVA_HOME/bin \
     $GRADLE_HOME/bin \
     $HOME/bin \
@@ -28,16 +28,15 @@ set PATH \
     $HOME/.local/bin \
     $HOME/go/bin \
     $HOME/.cargo/bin \
-    $HOME/.nimble/bin \
-    $PATH
+    $HOME/.nimble/bin
 
 # Vars
-set -Ux TERM foot
+set -gx TERM foot
 set -Ux LANG en_US.UTF-8
 set -Ux EDITOR hx
 set -Ux VISUAL hx
 set -Ux SCROLLER hx
-set -Ux PAGER cat
+set -gx PAGER cat
 set -Ux BROWSER brave-browser
 
 ## Electron App Font Scaling
@@ -58,7 +57,7 @@ set -g fish_color_command e6d5b8
 set -g fish_color_param ffffff
 set -g fish_color_autosuggestion a0947c
 
-# Aliases && Abbreveations
+# Aliases && Abbreviations
 abbr e $EDITOR
 alias pi 'command pi --tools read,bash,edit,write,grep,find,ls'
 
@@ -77,17 +76,17 @@ alias ll "exa --long --git -h"
 alias lt "exa --tree"
 
 ## Package Manager
-if test (head -1 /etc/os-release | grep -i 'openSUSE Tumbleweed')
+if grep -qi 'opensuse tumbleweed' /etc/os-release
     abbr inst "sudo zypper install"
     abbr up "sudo zypper up"
     abbr upa "sudo zypper up && flatpak update && rustup update"
     abbr un "sudo zypper remove"
-else if test (head -1 /etc/os-release | grep -i 'Fedora')
+else if grep -qi 'fedora' /etc/os-release
     abbr inst "sudo dnf install"
     abbr up "sudo dnf update"
     abbr upa "sudo dnf update && flatpak update && rustup update"
     abbr un "sudo dnf remove"
-else if test (head -1 /etc/os-release | grep -i 'Aeon')
+else if grep -qi 'aeon' /etc/os-release
     abbr inst "sudo transactional-update pkg install"
     abbr un "sudo transactional-update pkg remove"
 end
@@ -107,7 +106,7 @@ abbr ef "$EDITOR $HOME/dotfiles/fish/conf.fish"
 abbr eg "$EDITOR $HOME/dotfiles/.gitconfig"
 abbr eh "$EDITOR $HOME/dotfiles/hypr/hyprland.lua"
 abbr ehl "$EDITOR $HOME/dotfiles/hypr/hyprlock.conf"
-abbr ehp "$EDITOR $HOME/dotfiles/hypr/hyprlpaper.conf"
+abbr ehp "$EDITOR $HOME/dotfiles/hypr/hyprpaper.conf"
 
 ## other shortcuts
 abbr gl tig
@@ -129,7 +128,7 @@ abbr j just
 abbr jj "java -jar"
 abbr jv "java -version"
 abbr gsc XDG_CURRENT_DESKTOP=Gnome gnome-control-center
-abbr logout loginctl terminate-user $USER
+abbr logout "loginctl terminate-user $USER"
 
 # Monitor
 abbr ddcfull sudo ddcutil setvcp 10 100
@@ -141,10 +140,7 @@ abbr ddcevening sudo ddcutil setvcp 10 50
 # Functions
 
 function dots
-    set currentDir (pwd)
-    cd ~/dotfiles
-    ./dots $argv
-    cd $currentDir
+    fish -c "cd ~/dotfiles && ./dots $argv"
 end
 
 ## shows weather
@@ -161,7 +157,7 @@ alias wetter weather
 ## show memory usage
 function vmrss
     set pid $argv[1]
-    cat /proc/$pid/status | grep -i vmrss | awk '{print $2/1000 " MB"}'
+    grep -i vmrss /proc/$pid/status | awk '{print $2/1000 " MB"}'
 end
 
 ## fix audio
