@@ -102,7 +102,7 @@ abbr twd "timew day"
 abbr twm "timew month"
 
 ## config shortcuts
-abbr ef "$EDITOR $HOME/dotfiles/fish/conf.fish"
+abbr ef "$EDITOR $HOME/dotfiles/fish/config.fish"
 abbr eg "$EDITOR $HOME/dotfiles/.gitconfig"
 abbr eh "$EDITOR $HOME/dotfiles/hypr/hyprland.lua"
 abbr ehl "$EDITOR $HOME/dotfiles/hypr/hyprlock.conf"

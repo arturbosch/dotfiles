@@ -192,13 +192,13 @@ function create_link --argument source --argument target
 end
 
 function links
-    for dir in $CONFS/fish/conf.d $HOME/bin \
+    for dir in $HOME/bin \
         $HOME/git/repos $HOME/git/test $HOME/git/system
         mkdir -p $dir
     end
 
     set -l sources \
-        $DOTS/fish/conf.fish \
+        $DOTS/fish/config.fish \
         $DOTS/fish/fish_plugins \
         $DOTS/foot \
         $DOTS/kitty \
@@ -214,7 +214,7 @@ function links
         $DOTS/mako \
         $DOTS/wlogout
     set -l targets \
-        $CONFS/fish/conf.d/conf.fish \
+        $CONFS/fish/config.fish \
         $CONFS/fish/fish_plugins \
         $CONFS/foot \
         $CONFS/kitty \
