@@ -61,10 +61,7 @@ function flatpak
         echo "❌ Error: Flatpak package list not found at $DOTS/packages/flatpak.txt"
         return 1
     end
-    for app in (cat $DOTS/packages/flatpak.txt)
-        echo "Installing $app ..."
-        sudo flatpak install flathub -y $app
-    end
+    sudo flatpak install flathub -y (cat $DOTS/packages/flatpak.txt)
 end
 
 function flatpak_defaults
