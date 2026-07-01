@@ -36,7 +36,7 @@ set -Ux LANG en_US.UTF-8
 set -Ux EDITOR hx
 set -Ux VISUAL hx
 set -Ux SCROLLER hx
-set -gx PAGER cat
+set -gx PAGER bat
 set -Ux BROWSER brave-browser
 
 ## Electron App Font Scaling
@@ -81,12 +81,12 @@ if grep -qi 'opensuse tumbleweed' /etc/os-release
     abbr up "sudo zypper up"
     abbr upa "sudo zypper up && flatpak update && rustup update"
     abbr un "sudo zypper remove"
-else if grep -qi 'fedora' /etc/os-release
+else if grep -qi fedora /etc/os-release
     abbr inst "sudo dnf install"
     abbr up "sudo dnf update"
     abbr upa "sudo dnf update && flatpak update && rustup update"
     abbr un "sudo dnf remove"
-else if grep -qi 'aeon' /etc/os-release
+else if grep -qi aeon /etc/os-release
     abbr inst "sudo transactional-update pkg install"
     abbr un "sudo transactional-update pkg remove"
 end
