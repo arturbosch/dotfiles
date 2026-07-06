@@ -44,6 +44,7 @@ openssl-devel
 pavucontrol
 pipewire-devel
 playerctl
+podman
 powertop
 python3-devel
 qt6ct
