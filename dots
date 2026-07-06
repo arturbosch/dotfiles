@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set DOTS ~/dotfiles
+set DOTS (realpath (dirname (status filename)))
 set CONFS ~/.config
 
 # Single source of truth for commands. Every entry must have a matching
