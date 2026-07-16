@@ -35,6 +35,7 @@ hyprpaper
 hyprshot
 jetbrains-mono-fonts-all
 jq
+kdeconnectd
 kitty
 libevdev-devel
 libinput-devel
