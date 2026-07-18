@@ -113,7 +113,7 @@
       ]
     },
     "custom/media-now-playing": {
-      "exec": "~/.config/waybar/modules/media-now-playing.sh",
+      "exec": "~/.config/waybar/modules/media-now-playing.fish",
       "escape": true,
       "tooltip": false,
       "on-click": "playerctl play-pause",
@@ -121,11 +121,11 @@
       "on-click-right": "playerctl next",
     },
     "custom/media-animation": {
-      "exec": "~/.config/waybar/modules/media-animation.sh",
+      "exec": "~/.config/waybar/modules/media-animation.fish",
       "tooltip": false,
     },
     "custom/media-time": {
-      "exec": "~/.config/waybar/modules/media-time.sh",
+      "exec": "~/.config/waybar/modules/media-time.fish",
       "escape": true,
       "interval": 1,
       "tooltip": false,

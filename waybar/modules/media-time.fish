@@ -1,3 +1,3 @@
-#!/usr/bin/env bash
+#!/usr/bin/env fish
 
 playerctl metadata --format '{{duration(position)}}/{{duration(mpris:length)}}' 2>/dev/null
