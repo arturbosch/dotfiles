@@ -17,5 +17,6 @@
     "zenMode.fullScreen": false,
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff"
-    }
+    },
+    "fish-lsp.useGlobalExecutable": true
 }

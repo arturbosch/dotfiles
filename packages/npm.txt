@@ -2,3 +2,4 @@
 @earendil-works/pi-coding-agent
 typescript
 typescript-language-server
+fish-lsp@latest
