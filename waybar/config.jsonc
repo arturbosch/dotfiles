@@ -2,7 +2,7 @@
     "layer": "top",
     "height": 32,
     "spacing": 0,
-    "modules-left": ["hyprland/workspaces", "group/media"],
+    "modules-left": ["hyprland/workspaces", "custom/media"],
     "modules-center": ["clock"],
     "modules-right": ["cpu", "memory", "network", "bluetooth", "group/volume", "battery", "tray", "custom/mako", "custom/power"],
     "hyprland/window": {
@@ -104,31 +104,15 @@
         "pulseaudio/slider"
       ]
     },
-    "group/media": {
-      "orientation": "horizontal",
-      "modules": [
-        "custom/media-animation",
-        "custom/media-now-playing",
-        "custom/media-time"
-      ]
-    },
-    "custom/media-now-playing": {
-      "exec": "~/.config/waybar/modules/media-now-playing.fish",
-      "escape": true,
-      "tooltip": false,
+    "custom/media": {
+      "exec": "~/.config/waybar/modules/media.fish",
+      "return-type": "json",
+      "escape": false,
+      "tooltip": true,
+      "interval": 1,
       "on-click": "playerctl play-pause",
       "on-click-middle": "playerctl previous",
       "on-click-right": "playerctl next",
-    },
-    "custom/media-animation": {
-      "exec": "~/.config/waybar/modules/media-animation.fish",
-      "tooltip": false,
-    },
-    "custom/media-time": {
-      "exec": "~/.config/waybar/modules/media-time.fish",
-      "escape": true,
-      "interval": 1,
-      "tooltip": false,
     },
     "tray": {
       "icon-size": 16,
