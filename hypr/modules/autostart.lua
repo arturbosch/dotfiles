@@ -12,13 +12,14 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("/usr/libexec/gsd-rfkill")                          -- gnome-settings-daemon for a working bluetooth section
   hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
   hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+  hl.exec_cmd("systemctl --user start hyprland-session.target")
   hl.exec_cmd("hyprpaper")
   hl.exec_cmd("hypridle")
   hl.exec_cmd("mako")
   hl.exec_cmd("kdeconnectd")
   hl.exec_cmd("fcitx5 -d") -- input method pinyin
   hl.exec_cmd("$HOME/.config/waybar/scripts/waybar.sh")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'")       -- for GTK3 apps
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3:dark'")  -- for GTK3 apps
   hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'") -- for GTK4 apps
   hl.exec_cmd("hyprctl setcursor Adwaita 15")
 end)
@@ -31,4 +32,5 @@ hl.on("hyprland.start", function()
 end)
 
 hl.on("hyprland.shutdown", function()
+  os.execute("systemctl --user stop hyprland-session.target && sleep 0.1")
 end)

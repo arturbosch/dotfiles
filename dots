@@ -209,7 +209,10 @@ function links
         $DOTS/fuzzel \
         $DOTS/waybar \
         $DOTS/mako \
-        $DOTS/wlogout
+        $DOTS/wlogout \
+        $DOTS/gtk-3.0 \
+        $DOTS/gtk-4.0 \
+        $DOTS/hypr/hyprland-session.target
     set -l targets \
         $CONFS/fish/config.fish \
         $CONFS/fish/fish_plugins \
@@ -225,7 +228,10 @@ function links
         $CONFS/fuzzel \
         $CONFS/waybar \
         $CONFS/mako \
-        $CONFS/wlogout
+        $CONFS/wlogout \
+        $CONFS/gtk-3.0 \
+        $CONFS/gtk-4.0 \
+        $CONFS/systemd/user/hyprland-session.target
 
     if test (count $sources) -ne (count $targets)
         echo "❌ Internal error: sources/targets count mismatch"
