@@ -35,6 +35,7 @@ hyprpaper
 hyprshot
 jetbrains-mono-fonts-all
 jq
+just
 kdeconnectd
 kitty
 libevdev-devel

@@ -33,6 +33,7 @@ hyprshot
 ibus-libpinyin
 jetbrains-mono-fonts
 jq
+just
 kitty
 libpulse-devel
 lua-language-server
