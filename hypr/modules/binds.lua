@@ -4,7 +4,7 @@
 
 -- Set programs that you use
 local terminal       = "kitty"
-local menu           = "fuzzel"
+local menu           = "$HOME/.config/fuzzel/scripts/start.sh"
 local bar            = "$HOME/dotfiles/waybar/scripts/waybar.sh"
 local barToggle      = "$HOME/dotfiles/waybar/scripts/waybar-hide.sh"
 local logout         = "wlogout"
