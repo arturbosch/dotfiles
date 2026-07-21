@@ -60,6 +60,7 @@ set -g fish_color_autosuggestion a0947c
 # Aliases && Abbreviations
 abbr e $EDITOR
 alias pi 'command pi --tools read,bash,edit,write,grep,find,ls'
+alias plan 'command pi --tools read,grep,find,ls'
 
 ## cat replacement
 if test -f /bin/bat
