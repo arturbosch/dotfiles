@@ -54,3 +54,8 @@ hl.window_rule({
     match = { class = "brave-browser" },
     workspace = "1 silent"
 })
+
+hl.window_rule({
+    match = { class = "steam" },
+    workspace = "2 silent"
+})
