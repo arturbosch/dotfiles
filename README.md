@@ -19,20 +19,11 @@ git clone https://github.com/arturbosch/dotfiles
 cd dotfiles
 
 # defaults & software
-./dots links
-./dots defaults
-./dots fisher
-./dots software
-./dots flatpak
+./dots all
 
 # Nerd Font
 wget -P ~/.local/share/fonts/ https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
 unzip -d ~/.local/share/fonts/ ~/.local/share/fonts/JetBrainsMono.zip
-
-# zscroll for waybar
-git clone https://github.com/noctuid/zscroll
-cd zscroll
-sudo python3 setup.py install
 
 # Sdkman / sdk fish plugin should install it
 curl -s "https://get.sdkman.io" | bash
