@@ -52,6 +52,16 @@ hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd(bar))
 hl.bind(mainMod .. " + COMMA", hl.dsp.exec_cmd("makoctl menu -- fuzzel --dmenu -p 'Action: '"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
+hl.bind(mainMod .. " + T", function()
+  local ws = hl.get_active_workspace()
+  if not ws then return end
+  local current = ws.tiled_layout
+  local new_layout = current == "scrolling" and "dwindle" or "scrolling"
+  hl.workspace_rule({
+    workspace = tostring(ws.id),
+    layout = new_layout,
+  })
+end)
 hl.bind(mainMod .. " + equal", hl.dsp.layout("colresize +conf"))
 hl.bind(mainMod .. " + minus", hl.dsp.layout("colresize -conf"))
 --hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
