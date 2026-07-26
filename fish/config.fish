@@ -80,12 +80,12 @@ alias lt "exa --tree"
 if grep -qi 'opensuse tumbleweed' /etc/os-release
     abbr inst "sudo zypper install"
     abbr up "sudo zypper up"
-    abbr upa "sudo zypper up && flatpak update && rustup update"
+    abbr upa "sudo zypper up && flatpak update && rustup update stable"
     abbr un "sudo zypper remove"
 else if grep -qi fedora /etc/os-release
     abbr inst "sudo dnf install"
     abbr up "sudo dnf update"
-    abbr upa "sudo dnf update && flatpak update && rustup update"
+    abbr upa "sudo dnf update && flatpak update && rustup update stable"
     abbr un "sudo dnf remove"
 else if grep -qi aeon /etc/os-release
     abbr inst "sudo transactional-update pkg install"
