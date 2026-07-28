@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set max_len 40
+set max_len 30
 set state_file /tmp/waybar-media-player
 set lock_file /tmp/waybar-media-lock
 
@@ -121,7 +121,14 @@ test -n "$length" -a -n "$position" && set time "$position/$length" || set time 
 
 set arrows_left ""
 set arrows_right ""
-if test (count $players) -gt 1
+set active_players 0
+for p in $players
+    set s (playerctl status --player $p 2>/dev/null)
+    if test "$s" = "Playing" -o "$s" = "Paused"
+        set active_players (math $active_players + 1)
+    end
+end
+if test $active_players -gt 1
     set arrows_left "‹ "
     set arrows_right " ›"
 end
