@@ -111,8 +111,8 @@
       "tooltip": true,
       "interval": 1,
       "on-click": "playerctl --player $(cat /tmp/waybar-media-player 2>/dev/null || echo 'spotify') play-pause",
-      "on-scroll-up": "~/.config/waybar/modules/media.fish prev",
-      "on-scroll-down": "~/.config/waybar/modules/media.fish next",
+      "on-click-right": "~/.config/waybar/modules/media.fish next",
+      "on-click-middle": "~/.config/waybar/modules/media.fish prev",
     },
     "tray": {
       "icon-size": 16,
