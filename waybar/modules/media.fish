@@ -73,7 +73,7 @@ else
 end
 
 # --- Get metadata ---
-set raw (playerctl metadata --player $current --format '{{status}}|{{title}} - {{artist}}|{{duration(position)}}|{{duration(mpris:length)}}' 2>/dev/null)
+set raw (playerctl metadata --player $current --format '{{status}}	{{title}} - {{artist}}	{{duration(position)}}	{{duration(mpris:length)}}' 2>/dev/null)
 
 if test -z "$raw"
     # Fallback: find any active player
@@ -82,7 +82,7 @@ if test -z "$raw"
         if test "$s" = "Playing" -o "$s" = "Paused"
             set current $p
             echo $current > $state_file
-            set raw (playerctl metadata --player $current --format '{{status}}|{{title}} - {{artist}}|{{duration(position)}}|{{duration(mpris:length)}}' 2>/dev/null)
+            set raw (playerctl metadata --player $current --format '{{status}}	{{title}} - {{artist}}	{{duration(position)}}	{{duration(mpris:length)}}' 2>/dev/null)
             break
         end
     end
@@ -91,10 +91,10 @@ end
 test -z "$raw"; and exit 0
 
 # --- Parse metadata ---
-set player_status (echo "$raw" | cut -d'|' -f1)
-set info (echo "$raw" | cut -d'|' -f2)
-set position (echo "$raw" | cut -d'|' -f3)
-set length (echo "$raw" | cut -d'|' -f4)
+set player_status (echo "$raw" | cut -f1)
+set info (echo "$raw" | cut -f2)
+set position (echo "$raw" | cut -f3)
+set length (echo "$raw" | cut -f4)
 
 switch "$player_status"
     case Playing; set icon "▶"
