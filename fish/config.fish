@@ -80,6 +80,7 @@ alias lt "exa --tree"
 ## Package Manager
 if grep -qi 'opensuse tumbleweed' /etc/os-release
     abbr inst "sudo zypper install"
+    abbr dup "sudo zypper dup"
     abbr up "sudo zypper up"
     abbr upa "sudo zypper up && flatpak update && rustup update stable"
     abbr un "sudo zypper remove"
