@@ -212,6 +212,7 @@ function links
         $DOTS/wlogout \
         $DOTS/gtk-3.0 \
         $DOTS/gtk-4.0 \
+        $DOTS/qt6ct \
         $DOTS/hypr/hyprland-session.target
     set -l targets \
         $CONFS/fish/config.fish \
@@ -231,6 +232,7 @@ function links
         $CONFS/wlogout \
         $CONFS/gtk-3.0 \
         $CONFS/gtk-4.0 \
+        $CONFS/qt6ct \
         $CONFS/systemd/user/hyprland-session.target
 
     if test (count $sources) -ne (count $targets)

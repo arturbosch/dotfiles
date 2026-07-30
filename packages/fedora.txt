@@ -1,4 +1,4 @@
-adw-gtk3-theme
+adwaita-qt6
 asciinema
 bat
 cairo-devel

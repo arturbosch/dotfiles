@@ -1,5 +1,4 @@
-adw-gtk3
-adw-gtk3-dark
+adwaita-qt6
 bat
 brightnessctl
 cairo-devel

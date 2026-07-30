@@ -1,5 +1,4 @@
 #!/bin/env sh
-gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.peripherals.touchpad click-method areas
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"

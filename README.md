@@ -7,12 +7,6 @@ sudo zypper install git fish
 # change shell to fish and re-login
 sudo chsh $USER --shell /usr/bin/fish && loginctl terminate-user $USER
 
-# zypper repos
-# adw-gtk3-theme
-sudo zypper addrepo https://download.opensuse.org/repositories/home:Dead_Mozay/openSUSE_Tumbleweed/home:Dead_Mozay.repo
-
-sudo zypper refresh
-
 # download dotfiles
 cd ~
 git clone https://github.com/arturbosch/dotfiles
