@@ -20,6 +20,7 @@ local printRegion    = "hyprshot -m region"
 local printScreen    = "hyprshot -m output"
 
 local flatpakRun     = "flatpak run "
+local authCode       = "$HOME/dotfiles/get_auth_code.fish"
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
@@ -41,6 +42,7 @@ hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd(lock))
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd(logout))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd(wmReload))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(flatpakRun .. "org.localsend.localsend_app"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(authCode))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(printScreen))
 hl.bind("PRINT", hl.dsp.exec_cmd(printRegion))
 hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd(printWindow))
