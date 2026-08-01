@@ -41,6 +41,7 @@ kitty
 libevdev-devel
 libinput-devel
 lm_sensors
+lz4
 mako
 meld
 meson
@@ -53,6 +54,7 @@ pipewire-devel
 pkgconf-pkg-config
 powertop
 pulseaudio-utils
+qemu
 ranger
 ripgrep
 rsms-inter-fonts

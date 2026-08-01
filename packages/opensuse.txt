@@ -36,6 +36,7 @@ just
 kitty
 libpulse-devel
 lua-language-server
+lz4
 mako
 meson
 nextcloud-client
@@ -47,6 +48,7 @@ playerctl
 podman
 powertop
 python3-devel
+qemu
 qt6ct
 ripgrep
 rustup
