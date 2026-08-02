@@ -65,17 +65,19 @@ function pi --wraps pi
     set -l pi_home ~/.pi
     set -l pi_bin (command -s pi)
 
-    echo "Entering sandbox for $cwd"
+    echo "Entering sandbox for $cwd" >&2
 
     bwrap \
         --ro-bind / / \
+        --bind $cwd $cwd \
         --bind $pi_home $pi_home \
+        --bind ~/.cache ~/.cache \
+        --dev-bind /dev /dev \
         --dev-bind /dev/null /dev/null \
         --dev-bind /dev/urandom /dev/urandom \
         --tmpfs /tmp \
-        --bind $cwd $cwd \
+        --overlay-src ~/.config/fish --tmp-overlay ~/.config/fish \
         --setenv PS1 "sandbox\$ " \
-        --setenv GONDOLIN_DEFAULT_IMAGE dev:latest \
         --setenv PI_YOLO 1 \
         --setenv PI_BLOCK_FILES 1 \
         sh -c "cd $cwd && exec $pi_bin --tools read,bash,edit,write,grep,find,ls,scout $argv"
