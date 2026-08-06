@@ -200,6 +200,7 @@ function links
         $DOTS/foot \
         $DOTS/kitty \
         $DOTS/helix \
+        $DOTS/bat \
         $DOTS/.gitconfig \
         $DOTS/.gitignore \
         $DOTS/.npmrc \
@@ -220,6 +221,7 @@ function links
         $CONFS/foot \
         $CONFS/kitty \
         $CONFS/helix \
+        $CONFS/bat \
         $HOME/.gitconfig \
         $HOME/.gitignore \
         $HOME/.npmrc \
