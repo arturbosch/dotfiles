@@ -59,31 +59,61 @@ set -g fish_color_autosuggestion a0947c
 
 # Aliases && Abbreviations
 abbr e $EDITOR
-# pi sandboxed via bubblewrap
-function pi --wraps pi
+# sandbox via bubblewrap
+function sandbox
     set -l cwd (pwd)
-    set -l pi_home ~/.pi
-    set -l pi_bin (command -s pi)
+    set -l pi_home ~/.pi/agent
+    set -l cmd (command -s $argv[1])
+    set -l argv $cmd $argv[2..-1]
 
     echo "Entering sandbox for $cwd" >&2
 
     bwrap \
-        --ro-bind / / \
+        # system (read-only)
+        --ro-bind /usr /usr \
+        --ro-bind /bin /bin \
+        --ro-bind /lib /lib \
+        --ro-bind /lib64 /lib64 \
+        --ro-bind /etc /etc \
+        --ro-bind /var/lib /var/lib \
+        --ro-bind /var/log /var/log \
+        --tmpfs /var/tmp \
+        # user bins/libs (read-only)
+        --ro-bind ~/.local/bin ~/.local/bin \
+        --ro-bind ~/.local/lib ~/.local/lib \
+        --ro-bind ~/.sdkman/candidates ~/.sdkman/candidates \
+        # project & tool caches (writable)
         --bind $cwd $cwd \
         --bind $pi_home $pi_home \
-        --bind ~/.cache ~/.cache \
-        --dev-bind /dev /dev \
+        --bind ~/.gradle ~/.gradle \
+        --bind ~/.mvn ~/.mvn \
+        # pi files (read-only)
+        --ro-bind $pi_home/auth.json $pi_home/auth.json \
+        --ro-bind $pi_home/guard.list $pi_home/guard.list \
+        # config overlay (read-only)
+        --ro-bind ~/.config/fish ~/.config/fish \
+        # ephemeral (tmpfs)
+        --tmpfs ~/.config \
+        --tmpfs ~/.local/share \
+        --tmpfs ~/.local/state \
+        --tmpfs ~/.cache \
+        --tmpfs /tmp \
+        # devices
         --dev-bind /dev/null /dev/null \
         --dev-bind /dev/urandom /dev/urandom \
-        --tmpfs /tmp \
-        --overlay-src ~/.config/fish --tmp-overlay ~/.config/fish \
-        --setenv PS1 "sandbox\$ " \
+        # process info
+        --proc /proc \
+        # environment
+        --setenv PATH (string join : $PATH) \
         --setenv PI_YOLO 1 \
         --setenv PI_BLOCK_FILES 1 \
-        sh -c "cd $cwd && exec $pi_bin --tools read,bash,edit,write,grep,find,ls,scout $argv"
+        # execution
+        --chdir $cwd \
+        $argv
 end
 
-abbr pic pi -c
+abbr pi 'sandbox pi --tools read,bash,edit,write,grep,find,ls,scout'
+abbr pic 'sandbox pi --tools read,bash,edit,write,grep,find,ls,scout -c'
 abbr piu 'command pi update'
 abbr pig 'GONDOLIN_DEFAULT_IMAGE=dev:latest PI_YOLO=1 PI_BLOCK_FILES=1 command pi --tools read,bash,edit,write,grep,find,ls,scout -c -e ~/.pi/gondolin'
 
@@ -156,6 +186,7 @@ abbr jj "java -jar"
 abbr jv "java -version"
 abbr gsc XDG_CURRENT_DESKTOP=Gnome gnome-control-center
 abbr logout "loginctl terminate-user $USER"
+abbr codium flatpak run com.vscodium.codium
 
 # Monitor
 abbr ddcfull sudo ddcutil setvcp 10 100
