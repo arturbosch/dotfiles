@@ -4,7 +4,7 @@
     "spacing": 0,
     "modules-left": ["hyprland/workspaces", "custom/media"],
     "modules-center": ["clock"],
-    "modules-right": ["cpu", "memory", "network", "bluetooth", "backlight", "group/volume", "battery", "tray", "custom/mako", "custom/power"],
+    "modules-right": ["cpu", "memory", "network", "bluetooth", "group/brightness", "group/volume", "battery", "tray", "custom/mako", "custom/power"],
     "hyprland/window": {
         "max-length": 50
     },
@@ -117,6 +117,18 @@
     "backlight": {
         "format": "{icon} {percent}%",
         "format-icons": ["󰃠"]
+    },
+    "backlight/slider": {
+        "min": 10,
+        "max": 100,
+        "orientation": "horizontal"
+    },
+    "group/brightness": {
+      "orientation": "horizontal",
+      "modules": [
+        "backlight",
+        "backlight/slider"
+      ]
     },
     "tray": {
       "icon-size": 16,
