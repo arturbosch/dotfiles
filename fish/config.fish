@@ -62,9 +62,33 @@ abbr e $EDITOR
 # sandbox via bubblewrap
 function sandbox
     set -l cwd (pwd)
-    set -l pi_home ~/.pi/agent
+
+    # parse --bind-extra and --ro-bind-extra flags from the front of argv
+    set -l extra_binds
+    set -l extra_ro_binds
+    while true
+        if test (count $argv) -ge 2; and test "$argv[1]" = "--bind-extra"
+            set -a extra_binds $argv[2]
+            set argv $argv[3..-1]
+        else if test (count $argv) -ge 2; and test "$argv[1]" = "--ro-bind-extra"
+            set -a extra_ro_binds $argv[2]
+            set argv $argv[3..-1]
+        else
+            break
+        end
+    end
+
     set -l cmd (command -s $argv[1])
     set -l argv $cmd $argv[2..-1]
+
+    # build extra bind args for bwrap
+    set -l extra_bind_args
+    for dir in $extra_binds
+        set -a extra_bind_args --bind $dir $dir
+    end
+    for dir in $extra_ro_binds
+        set -a extra_bind_args --ro-bind $dir $dir
+    end
 
     echo "Entering sandbox for $cwd" >&2
 
@@ -84,12 +108,9 @@ function sandbox
         --ro-bind ~/.sdkman/candidates ~/.sdkman/candidates \
         # project & tool caches (writable)
         --bind $cwd $cwd \
-        --bind $pi_home $pi_home \
         --bind ~/.gradle ~/.gradle \
         --bind ~/.mvn ~/.mvn \
-        # pi files (read-only)
-        --ro-bind $pi_home/auth.json $pi_home/auth.json \
-        --ro-bind $pi_home/guard.list $pi_home/guard.list \
+        $extra_bind_args \
         # config overlay (read-only)
         --ro-bind ~/.config/fish ~/.config/fish \
         # ephemeral (tmpfs)
@@ -112,10 +133,12 @@ function sandbox
         $argv
 end
 
-abbr pi 'sandbox pi --tools read,bash,edit,write,grep,find,ls,scout'
-abbr pic 'sandbox pi --tools read,bash,edit,write,grep,find,ls,scout -c'
+abbr pi 'sandbox --bind-extra ~/.pi/agent --ro-bind-extra ~/.pi/agent/auth.json --ro-bind-extra ~/.pi/agent/guard.list pi'
+abbr pic 'sandbox --bind-extra ~/.pi/agent --ro-bind-extra ~/.pi/agent/auth.json --ro-bind-extra ~/.pi/agent/guard.list pi -c'
 abbr piu 'command pi update'
-abbr pig 'GONDOLIN_DEFAULT_IMAGE=dev:latest PI_YOLO=1 PI_BLOCK_FILES=1 command pi --tools read,bash,edit,write,grep,find,ls,scout -c -e ~/.pi/gondolin'
+abbr pig 'GONDOLIN_DEFAULT_IMAGE=dev:latest PI_YOLO=1 PI_BLOCK_FILES=1 command pi -c -e ~/.pi/gondolin'
+abbr qwen 'sandbox --bind-extra ~/.qwen qwen'
+abbr mimo 'sandbox --bind-extra ~/.config/mimocode mimo'
 
 ## cat replacement
 if test -f /bin/bat
