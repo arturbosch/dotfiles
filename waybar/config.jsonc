@@ -33,6 +33,7 @@
         },
         "interval": 60,
         "format": "{icon} {capacity}%",
+        "tooltip-format": "{time} • {power:.2f}W",
         "format-icons": {
             "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
             "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
