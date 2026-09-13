@@ -67,10 +67,10 @@ function sandbox
     set -l extra_binds
     set -l extra_ro_binds
     while true
-        if test (count $argv) -ge 2; and test "$argv[1]" = "--bind-extra"
+        if test (count $argv) -ge 2; and test "$argv[1]" = --bind-extra
             set -a extra_binds $argv[2]
             set argv $argv[3..-1]
-        else if test (count $argv) -ge 2; and test "$argv[1]" = "--ro-bind-extra"
+        else if test (count $argv) -ge 2; and test "$argv[1]" = --ro-bind-extra
             set -a extra_ro_binds $argv[2]
             set argv $argv[3..-1]
         else
@@ -106,6 +106,8 @@ function sandbox
         --ro-bind ~/.local/bin ~/.local/bin \
         --ro-bind ~/.local/lib ~/.local/lib \
         --ro-bind ~/.sdkman/candidates ~/.sdkman/candidates \
+        # sharing dir
+        --bind ~/share ~/share \
         # project & tool caches (writable)
         --bind $cwd $cwd \
         --bind ~/.gradle ~/.gradle \

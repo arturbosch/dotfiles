@@ -189,7 +189,7 @@ function create_link --argument source --argument target
 end
 
 function links
-    for dir in $HOME/bin \
+    for dir in $HOME/bin $HOME/share \
         $HOME/git/repos $HOME/git/test $HOME/git/system
         mkdir -p $dir
     end
