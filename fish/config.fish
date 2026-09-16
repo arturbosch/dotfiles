@@ -112,7 +112,6 @@ function sandbox
         --bind $cwd $cwd \
         --bind ~/.gradle ~/.gradle \
         --bind ~/.mvn ~/.mvn \
-        $extra_bind_args \
         # ephemeral (tmpfs)
         --tmpfs ~/.config \
         --tmpfs ~/.local/share \
@@ -141,6 +140,8 @@ function sandbox
         --ro-bind ~/.ssh/config ~/.ssh/config \
         --setenv SSH_AUTH_SOCK "$SSH_AUTH_SOCK" \
         --tmpfs /etc/ssh/ssh_config.d \
+        # extra binds
+        $extra_bind_args \
         # execution
         --chdir $cwd \
         $argv
