@@ -81,13 +81,15 @@ function sandbox
     set -l cmd (command -s $argv[1])
     set -l argv $cmd $argv[2..-1]
 
-    # build extra bind args for bwrap
+    # build extra bind args for bwrap; a spec is SRC or SRC:DEST, missing SRC is skipped
     set -l extra_bind_args
-    for dir in $extra_binds
-        set -a extra_bind_args --bind $dir $dir
+    for spec in $extra_binds
+        set -l paths (string split -m 1 : $spec)
+        set -a extra_bind_args --bind-try $paths[1] $paths[-1]
     end
-    for dir in $extra_ro_binds
-        set -a extra_bind_args --ro-bind $dir $dir
+    for spec in $extra_ro_binds
+        set -l paths (string split -m 1 : $spec)
+        set -a extra_bind_args --ro-bind-try $paths[1] $paths[-1]
     end
 
     echo "Entering sandbox for $cwd" >&2
