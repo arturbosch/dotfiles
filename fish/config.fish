@@ -121,6 +121,8 @@ function sandbox
         --tmpfs ~/.local/state \
         --tmpfs ~/.cache \
         --tmpfs /tmp \
+        # DNS (target of the /etc/resolv.conf symlink)
+        --ro-bind /run/systemd/resolve /run/systemd/resolve \
         # devices
         --dev-bind /dev/null /dev/null \
         --dev-bind /dev/urandom /dev/urandom \
@@ -128,8 +130,17 @@ function sandbox
         --proc /proc \
         # environment
         --setenv PATH (string join : $PATH) \
+        --setenv HOME "$HOME" \
+        --setenv USER "$USER" \
         --setenv PI_YOLO 1 \
         --setenv PI_BLOCK_FILES 1 \
+        # git
+        --ro-bind "$(dirname $SSH_AUTH_SOCK)" "$(dirname $SSH_AUTH_SOCK)" \
+        --ro-bind ~/.gitconfig ~/.gitconfig \
+        --ro-bind ~/.ssh/known_hosts ~/.ssh/known_hosts \
+        --ro-bind ~/.ssh/config ~/.ssh/config \
+        --setenv SSH_AUTH_SOCK "$SSH_AUTH_SOCK" \
+        --tmpfs /etc/ssh/ssh_config.d \
         # execution
         --chdir $cwd \
         $argv
