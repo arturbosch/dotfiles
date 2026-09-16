@@ -147,6 +147,12 @@ function sandbox
         $argv
 end
 
+set -g sandbox_claude_binds \
+    --ro-bind-extra ~/.local/share/claude \
+    --bind-extra ~/.claude \
+    --bind-extra ~/.claude.json
+
+abbr claude 'sandbox $sandbox_claude_binds command claude --permission-mode auto'
 abbr pi 'sandbox --bind-extra ~/.pi/agent --ro-bind-extra ~/.pi/agent/auth.json --ro-bind-extra ~/.pi/agent/guard.list pi'
 abbr pic 'sandbox --bind-extra ~/.pi/agent --ro-bind-extra ~/.pi/agent/auth.json --ro-bind-extra ~/.pi/agent/guard.list pi -c'
 abbr piu 'command pi update'
