@@ -113,14 +113,14 @@ function sandbox
         --bind ~/.gradle ~/.gradle \
         --bind ~/.mvn ~/.mvn \
         $extra_bind_args \
-        # config overlay (read-only)
-        --ro-bind ~/.config/fish ~/.config/fish \
         # ephemeral (tmpfs)
         --tmpfs ~/.config \
         --tmpfs ~/.local/share \
         --tmpfs ~/.local/state \
         --tmpfs ~/.cache \
         --tmpfs /tmp \
+        ## config overlay
+        --ro-bind ~/.config/fish ~/.config/fish \
         # DNS (target of the /etc/resolv.conf symlink)
         --ro-bind /run/systemd/resolve /run/systemd/resolve \
         # devices
