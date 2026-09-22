@@ -122,8 +122,8 @@ function sandbox
         --tmpfs /tmp \
         ## config overlay
         --ro-bind ~/.config/fish ~/.config/fish \
-        # DNS (target of the /etc/resolv.conf symlink)
-        --ro-bind /run/systemd/resolve /run/systemd/resolve \
+        # DNS (target of the /etc/resolv.conf symlink on Fedora)
+        --ro-bind-try /run/systemd/resolve /run/systemd/resolve \
         # devices
         --dev-bind /dev/null /dev/null \
         --dev-bind /dev/urandom /dev/urandom \
@@ -141,7 +141,7 @@ function sandbox
         --ro-bind ~/.ssh/known_hosts ~/.ssh/known_hosts \
         --ro-bind ~/.ssh/config ~/.ssh/config \
         --setenv SSH_AUTH_SOCK "$SSH_AUTH_SOCK" \
-        --tmpfs /etc/ssh/ssh_config.d \
+        #--tmpfs /etc/ssh/ssh_config.d \
         # extra binds
         $extra_bind_args \
         # execution
