@@ -114,6 +114,8 @@ function sandbox
         --bind $cwd $cwd \
         --bind ~/.gradle ~/.gradle \
         --bind ~/.mvn ~/.mvn \
+        ## dotfiles is always okay as reference
+        --ro-bind ~/dotfiles ~/dotfiles \
         # ephemeral (tmpfs)
         --tmpfs ~/.config \
         --tmpfs ~/.local/share \
@@ -133,8 +135,8 @@ function sandbox
         --setenv PATH (string join : $PATH) \
         --setenv HOME "$HOME" \
         --setenv USER "$USER" \
-        --setenv PI_YOLO 1 \
-        --setenv PI_BLOCK_FILES 1 \
+        --setenv PI_AUTO true \
+        --setenv PI_GUARDS block \
         # git
         --ro-bind "$(dirname $SSH_AUTH_SOCK)" "$(dirname $SSH_AUTH_SOCK)" \
         --ro-bind ~/.gitconfig ~/.gitconfig \
@@ -158,7 +160,7 @@ abbr claude 'sandbox $sandbox_claude_binds command claude --permission-mode auto
 abbr pi 'sandbox --bind-extra ~/.pi/agent --ro-bind-extra ~/.pi/agent/auth.json --ro-bind-extra ~/.pi/agent/guard.list pi'
 abbr pic 'sandbox --bind-extra ~/.pi/agent --ro-bind-extra ~/.pi/agent/auth.json --ro-bind-extra ~/.pi/agent/guard.list pi -c'
 abbr piu 'command pi update'
-abbr pig 'GONDOLIN_DEFAULT_IMAGE=dev:latest PI_YOLO=1 PI_BLOCK_FILES=1 command pi -c -e ~/.pi/gondolin'
+abbr pig 'GONDOLIN_DEFAULT_IMAGE=dev:latest PI_AUTO=true PI_GUARDS=block command pi -c -e ~/.pi/gondolin'
 abbr qwen 'sandbox --bind-extra ~/.qwen qwen'
 abbr mimo 'sandbox --bind-extra ~/.config/mimocode mimo'
 
