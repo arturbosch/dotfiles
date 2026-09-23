@@ -92,6 +92,12 @@ function sandbox
         set -a extra_bind_args --ro-bind-try $paths[1] $paths[-1]
     end
 
+    # wayland: expose only the display socket (wl-copy/wl-paste), skipped if none
+    set -l wayland_args
+    if test -n "$WAYLAND_DISPLAY"; and test -S "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
+        set wayland_args --ro-bind "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
+    end
+
     echo "Entering sandbox for $cwd" >&2
 
     bwrap \
@@ -144,6 +150,8 @@ function sandbox
         --ro-bind ~/.ssh/config ~/.ssh/config \
         --setenv SSH_AUTH_SOCK "$SSH_AUTH_SOCK" \
         #--tmpfs /etc/ssh/ssh_config.d \
+        # wayland clipboard
+        $wayland_args \
         # extra binds
         $extra_bind_args \
         # execution
