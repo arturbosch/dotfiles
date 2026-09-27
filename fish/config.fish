@@ -31,7 +31,6 @@ fish_add_path \
     $HOME/.nimble/bin
 
 # Vars
-set -gx TERM foot
 set -Ux LANG en_US.UTF-8
 set -Ux EDITOR hx
 set -Ux VISUAL hx
