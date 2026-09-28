@@ -196,6 +196,7 @@ function links
 
     set -l sources \
         $DOTS/fish/config.fish \
+        $DOTS/fish/sandbox.fish \
         $DOTS/fish/fish_plugins \
         $DOTS/foot \
         $DOTS/kitty \
@@ -217,6 +218,7 @@ function links
         $DOTS/hypr/hyprland-session.target
     set -l targets \
         $CONFS/fish/config.fish \
+        $CONFS/fish/conf.d/sandbox.fish \
         $CONFS/fish/fish_plugins \
         $CONFS/foot \
         $CONFS/kitty \

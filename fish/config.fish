@@ -58,118 +58,6 @@ set -g fish_color_autosuggestion a0947c
 
 # Aliases && Abbreviations
 abbr e $EDITOR
-# sandbox via bubblewrap
-function sandbox
-    set -l cwd (pwd)
-
-    # parse --bind-extra and --ro-bind-extra flags from the front of argv
-    set -l extra_binds
-    set -l extra_ro_binds
-    while true
-        if test (count $argv) -ge 2; and test "$argv[1]" = --bind-extra
-            set -a extra_binds $argv[2]
-            set argv $argv[3..-1]
-        else if test (count $argv) -ge 2; and test "$argv[1]" = --ro-bind-extra
-            set -a extra_ro_binds $argv[2]
-            set argv $argv[3..-1]
-        else
-            break
-        end
-    end
-
-    set -l cmd (command -s $argv[1])
-    set -l argv $cmd $argv[2..-1]
-
-    # build extra bind args for bwrap; a spec is SRC or SRC:DEST, missing SRC is skipped
-    set -l extra_bind_args
-    for spec in $extra_binds
-        set -l paths (string split -m 1 : $spec)
-        set -a extra_bind_args --bind-try $paths[1] $paths[-1]
-    end
-    for spec in $extra_ro_binds
-        set -l paths (string split -m 1 : $spec)
-        set -a extra_bind_args --ro-bind-try $paths[1] $paths[-1]
-    end
-
-    # wayland: expose only the display socket (wl-copy/wl-paste), skipped if none
-    set -l wayland_args
-    if test -n "$WAYLAND_DISPLAY"; and test -S "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
-        set wayland_args --ro-bind "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY"
-    end
-
-    echo "Entering sandbox for $cwd" >&2
-
-    bwrap \
-        # system (read-only)
-        --ro-bind /usr /usr \
-        --ro-bind /bin /bin \
-        --ro-bind /lib /lib \
-        --ro-bind /lib64 /lib64 \
-        --ro-bind /etc /etc \
-        --ro-bind /var/lib /var/lib \
-        --ro-bind /var/log /var/log \
-        --tmpfs /var/tmp \
-        # user bins/libs (read-only)
-        --ro-bind ~/.local/bin ~/.local/bin \
-        --ro-bind ~/.local/lib ~/.local/lib \
-        --ro-bind ~/.sdkman/candidates ~/.sdkman/candidates \
-        # sharing dir
-        --bind ~/share ~/share \
-        # project & tool caches (writable)
-        --bind $cwd $cwd \
-        --bind ~/.gradle ~/.gradle \
-        --bind ~/.mvn ~/.mvn \
-        ## dotfiles is always okay as reference
-        --ro-bind ~/dotfiles ~/dotfiles \
-        # ephemeral (tmpfs)
-        --tmpfs ~/.config \
-        --tmpfs ~/.local/share \
-        --tmpfs ~/.local/state \
-        --tmpfs ~/.cache \
-        --tmpfs /tmp \
-        ## config overlay
-        --ro-bind ~/.config/fish ~/.config/fish \
-        # DNS (target of the /etc/resolv.conf symlink on Fedora)
-        --ro-bind-try /run/systemd/resolve /run/systemd/resolve \
-        # devices
-        --dev-bind /dev/null /dev/null \
-        --dev-bind /dev/urandom /dev/urandom \
-        # process info
-        --proc /proc \
-        # environment
-        --setenv PATH (string join : $PATH) \
-        --setenv HOME "$HOME" \
-        --setenv USER "$USER" \
-        --setenv PI_AUTO true \
-        --setenv PI_GUARDS block \
-        # git
-        --ro-bind "$(dirname $SSH_AUTH_SOCK)" "$(dirname $SSH_AUTH_SOCK)" \
-        --ro-bind ~/.gitconfig ~/.gitconfig \
-        --ro-bind ~/.ssh/known_hosts ~/.ssh/known_hosts \
-        --ro-bind ~/.ssh/config ~/.ssh/config \
-        --setenv SSH_AUTH_SOCK "$SSH_AUTH_SOCK" \
-        #--tmpfs /etc/ssh/ssh_config.d \
-        # wayland clipboard
-        $wayland_args \
-        # extra binds
-        $extra_bind_args \
-        # execution
-        --chdir $cwd \
-        $argv
-end
-
-set -g sandbox_claude_binds \
-    --ro-bind-extra ~/.local/share/claude \
-    --bind-extra ~/.claude \
-    --bind-extra ~/.claude.json
-
-abbr claude 'sandbox $sandbox_claude_binds command claude --permission-mode auto'
-abbr pi 'sandbox --bind-extra ~/.pi/agent --ro-bind-extra ~/.pi/agent/auth.json --ro-bind-extra ~/.pi/agent/guard.list pi'
-abbr pic 'sandbox --bind-extra ~/.pi/agent --ro-bind-extra ~/.pi/agent/auth.json --ro-bind-extra ~/.pi/agent/guard.list pi -c'
-abbr piu 'command pi update'
-abbr pig 'GONDOLIN_DEFAULT_IMAGE=dev:latest PI_AUTO=true PI_GUARDS=block command pi -c -e ~/.pi/gondolin'
-abbr qwen 'sandbox --bind-extra ~/.qwen qwen'
-abbr mimo 'sandbox --bind-extra ~/.config/mimocode mimo'
 
 ## cat replacement
 if test -f /bin/bat
@@ -185,19 +73,20 @@ alias ls exa
 alias ll "exa --long --git -h"
 alias lt "exa --tree"
 
-## Package Manager
-if grep -qi 'opensuse tumbleweed' /etc/os-release
+## Package Manager (read os-release once into a local, then zero-fork matching)
+set -l os_release (string collect < /etc/os-release)
+if string match -qi '*opensuse tumbleweed*' $os_release
     abbr inst "sudo zypper install"
     abbr dup "sudo zypper dup"
     abbr up "sudo zypper up"
     abbr upa "sudo zypper up && flatpak update && rustup update stable"
     abbr un "sudo zypper remove"
-else if grep -qi fedora /etc/os-release
+else if string match -qi '*fedora*' $os_release
     abbr inst "sudo dnf install"
     abbr up "sudo dnf update"
     abbr upa "sudo dnf update && flatpak update && rustup update stable"
     abbr un "sudo dnf remove"
-else if grep -qi aeon /etc/os-release
+else if string match -qi '*aeon*' $os_release
     abbr inst "sudo transactional-update pkg install"
     abbr un "sudo transactional-update pkg remove"
 end
