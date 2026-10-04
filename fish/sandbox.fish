@@ -122,12 +122,17 @@ abbr claude 'sandbox $sandbox_claude_binds command claude --permission-mode auto
 function pi
     # must exist on the host before bwrap binds it
     touch /tmp/pi-subagents.log 2>/dev/null
-    sandbox \
+    set -l pi_binds \
         --bind-extra /tmp/pi-subagents.log:/tmp/pi-subagents.log \
         --bind-extra ~/.pi/agent \
         --ro-bind-extra ~/.pi/agent/auth.json \
-        --ro-bind-extra ~/.pi/agent/guard.list \
-        pi $argv
+        --ro-bind-extra ~/.pi/agent/guard.list
+    # kitty remote-control socket: /tmp is a tmpfs inside the sandbox, so bind the
+    # socket explicitly — pi's subagents mux detection talks to the host kitty through it
+    if set -q KITTY_LISTEN_ON; and string match -q 'unix:*' -- "$KITTY_LISTEN_ON"
+        set -a pi_binds --bind-extra (string replace 'unix:' '' "$KITTY_LISTEN_ON")
+    end
+    sandbox $pi_binds pi $argv
 end
 abbr pic 'pi -c'
 abbr piu 'command pi update'
