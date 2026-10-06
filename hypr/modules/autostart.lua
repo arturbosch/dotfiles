@@ -18,7 +18,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("mako")
   hl.exec_cmd("kdeconnectd")
   hl.exec_cmd("fcitx5 -d")                                                            -- input method pinyin
-  hl.exec_cmd("$HOME/.config/waybar/scripts/waybar.sh")
+  hl.exec_cmd("noctalia")
   hl.exec_cmd("hyprctl setcursor Adwaita 15")
   hl.exec_cmd("/usr/libexec/polkit-gnome-authentication-agent-1") -- gnome authentication
   hl.exec_cmd("/usr/libexec/gsd-rfkill")                          -- gnome-settings-daemon for a working bluetooth section

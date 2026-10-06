@@ -12,6 +12,9 @@ cd ~
 git clone https://github.com/arturbosch/dotfiles
 cd dotfiles
 
+# extra repo: noctalia shell (openSUSE Slowroll)
+sudo zypper addrepo --refresh --name noctalia-v5 https://download.opensuse.org/repositories/home:neifua:Noctalia/openSUSE_Slowroll/home:neifua:Noctalia.repo
+
 # defaults & software
 ./dots all
 

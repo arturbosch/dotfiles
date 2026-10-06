@@ -4,9 +4,10 @@
 
 -- Set programs that you use
 local terminal       = "kitty"
-local menu           = "fuzzel"
-local bar            = "$HOME/dotfiles/waybar/scripts/waybar.sh"
-local barToggle      = "$HOME/dotfiles/waybar/scripts/waybar-hide.sh"
+local menu           = "noctalia msg panel-toggle launcher"
+local fuzzelMenu     = "fuzzel"
+local bar            = "noctalia msg config-reload"
+local barToggle      = "noctalia msg bar-toggle"
 local logout         = "wlogout"
 local lock           = "hyprlock"
 local bluetooth      = "kitty -e bluetui"
@@ -33,6 +34,7 @@ local mainMod        = "SUPER" -- Sets "Windows" key as main modifier
 -- Open Programs
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd(fuzzelMenu))
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(wifi))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(bluetooth))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(soundManager))

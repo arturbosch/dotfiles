@@ -46,6 +46,7 @@ mako
 meld
 meson
 nextcloud-client
+noctalia
 nodejs
 openssl
 pavucontrol

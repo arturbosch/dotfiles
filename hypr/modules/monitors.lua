@@ -74,17 +74,12 @@ local function debounced(func, timeout)
   end, { timeout = timeout or 1000, type = "oneshot" })
 end
 
-local function reloadBar()
-  hl.exec_cmd("~/dotfiles/waybar/scripts/waybar.sh")
-end
-
 local function handleDocking()
   debounced(function()
     if hasInternal() and hasExternal() then
       hl.notification.create({ text = "docked", timeout = 15000, icon = "ok" })
       hl.monitor({ output = internal.output, disabled = true })
       set4kCursorSize()
-      reloadBar()
     elseif not hasExternal() then
       -- XXX: Probably a hyprland bug in 0.55.x.
       -- Turning internal monitor on via event does not work.
@@ -92,7 +87,6 @@ local function handleDocking()
       -- hl.monitor(internal)
       hl.notification.create({ text = "undocked", timeout = 15000, icon = "ok" })
       hl.exec_cmd("hyprctl reload")
-      reloadBar()
     end
   end, 1000)
 end

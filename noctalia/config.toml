@@ -1,0 +1,41 @@
+# Noctalia shell — https://docs.noctalia.dev/noctalia/configuration/
+# Every *.toml in this folder is merged and hot-reloaded on change.
+
+[theme]
+source = "custom"
+custom_palette = "Sandstone" # palettes/Sandstone.json — matches foot/kitty/waybar/mako
+
+[shell]
+font_family = "Adwaita Sans"
+
+[accessibility]
+ui_scale = 1.1 # slightly larger text in launcher, control center, etc.
+
+[bar.default]
+margin_ends = 0 # full-width status bar (default insets both ends by 100px)
+scale = 1.2 # content scale: icons, spacing, and workspace pills +20%
+font_scale = 0.9 # text only: 1.2 × 0.9 ≈ 1.08 net
+widget_spacing = 12 # gap between modules (default 6)
+start = [ "launcher", "wallpaper", "workspaces", "media" ]
+end = [ "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session" ]
+radius = 0 # square corners, no rounding
+radius_top_left = 0
+radius_top_right = 0
+radius_bottom_left = 0
+radius_bottom_right = 0
+concave_edge_corners = false
+
+# Bar text is scale 1.2 × font_scale 0.9 ≈ 1.08
+[widget.clock]
+format = "󰥔  {:%a, %d. %b %I:%M %p}" # same as waybar; doubled space (Adwaita space is only 5px vs 10px in waybar's mono font)
+tooltip_format = "{:%A, %B %d, %Y}" # full date on hover (waybar showed a calendar)
+font_scale = 1.1 # date/time module ≈ 1.19 net — slightly bigger than other labels
+
+# Workspace pills — warm sandstone instead of the palette's teal secondary
+[widget.workspaces]
+occupied_color = "#fffcf0" # much lighter sandstone (warm paper): workspace has windows
+empty_color    = "#3f3f46" # quiet zinc: empty (dim, so occupied/active pop)
+
+# Default wallpaper — same source as hyprpaper
+[wallpaper.default]
+path = "~/Nextcloud/wallpapers/current"
