@@ -69,6 +69,6 @@
 [column]
 	ui = auto
 [branch]
-	sort = -comitterdate
+	sort = -committerdate
 [tag]
 	sort = version:refname
