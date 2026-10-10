@@ -100,7 +100,10 @@ function sandbox
         --ro-bind ~/.ssh/known_hosts ~/.ssh/known_hosts \
         --ro-bind ~/.ssh/config ~/.ssh/config \
         --setenv SSH_AUTH_SOCK "$SSH_AUTH_SOCK" \
-        #--tmpfs /etc/ssh/ssh_config.d \
+        # ssh: the sandbox uid map shows root-owned files as nobody, so ssh rejects
+        # the system config ("Bad owner or permissions") — skip it with -F; keys
+        # still come from the agent, known_hosts from the bind above
+        --setenv GIT_SSH_COMMAND 'ssh -F /dev/null' \
         # wayland clipboard
         $wayland_args \
         # extra binds
