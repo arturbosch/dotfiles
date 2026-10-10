@@ -37,5 +37,6 @@ occupied_color = "#fffcf0" # much lighter sandstone (warm paper): workspace has 
 empty_color    = "#3f3f46" # quiet zinc: empty (dim, so occupied/active pop)
 
 # Default wallpaper — same source as hyprpaper
-[wallpaper.default]
+[wallpaper]
 path = "~/Nextcloud/wallpapers/current"
+directory = "~/Nextcloud/wallpapers"
