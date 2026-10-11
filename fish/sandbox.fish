@@ -60,8 +60,8 @@ function sandbox
         --bind ~/share ~/share \
         # project & tool caches (writable)
         --bind $cwd $cwd \
-        --bind ~/.gradle ~/.gradle \
-        --bind ~/.mvn ~/.mvn \
+        --bind-try ~/.gradle ~/.gradle \
+        --bind-try ~/.mvn ~/.mvn \
         ## dotfiles is always okay as reference
         --bind ~/dotfiles ~/dotfiles \
         # ephemeral (tmpfs)
