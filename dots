@@ -188,6 +188,30 @@ function create_link --argument source --argument target
     echo "🔗 Linked: $target -> $source"
 end
 
+# Flatpaks like Steam rewrite ~/.config/gtk-* directly and misbehave when
+# those paths are symlinks into this repo, so gtk dirs are copied instead.
+function create_copy --argument source --argument target
+    if test -z "$source"; or test -z "$target"
+        echo "⚠️ Error: create_copy requires both source and target."
+        return 1
+    end
+
+    if not test -e $source
+        echo "❌ Error: Source '$source' does not exist. Skipping copy."
+        return 1
+    end
+
+    # Same rule as create_link: never rm -rf through a symlink at $target.
+    if test -L $target
+        rm $target
+    else if test -e $target
+        rm -rf $target
+    end
+
+    cp -r $source $target
+    echo "📋 Copied: $source -> $target"
+end
+
 function links
     for dir in $HOME/bin $HOME/share \
         $HOME/git/repos $HOME/git/test $HOME/git/system
@@ -212,8 +236,6 @@ function links
         $DOTS/waybar \
         $DOTS/mako \
         $DOTS/wlogout \
-        $DOTS/gtk-3.0 \
-        $DOTS/gtk-4.0 \
         $DOTS/qt6ct \
         $DOTS/noctalia \
         $DOTS/hypr/hyprland-session.target
@@ -235,8 +257,6 @@ function links
         $CONFS/waybar \
         $CONFS/mako \
         $CONFS/wlogout \
-        $CONFS/gtk-3.0 \
-        $CONFS/gtk-4.0 \
         $CONFS/qt6ct \
         $CONFS/noctalia \
         $CONFS/systemd/user/hyprland-session.target
@@ -246,9 +266,24 @@ function links
         return 1
     end
 
+    set -l copy_sources \
+        $DOTS/gtk-3.0 \
+        $DOTS/gtk-4.0
+    set -l copy_targets \
+        $CONFS/gtk-3.0 \
+        $CONFS/gtk-4.0
+
+    if test (count $copy_sources) -ne (count $copy_targets)
+        echo "❌ Internal error: copy_sources/copy_targets count mismatch"
+        return 1
+    end
+
     set -l failed 0
     for i in (seq (count $sources))
         create_link $sources[$i] $targets[$i]; or set failed 1
+    end
+    for i in (seq (count $copy_sources))
+        create_copy $copy_sources[$i] $copy_targets[$i]; or set failed 1
     end
     return $failed
 end
