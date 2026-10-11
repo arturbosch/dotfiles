@@ -17,6 +17,7 @@ scale = 1.2 # content scale: icons, spacing, and workspace pills +20%
 font_scale = 0.9 # text only: 1.2 × 0.9 ≈ 1.08 net
 widget_spacing = 12 # gap between modules (default 6)
 start = [ "launcher", "wallpaper", "workspaces", "media" ]
+center = [ "clock", "weather" ] # temperature right of the date/time (clock format has no temp token)
 end = [ "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session" ]
 radius = 0 # square corners, no rounding
 radius_top_left = 0
@@ -31,10 +32,20 @@ format = "󰥔  {:%a, %d. %b %I:%M %p}" # same as waybar; doubled space (Adwaita
 tooltip_format = "{:%A, %B %d, %Y}" # full date on hover (waybar showed a calendar)
 font_scale = 1.1 # date/time module ≈ 1.19 net — slightly bigger than other labels
 
+# Temperature beside the clock — glyph + temp only (no condition text, keeps the center compact)
+[widget.weather]
+show_temperature = true
+show_condition = false
+
 # Workspace pills — warm sandstone instead of the palette's teal secondary
 [widget.workspaces]
 occupied_color = "#fffcf0" # much lighter sandstone (warm paper): workspace has windows
 empty_color    = "#3f3f46" # quiet zinc: empty (dim, so occupied/active pop)
+
+# Weather / night light / theme-auto position (auto_locate is off by default,
+# so this address is geocoded — resolves to Düsseldorf, Germany)
+[location]
+address = "Düsseldorf"
 
 # Default wallpaper — same source as hyprpaper
 [wallpaper]
