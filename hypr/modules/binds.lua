@@ -23,6 +23,17 @@ local otpCmd         = "$HOME/.local/bin/otp --conf $HOME/Nextcloud/Backups/OTP/
 local otp            = otpCmd .. " list | fuzzel --dmenu -p 'OTP: ' | xargs -I{} " .. otpCmd .. " get {} | wl-copy"
 local flatpakRun     = "flatpak run "
 local authCode       = "$HOME/dotfiles/get_auth_code.fish"
+-- Laptop multimedia keys (see KEYBINDINGS below)
+local volUp          = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+local volDown        = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+local volMute        = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+local micMute        = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+local brtUp          = "brightnessctl -e4 -n2 set 5%+"
+local brtDown        = "brightnessctl -e4 -n2 set 5%-"
+local mediaNext      = "playerctl next"
+local mediaToggle    = "playerctl play-pause"
+local mediaPrev      = "playerctl previous"
+local notifyMenu     = "makoctl menu -- fuzzel --dmenu -p 'Action: '"
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
@@ -55,7 +66,7 @@ hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd(printRegion))
 hl.bind(mainMod .. " + CONTROL + SHIFT + P", hl.dsp.exec_cmd(printWindow))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(barToggle))
 hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd(bar))
-hl.bind(mainMod .. " + COMMA", hl.dsp.exec_cmd("makoctl menu -- fuzzel --dmenu -p 'Action: '"))
+hl.bind(mainMod .. " + COMMA", hl.dsp.exec_cmd(notifyMenu))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + T", function()
@@ -103,19 +114,19 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(volUp),
   { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(volDown),
   { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(volMute),
   { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(micMute),
   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(brtUp), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(brtDown), { locked = true, repeating = true })
 
 -- Requires playerctl
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd(mediaNext), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd(mediaToggle), { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(mediaToggle), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(mediaPrev), { locked = true })
