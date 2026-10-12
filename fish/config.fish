@@ -92,7 +92,7 @@ else if string match -qi '*aeon*' $os_release
 end
 
 ## hyprland
-abbr wallpaper hyprctl hyprpaper wallpaper ,~/Nextcloud/wallpapers/current
+abbr wallpaper noctalia msg wallpaper-set ~/Nextcloud/wallpapers/current
 
 ## timewarrior shortcuts
 abbr tw timew

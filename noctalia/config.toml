@@ -47,7 +47,29 @@ empty_color    = "#3f3f46" # quiet zinc: empty (dim, so occupied/active pop)
 [location]
 address = "Düsseldorf"
 
-# Default wallpaper — same source as hyprpaper
+# Wallpaper — replaces hyprpaper; same source as the old hyprpaper.conf
 [wallpaper]
+directory = "~/Nextcloud/wallpapers" # browsed by the wallpaper picker panel
+
+[wallpaper.default]
 path = "~/Nextcloud/wallpapers/current"
-directory = "~/Nextcloud/wallpapers"
+
+# Idle — replaces hypridle (port of hypr/hypridle.conf): warn → lock → screen off.
+# Lock on lid-close/suspend is built into the lock screen
+# (lockscreen.lock_before_suspend = true), so hypridle's before_sleep_cmd /
+# after_sleep_cmd / inhibit_sleep have native equivalents.
+[idle.behavior.warn]
+timeout = 1440 # 24 min — hypridle's warning listener
+action = "command"
+enabled = true
+command = "notify-send -u critical -t 1000 'Idle' 'Screen locks in 60 seconds — press any key to cancel'"
+
+[idle.behavior.lock]
+timeout = 1500 # 25 min — was: loginctl lock-session
+action = "lock"
+enabled = true
+
+[idle.behavior.screen-off]
+timeout = 2700 # 45 min — was: hyprctl dispatch dpms off
+action = "screen_off"
+enabled = true

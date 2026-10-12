@@ -13,11 +13,10 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
   hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
   hl.exec_cmd("systemctl --user start hyprland-session.target")
-  hl.exec_cmd("hyprpaper")
-  hl.exec_cmd("hypridle")
-  hl.exec_cmd("mako")
   hl.exec_cmd("kdeconnectd")
   hl.exec_cmd("fcitx5 -d")                                                            -- input method pinyin
+  -- hyprpaper, hypridle and mako retired: noctalia owns wallpaper, idle/lock
+  -- and notifications (see noctalia/config.toml)
   hl.exec_cmd("noctalia")
   hl.exec_cmd("hyprctl setcursor Adwaita 15")
   hl.exec_cmd("/usr/libexec/polkit-gnome-authentication-agent-1") -- gnome authentication
