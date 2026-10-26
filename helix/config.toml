@@ -1,4 +1,4 @@
-theme = "fleet_dark"
+theme = "sandstone" # themes/sandstone.toml — mirrors bat/foot/kitty
 
 [editor]
 true-color = true

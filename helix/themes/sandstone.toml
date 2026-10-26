@@ -1,0 +1,135 @@
+# Sandstone — mirrors ~/dotfiles/bat/themes/Sandstone.tmTheme,
+# ~/dotfiles/foot/foot.ini [colors-dark] and ~/dotfiles/kitty/sandstone-theme.conf.
+# Syntax scopes follow the bat tmTheme so previews and the editor agree.
+
+# Syntax
+
+"comment" = { fg = "comment", modifiers = ["italic"] }
+
+"string" = "green"
+"string.regexp" = "green_hi"
+"string.special" = "teal"
+
+"constant" = "red"
+"constant.numeric" = "red"
+"constant.character.escape" = "green_hi"
+
+"keyword" = "magenta"
+"operator" = "text" # matches bat tmTheme (keyword.operator/punctuation = #cecdc3)
+"punctuation" = "text"
+
+"function" = "teal"
+"function.builtin" = "cyan"
+"function.macro" = "teal"
+"function.method" = "teal"
+
+"constructor" = "sand"
+"type" = "sand"
+"type.parameter" = "sand_hi"
+
+"variable" = "cyan"
+"variable.builtin" = "red_hi"
+"variable.parameter" = "cyan"
+"variable.other.member" = "cyan"
+
+"label" = "red_hi"
+"tag" = "red_hi"
+"attribute" = "sand_hi"
+"namespace" = "magenta_hi"
+"special" = "sand_hi" # decorators / annotations
+
+# Markup
+
+"markup.heading" = { fg = "teal_hi", modifiers = ["bold"] }
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.quote" = { fg = "text", modifiers = ["italic"] }
+"markup.raw" = "green"
+"markup.raw.inline" = "green"
+"markup.link.url" = { fg = "cyan_hi", modifiers = ["underlined"] }
+"markup.link.text" = { fg = "cyan_hi", modifiers = ["underlined"] }
+
+# Diff
+
+"diff.plus" = "green"
+"diff.minus" = "red"
+"diff.delta" = "sand"
+
+# UI
+
+"ui.background" = { bg = "bg" }
+
+"ui.text" = "text"
+"ui.text.directory" = "teal_hi" # path dirs in pickers/completion — needs contrast on both dark rows and the popup selection
+"ui.text.focus" = { fg = "paper", bg = "zinc" } # picker cursor row: dark so every span on it stays readable
+
+"ui.cursor" = { fg = "bg", bg = "sand" }
+"ui.cursor.match" = { fg = "bg", bg = "sand_hi", modifiers = ["bold"] } # visible bracket match
+"ui.cursorline.primary" = { bg = "bg_hl" }
+"ui.selection" = { bg = "sel" } # soft warm highlight; keeps syntax colors (no fg inversion)
+"ui.selection.primary" = { bg = "sel_hi" }
+
+"ui.highlight" = { bg = "border" } # LSP symbol/reference highlight
+"ui.linenr" = "dim_bright"
+"ui.linenr.selected" = "text"
+
+"ui.statusline" = { fg = "text", bg = "bg_hl" }
+"ui.statusline.normal" = { fg = "bg", bg = "sand", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "bg", bg = "teal" }
+"ui.statusline.select" = { fg = "bg", bg = "magenta" }
+"ui.statusline.inactive" = { fg = "dim_bright", bg = "bg_hl" }
+
+"ui.popup" = { fg = "text", bg = "bg_hl" }
+"ui.window" = { fg = "border" }
+"ui.help" = { fg = "text", bg = "bg_hl" }
+"ui.menu" = { fg = "text", bg = "bg_hl" }
+"ui.menu.selected" = { fg = "paper", bg = "zinc" } # completion/prompt selection — same contrast rule as ui.text.focus
+"ui.menu.scroll" = { fg = "dim_bright" }
+
+"ui.virtual" = "dim"
+"ui.virtual.whitespace" = "dim"
+"ui.virtual.indent-guide" = "dim"
+"ui.virtual.ruler" = { bg = "bg_hl" }
+"ui.virtual.inlay-hint" = { fg = "comment" } # readable code hints (was dim_bright 3.67:1)
+
+# Diagnostics
+
+"hint" = "green"
+"info" = "teal"
+"warning" = "sand"
+"error" = "red"
+
+"diagnostic.hint" = { underline = { color = "green", style = "line" } }
+"diagnostic.info" = { underline = { color = "teal", style = "line" } }
+"diagnostic.warning" = { underline = { color = "sand", style = "line" } }
+"diagnostic.error" = { underline = { color = "red", style = "line" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+# Palette (must stay last: keys above are top-level scopes)
+
+[palette]
+bg = "#18181b"
+bg_hl = "#27272a" # bat lineHighlight
+border = "#3f3f46" # mako progress
+zinc = "#3f3f46" # raised surface: popup cursor rows (pickers, completion)
+dim = "#52525b" # invisibles / line numbers
+comment = "#a0947c" # dim secondary text at 6:1 (was #52525b ≈ 2.3:1) — same token as fish autosuggestions
+dim_bright = "#71717a" # waybar muted
+text = "#cecdc3"
+paper = "#fffcf0"
+sand = "#e6d5b8"
+sel = "#352e25" # warm tint selection — visible via hue, keeps syntax colors readable
+sel_hi = "#413828" # primary selection (slightly stronger)
+sand_hi = "#f0e0c2"
+red = "#c4746e"
+red_hi = "#d68c84"
+green = "#879a72"
+green_hi = "#9fb58a"
+teal = "#8aa3a3"
+teal_hi = "#a6c0c0"
+cyan = "#8fbcbb"
+cyan_hi = "#a9d0cf"
+magenta = "#b48ead"
+magenta_hi = "#c9a9c4"
