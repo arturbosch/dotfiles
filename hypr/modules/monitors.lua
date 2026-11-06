@@ -56,9 +56,10 @@ local function hasInternal()
   return hl.get_monitor(internal.output) ~= nil
 end
 
-local function set4kCursorSize()
-  hl.env("HYPRCURSOR_SIZE", "30")
-  hl.exec_cmd("hyprctl setcursor Adwaita 30")
+local function setCursorSize(size)
+  local value = tostring(size)
+  hl.env("HYPRCURSOR_SIZE", value)
+  hl.exec_cmd("hyprctl setcursor Adwaita " .. value)
 end
 
 local debounceTimer = nil
@@ -76,28 +77,25 @@ end
 
 local function handleDocking()
   debounced(function()
-    if hasInternal() and hasExternal() then
+    local docked = hasExternal()
+    local internalEnabled = hasInternal()
+
+    if docked and internalEnabled then
       hl.notification.create({ text = "docked", timeout = 15000, icon = "ok" })
       hl.monitor({ output = internal.output, disabled = true })
-      set4kCursorSize()
-    elseif not hasExternal() then
-      -- XXX: Probably a hyprland bug in 0.55.x.
-      -- Turning internal monitor on via event does not work.
-      -- Via bind callback it works.
-      -- hl.monitor(internal)
+    elseif not docked and not internalEnabled then
       hl.notification.create({ text = "undocked", timeout = 15000, icon = "ok" })
-      hl.exec_cmd("hyprctl reload")
+      -- Must pass disabled explicitly: hl.monitor merges into the existing rule,
+      -- which still carries disabled = true from the docked branch.
+      hl.monitor({ output = internal.output, disabled = false })
     end
+
+    setCursorSize(docked and 30 or 15)
   end, 1000)
 end
 
 -- Register events
-hl.on("hyprland.start", function()
-  handleDocking()
-  if hasExternal() then
-    set4kCursorSize()
-  end
-end)
+hl.on("hyprland.start", handleDocking)
 
 hl.on("monitor.added", function(monitor)
   if isExternal(monitor) then
@@ -111,13 +109,7 @@ hl.on("monitor.removed", function(monitor)
   end
 end)
 
--- XXX: Do not fire config.reload only on internal screen until 0.55.x bug is present or endless loop.
-hl.on("config.reloaded", function()
-  if hasExternal() then
-    handleDocking()
-    set4kCursorSize()
-  end
-end)
+hl.on("config.reloaded", handleDocking)
 
 -- Manual docking check
 hl.bind("SUPER + SHIFT + Z", handleDocking)
