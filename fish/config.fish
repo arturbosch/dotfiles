@@ -144,6 +144,16 @@ function dots
     fish -c "cd ~/dotfiles && ./dots $argv"
 end
 
+## yazi: leave the shell in the directory yazi was quit in
+function y
+    set -l tmp (mktemp -t yazi-cwd.XXXXXX)
+    yazi $argv --cwd-file="$tmp"
+    if set -l cwd (cat $tmp); and test -n "$cwd"; and test "$cwd" != "$PWD"
+        cd -- $cwd
+    end
+    rm -f -- $tmp
+end
+
 ## shows weather
 function weather
     set city Duesseldorf

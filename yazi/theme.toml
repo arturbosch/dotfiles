@@ -1,0 +1,196 @@
+# Sandstone — mirrors ~/dotfiles/foot/foot.ini [colors-dark],
+# ~/dotfiles/kitty/sandstone-theme.conf and ~/dotfiles/bat/themes/Sandstone.tmTheme.
+# Syntax highlighting in previews reuses the bat tmTheme (single source of truth).
+
+[app]
+overall = { bg = "#18181b" }
+
+# Manager
+
+[mgr]
+cwd = { fg = "#e6d5b8", bold = true }
+
+# Find
+find_keyword = { fg = "#18181b", bg = "#e6d5b8", bold = true }
+find_position = { fg = "#52525b" }
+
+# Symlink
+symlink_target = { fg = "#52525b", italic = true }
+
+# Marker
+marker_copied = { fg = "#18181b", bg = "#879a72" }
+marker_cut = { fg = "#18181b", bg = "#c4746e" }
+marker_marked = { fg = "#18181b", bg = "#b48ead" }
+marker_selected = { fg = "#18181b", bg = "#e6d5b8" }
+
+# Count
+count_copied = { fg = "#18181b", bg = "#879a72" }
+count_cut = { fg = "#18181b", bg = "#c4746e" }
+count_selected = { fg = "#18181b", bg = "#e6d5b8" }
+
+# Border
+border_symbol = "│"
+border_style = { fg = "#3f3f46" }
+
+# Highlighting
+syntect_theme = "~/dotfiles/bat/themes/Sandstone.tmTheme"
+
+# Tabs
+
+[tabs]
+active = { fg = "#18181b", bg = "#e6d5b8", bold = true }
+inactive = { fg = "#cecdc3" }
+
+# Mode
+
+[mode]
+normal_main = { fg = "#18181b", bg = "#e6d5b8", bold = true }
+normal_alt = { fg = "#71717a" }
+select_main = { fg = "#18181b", bg = "#b48ead", bold = true }
+select_alt = { fg = "#71717a" }
+unset_main = { fg = "#18181b", bg = "#c4746e", bold = true }
+unset_alt = { fg = "#71717a" }
+
+# Indicator of hovered file
+
+[indicator]
+current = { fg = "#e6d5b8", bold = true }
+
+# Status bar
+
+[status]
+overall = { fg = "#cecdc3", bg = "#27272a" }
+
+# Permissions
+perm_sep = { fg = "#3f3f46" }
+perm_type = { fg = "#8aa3a3" }
+perm_read = { fg = "#879a72" }
+perm_write = { fg = "#c4746e" }
+perm_exec = { fg = "#e6d5b8" }
+
+# Progress
+progress_label = { fg = "#e6d5b8", bold = true }
+progress_normal = { fg = "#18181b", bg = "#e6d5b8" }
+progress_error = { fg = "#18181b", bg = "#c4746e" }
+
+# Which
+
+[which]
+border = { fg = "#3f3f46" }
+mask = { fg = "#71717a" }
+cand = { fg = "#e6d5b8" }
+rest = { fg = "#71717a" }
+desc = { fg = "#cecdc3" }
+separator_style = { fg = "#52525b" }
+
+# Confirmation
+
+[confirm]
+border = { fg = "#3f3f46" }
+title = { fg = "#e6d5b8" }
+body = { fg = "#cecdc3" }
+list = { fg = "#cecdc3" }
+btn_yes = { fg = "#18181b", bg = "#e6d5b8", bold = true }
+btn_no = { fg = "#18181b", bg = "#52525b" }
+
+# Spotter
+
+[spot]
+border = { fg = "#3f3f46" }
+title = { fg = "#e6d5b8" }
+tbl_col = { fg = "#e6d5b8" }
+tbl_cell = { fg = "#cecdc3", reversed = true }
+
+# Notification
+
+[notify]
+title_info = { fg = "#879a72" }
+title_warn = { fg = "#e6d5b8" }
+title_error = { fg = "#c4746e" }
+
+# Picker
+
+[pick]
+border = { fg = "#3f3f46" }
+active = { fg = "#18181b", bg = "#e6d5b8", bold = true }
+inactive = { fg = "#71717a" }
+
+# Input
+
+[input]
+border = { fg = "#3f3f46" }
+title = { fg = "#e6d5b8" }
+value = { fg = "#ffffff" }
+selected = { fg = "#18181b", bg = "#e6d5b8" }
+
+# Completion
+
+[cmp]
+border = { fg = "#3f3f46" }
+active = { fg = "#18181b", bg = "#e6d5b8" }
+inactive = { fg = "#71717a" }
+
+# Task manager
+
+[tasks]
+border = { fg = "#3f3f46" }
+title = { fg = "#e6d5b8" }
+hovered = { fg = "#18181b", bg = "#e6d5b8", bold = true }
+
+# Help menu
+
+[help]
+border = { fg = "#3f3f46" }
+chord = { fg = "#e6d5b8" }
+action = { fg = "#cecdc3" }
+hovered = { fg = "#18181b", bg = "#e6d5b8", bold = true }
+
+# File-specific styles
+
+[filetype]
+rules = [
+    # Image
+    { mime = "**/image/*", fg = "#e6d5b8" },
+    # Media
+    { mime = "**/video/*", fg = "#c4746e" },
+    { mime = "**/audio/*", fg = "#b48ead" },
+    # Archive
+    { mime = "**/application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#d68c84" },
+    # Document
+    { mime = "**/application/{pdf,doc,rtf}", fg = "#8aa3a3" },
+    # Virtual file system
+    { mime = "vfs/{absent,stale}", fg = "#52525b" },
+    # Special file
+    { url = "*", is = "orphan", fg = "#c4746e" },
+    { url = "*", is = "exec", fg = "#879a72" },
+    # Dummy file
+    { url = "*", is = "dummy", fg = "#c4746e" },
+    { url = "*/", is = "dummy", fg = "#c4746e" },
+    # Fallback
+    { url = "*/", fg = "#8aa3a3", bold = true },
+    { url = "*", fg = "#cecdc3" },
+]
+
+# Icons — same nerd-font glyphs as yazi's defaults, but sandstone colors.
+# `dirs = []` drops the material-colored named-folder icons (.git, .config, ...);
+# plain folders fall through to the `dir` conds below.
+[icon]
+dirs = []
+
+conds = [
+    # Special files
+    { if = "orphan", text = "", fg = "#c4746e" },
+    { if = "link", text = "", fg = "#71717a" },
+    { if = "block", text = "", fg = "#e6d5b8" },
+    { if = "char", text = "", fg = "#e6d5b8" },
+    { if = "fifo", text = "", fg = "#e6d5b8" },
+    { if = "sock", text = "", fg = "#e6d5b8" },
+    { if = "sticky", text = "", fg = "#e6d5b8" },
+    { if = "dummy", text = "", fg = "#c4746e" },
+
+    # Fallback
+    { if = "dir & hovered", text = "", fg = "#8aa3a3" },
+    { if = "dir", text = "", fg = "#8aa3a3" },
+    { if = "exec", text = "", fg = "#879a72" },
+    { if = "!dir", text = "", fg = "#71717a" },
+]

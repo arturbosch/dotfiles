@@ -226,6 +226,7 @@ function links
         $DOTS/kitty \
         $DOTS/helix \
         $DOTS/bat \
+        $DOTS/yazi \
         $DOTS/.gitconfig \
         $DOTS/.gitignore \
         $DOTS/.npmrc \
@@ -247,6 +248,7 @@ function links
         $CONFS/kitty \
         $CONFS/helix \
         $CONFS/bat \
+        $CONFS/yazi \
         $HOME/.gitconfig \
         $HOME/.gitignore \
         $HOME/.npmrc \
@@ -284,6 +286,12 @@ function links
     end
     for i in (seq (count $copy_sources))
         create_copy $copy_sources[$i] $copy_targets[$i]; or set failed 1
+    end
+
+    # bat caches compiled themes at ~/.cache/bat — rebuild so theme edits
+    # in this repo actually show up in bat/cat output.
+    if command -q bat
+        bat cache --build
     end
     return $failed
 end
