@@ -113,6 +113,22 @@ function sandbox
         $argv
 end
 
+# tool-broker capabilities: the broker holds the tokens, the sandbox gets only
+# the socket of the project it is working on — never the whole toolsocks/ dir.
+# The mount destination is fixed, so the client inside needs no flag and cannot
+# reach another project's socket.
+function project_forgejo_socket
+    set -l remote (git -C $PWD remote get-url origin 2>/dev/null)
+    or return
+    # ssh://git@host:2222/owner/repo.git, git@host:owner/repo.git, https://…
+    set -l repo (string replace -r '^.*[/:]' '' -- $remote | string replace -r '\.git$' '')
+    set -l socket $HOME/.local/run/toolsocks/$repo.sock
+    # no socket means no capability: the CLI says so instead of guessing
+    test -S $socket
+    or return
+    echo $socket:$HOME/.local/run/toolsocks/forgejo.sock
+end
+
 set -g sandbox_claude_binds \
     --ro-bind-extra ~/.local/share/claude \
     --bind-extra ~/.claude \
@@ -129,7 +145,8 @@ function pi
         --bind-extra /tmp/pi-subagents.log:/tmp/pi-subagents.log \
         --bind-extra ~/.pi/agent \
         --ro-bind-extra ~/.pi/agent/auth.json \
-        --ro-bind-extra ~/.pi/agent/guard.list
+        --ro-bind-extra ~/.pi/agent/guard.list \
+        --ro-bind-extra (project_forgejo_socket)
     # kitty remote-control socket: /tmp is a tmpfs inside the sandbox, so bind the
     # socket explicitly — pi's subagents mux detection talks to the host kitty through it
     if set -q KITTY_LISTEN_ON; and string match -q 'unix:*' -- "$KITTY_LISTEN_ON"
