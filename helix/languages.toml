@@ -91,6 +91,14 @@ language-servers = [
 ]
 
 [[language]]
+name = "json"
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "buffer.json"] }
+
+[[language]]
+name = "jsonc"
+formatter = { command = "biome", args = ["format", "--stdin-file-path", "buffer.jsonc"] }
+
+[[language]]
 name = "tsx"
 auto-format = true
 language-servers = [
