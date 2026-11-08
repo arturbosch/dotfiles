@@ -3,17 +3,20 @@
 ---------------------
 
 -- Set programs that you use
-local terminal       = "kitty"
+-- All kitty windows share one process: the first spawn owns the control socket
+-- (~/.local/run/kitty.sock-<pid>), later spawns ask it for a new OS window.
+local kitty          = "kitty --single-instance"
+local terminal       = kitty
 local menu           = "noctalia msg panel-toggle launcher"
 local fuzzelMenu     = "fuzzel"
 local bar            = "noctalia msg config-reload"
 local barToggle      = "noctalia msg bar-toggle"
 local logout         = "noctalia msg panel-toggle session" -- session menu (replaces wlogout)
 local lock           = "noctalia msg session lock"
-local bluetooth      = "kitty -e bluetui"
-local wifi           = "kitty -e nmtui"
-local processManager = "kitty -e htop"
-local soundManager   = "kitty -e wiremix"
+local bluetooth      = kitty .. " -e bluetui"
+local wifi           = kitty .. " -e nmtui"
+local processManager = kitty .. " -e htop"
+local soundManager   = kitty .. " -e wiremix"
 local settings       = "XDG_CURRENT_DESKTOP=Gnome gnome-control-center"
 local wmReload       = "hyprctl reload"
 local printWindow    = "hyprshot -m window" -- noctalia has no window-capture mode

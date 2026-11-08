@@ -25,7 +25,7 @@ end)
 
 hl.on("hyprland.start", function()
   hl.exec_cmd("brave-browser", { workspace = "1" })
-  hl.exec_cmd("kitty", { workspace = "3" })
+  hl.exec_cmd("kitty --single-instance", { workspace = "3" })
   hl.exec_cmd("nautilus", { workspace = "4" })
   hl.exec_cmd("thunderbird", { workspace = "8" })
 end)
