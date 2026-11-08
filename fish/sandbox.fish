@@ -42,6 +42,13 @@ function sandbox
         set forgejo_args --ro-bind-try $forgejo_socket /run/tool-broker/forgejo.sock
     end
 
+    # terminal capability: the broker opens fish/hx/pi on the host; the sandbox
+    # still does not get the kitty control socket (that would allow `kitten @ run`)
+    set -l term_args
+    if test -S ~/.local/run/tool-broker/term.sock
+        set term_args --ro-bind ~/.local/run/tool-broker/term.sock /run/tool-broker/term.sock
+    end
+
     # ensure cache dirs exist on the host before binding (mkdir -p is idempotent)
     mkdir -p ~/.cache/fontconfig ~/.cache/mesa_shader_cache
 
@@ -119,6 +126,7 @@ function sandbox
         $wayland_args \
         # tool-broker capability (agent agnostic)
         $forgejo_args \
+        $term_args \
         # caller mounts, then the command
         --chdir $cwd \
         $argv
