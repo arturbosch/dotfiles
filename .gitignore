@@ -3,3 +3,4 @@
 .obsidian/workspace.json
 __pycache__/
 hypr/hosts/generated.conf
+.worktrees

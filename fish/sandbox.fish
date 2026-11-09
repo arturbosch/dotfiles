@@ -49,6 +49,35 @@ function sandbox
         set term_args --ro-bind ~/.local/run/tool-broker/term.sock /run/tool-broker/term.sock
     end
 
+    # worktrees: nested in the repo at .worktrees/<slug> — gitignored, so they sit
+    # on the host under the existing $cwd bind and the human can cd in and build
+    # with no extra mount. Only a session *started inside* a worktree needs help:
+    # a linked worktree keeps its state in the main worktree's .git and with just
+    # $cwd bound git says "not a git repository".
+    #
+    # .git itself stays writable: git creates lock files in its root
+    # (packed-refs.lock, gc.pid.lock) and rename() does not cross a bind mount, so
+    # a read-only .git with writable objects/refs/worktrees cannot work. hooks/
+    # and config/ are read-only instead — they are what makes the host execute
+    # code (hooks, core.fsmonitor, core.pager, core.hooksPath, url.*.insteadOf).
+    set -l worktree_args
+    set -l git_guard_args
+    set -l git_dir (git rev-parse --path-format=absolute --git-dir 2>/dev/null)
+    set -l common_dir (git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
+    if test -n "$git_dir"; and test -n "$common_dir"
+        set -l main_root (dirname $common_dir)
+        set -a worktree_args --setenv SANDBOX_WORKTREE_ROOT $main_root/.worktrees
+        # before $cwd: the main worktree is an ancestor of a nested worktree, so
+        # its read-only bind has to be overridden by the $cwd bind that follows
+        if test "$git_dir" != "$common_dir"
+            set -a worktree_args --ro-bind $main_root $main_root --bind $common_dir $common_dir
+        end
+        # after $cwd: these override the writable $cwd and .git binds
+        set -a git_guard_args \
+            --ro-bind-try $common_dir/hooks $common_dir/hooks \
+            --ro-bind-try $common_dir/config $common_dir/config
+    end
+
     # ensure cache dirs exist on the host before binding (mkdir -p is idempotent)
     mkdir -p ~/.cache/fontconfig ~/.cache/mesa_shader_cache
 
@@ -78,8 +107,11 @@ function sandbox
         --ro-bind ~/.sdkman ~/.sdkman \
         # sharing dir
         --bind ~/share ~/share \
-        # project & tool caches (writable)
+        # project
+        $worktree_args \
         --bind $cwd $cwd \
+        $git_guard_args \
+        # caches
         --bind-try ~/.gradle ~/.gradle \
         --bind-try ~/.mvn ~/.mvn \
         ## dotfiles is always okay as reference
