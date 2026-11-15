@@ -4,7 +4,7 @@ theme = "sandstone" # themes/sandstone.toml — mirrors bat/foot/kitty
 true-color = true
 # line-number = "relative"
 end-of-line-diagnostics = "hint"
-idle-timeout = 100
+idle-timeout = 50
 shell = ["fish", "-c"]
 
 [editor.cursor-shape]
