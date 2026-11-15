@@ -1,0 +1,181 @@
+# New Dark — Helix port of IntelliJ's "New Dark" color scheme
+#
+# Notable trait vs. the plain "Dark" scheme: blue keywords.
+
+"attribute" = "gold"
+"keyword" = "blue"
+"keyword.function" = "blue"
+"keyword.operator" = "blue"
+"keyword.return" = "blue"
+"keyword.directive" = "blue"
+
+"function" = "gold"
+"function.builtin" = "gold"
+"function.macro" = "gold"
+"function.method" = "gold"
+"function.constructor" = "gold"
+
+"string" = "green"
+"string.escape" = "magenta"
+"string.special" = "magenta"
+"string.special.url" = { fg = "link", underline.style = "line" }
+
+"comment" = "gray"
+"comment.line" = "gray"
+"comment.block" = "gray"
+"comment.block.documentation" = { fg = "gray", modifiers = ["italic"] }
+"comment.line.documentation" = { fg = "gray", modifiers = ["italic"] }
+
+"variable" = "fg"
+"variable.builtin" = "blue"       # self/this are keywords in IntelliJ
+"variable.parameter" = "purple"
+"variable.other.member" = "cyan"
+
+"constant" = { fg = "cyan", modifiers = ["italic"] }
+"constant.builtin" = { fg = "cyan", modifiers = ["italic"] }
+"constant.builtin.boolean" = "magenta"
+"constant.numeric" = "magenta"
+"constant.character.escape" = "magenta"
+
+"type" = "fg"                     # class names are plain text in Darcula
+"type.enum" = "fg"
+"type.builtin" = "blue"           # primitives are keywords
+"type.parameter" = "purple"
+
+"constructor" = "gold"
+"namespace" = "fg"
+"tag" = "fg"
+"special" = "magenta"
+"label" = "fg"
+
+"operator" = "fg"
+"punctuation" = "fg"
+"punctuation.bracket" = "fg"
+"punctuation.delimiter" = "fg"
+"punctuation.special" = "magenta"
+
+"markup.heading" = { fg = "gold", modifiers = ["bold"] }
+"markup.heading.marker" = "blue"
+"markup.list" = "blue"
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link" = { fg = "link", underline.style = "line" }
+"markup.link.text" = "purple"
+"markup.link.label" = "cyan"
+"markup.link.url" = { fg = "link", underline.style = "line" }
+"markup.quote" = { fg = "gray", modifiers = ["italic"] }
+"markup.raw" = { fg = "fg", bg = "bg-highlight" }
+"markup.raw.inline" = "magenta"
+
+"diff.plus" = "green-dim"
+"diff.minus" = "gray"
+"diff.delta" = "blue-dim"
+"diff.delta.moved" = "blue"
+"diff.plus.gutter" = "green-dim"
+"diff.minus.gutter" = "gray"
+"diff.delta.gutter" = "blue-dim"
+
+# --- UI ---------------------------------------------------------------------
+
+"ui.background" = { fg = "fg", bg = "bg" }
+"ui.background.separator" = "bg-highlight"
+
+"ui.cursor" = { fg = "bg", bg = "fg" }
+"ui.cursor.insert" = { fg = "bg", bg = "fg" }
+"ui.cursor.select" = { fg = "bg", bg = "fg" }
+"ui.cursor.match" = { bg = "bg-match", modifiers = ["bold"] }
+"ui.cursor.primary" = { fg = "bg", bg = "fg" }
+"ui.cursor.primary.match" = { bg = "bg-match", modifiers = ["bold"] }
+
+"ui.selection" = { bg = "selection" }
+"ui.selection.inactive" = { bg = "bg-dim" }
+"ui.cursorline.primary" = { bg = "bg-dim" }
+"ui.cursorline.secondary" = { bg = "bg-dim" }
+"ui.cursorcolumn.primary" = { bg = "bg-dim" }
+"ui.cursorcolumn.secondary" = { bg = "bg-dim" }
+
+"ui.linenr" = "line-numbers"
+"ui.linenr.selected" = "line-numbers-focus"
+"ui.gutter" = { fg = "line-numbers", bg = "bg" }
+"ui.gutter.selected" = { fg = "line-numbers-focus", bg = "bg-dim" }
+
+"ui.statusline" = { fg = "fg-dim", bg = "bg-dim" }
+"ui.statusline.inactive" = { fg = "gray", bg = "bg-dim" }
+"ui.statusline.normal" = { fg = "bg", bg = "fg-dim", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "bg", bg = "blue", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "bg", bg = "purple", modifiers = ["bold"] }
+"ui.statusline.separator" = "bg-highlight"
+
+"ui.popup" = { fg = "fg", bg = "bg-dim" }
+"ui.popup.info" = { fg = "fg", bg = "bg-dim" }
+"ui.menu" = { fg = "fg", bg = "bg-dim" }
+"ui.menu.selected" = { fg = "fg-bright", bg = "bg-match" }
+"ui.menu.scroll" = { fg = "fg-dim", bg = "bg-dim" }
+
+"ui.window" = "bg-highlight"
+"ui.help" = { fg = "fg", bg = "bg-dim" }
+"ui.text" = "fg"
+"ui.text.focus" = "fg-bright"
+"ui.text.inactive" = "gray"
+"ui.text.info" = "fg"
+"ui.text.direction" = "gray"
+"ui.highlight" = { bg = "bg-highlight" }
+"ui.highlight.frameline" = { bg = "search-write" }
+
+"ui.virtual" = "gray"
+"ui.virtual.ruler" = { bg = "bg-highlight" }
+"ui.virtual.whitespace" = "gray"
+"ui.virtual.indent-guide" = "indent-guide"
+"ui.virtual.wrap" = "gray"
+"ui.virtual.jump-label" = { fg = "fg", bg = "bg-highlight", modifiers = ["bold"] }
+"ui.virtual.inlay-hint" = { fg = "fg-faint", bg = "bg-highlight" }
+"ui.virtual.inlay-hint.parameter" = { fg = "fg-faint", bg = "bg-highlight" }
+"ui.virtual.inlay-hint.type" = { fg = "fg-faint", bg = "bg-highlight" }
+"ui.virtual.completion" = "fg-faint"
+
+# --- Diagnostics ------------------------------------------------------------
+
+"error" = "red"
+"warning" = "yellow"
+"info" = "link"
+"hint" = "gray"
+
+"diagnostic" = { modifiers = ["underlined"] }
+"diagnostic.error" = { underline = { color = "red", style = "curl" } }
+"diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
+"diagnostic.info" = { underline = { color = "link", style = "curl" } }
+"diagnostic.hint" = { underline = { color = "gray", style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+[palette]
+bg = "#1e1f22"              # editor background
+bg-dim = "#2b2d30"          # caret row / panels / popups
+bg-highlight = "#393b40"    # inlays, folded text, right margin
+bg-match = "#43454a"        # matched brace / selected menu item
+selection = "#2b467e"       # Darcula selection tint (inherited, not in scheme)
+search = "#2f4246"          # search result background
+search-write = "#4a3f61"    # search-result (write occurrences) background
+
+fg = "#ced0d6"
+fg-bright = "#dfe1e5"
+fg-dim = "#9da0a8"
+fg-faint = "#868a91"
+
+gray = "#6f737a"            # comments / whitespace
+indent-guide = "#313438"
+line-numbers = "#5a5d63"
+line-numbers-focus = "#b4b8bf"
+
+blue = "#749ded"            # keywords (signature New Dark color)
+blue-dim = "#375fad"        # modified lines
+link = "#548af7"            # hyperlinks / ctrl+click
+gold = "#debc7e"            # functions, annotations
+green = "#7ec482"           # strings
+green-dim = "#549159"       # added lines
+cyan = "#72cfd6"            # fields, constants
+magenta = "#d981de"         # numbers, escapes
+purple = "#b189f5"          # parameters, annotation attributes
+red = "#fa5762"
+yellow = "#f2c55c"
