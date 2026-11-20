@@ -362,3 +362,9 @@ function pie
 end
 abbr pic 'pi -c'
 abbr piu 'command pi update'
+
+# headless pi: same sandbox as `pi`, print mode — one prompt, final answer on
+# stdout, exit. For unattended callers (review-watcher). Usage: pir "code review …"
+function pir
+    pi -p -- $argv
+end
